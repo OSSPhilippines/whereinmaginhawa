@@ -1,0 +1,120 @@
+name: Build and Deploy Places Data
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/web/src/data/places/*.json'
+      - 'scripts/build-places-index.ts'
+      - 'scripts/build-stats.ts'
+  workflow_dispatch: # Allow manual triggers
+
+jobs:
+  build-and-deploy:
+    name: Build Index and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for proper git operations
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9.0.0
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate changed place files
+        run: |
+          # Get list of changed place files
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep 'apps/web/src/data/places/.*\.json$' || true)
+
+          if [ -n "$CHANGED_FILES" ]; then
+            echo "✅ Validation already passed in PR review"
+            echo "Re-validating changed files as a safety check:"
+            echo "$CHANGED_FILES"
+            echo ""
+
+            VALIDATION_FAILED=false
+
+            for file in $CHANGED_FILES; do
+              if [ -f "$file" ]; then
+                echo "Validating $file..."
+                if ! pnpm validate:place "$file"; then
+                  VALIDATION_FAILED=true
+                fi
+                echo ""
+              fi
+            done
+
+            if [ "$VALIDATION_FAILED" = true ]; then
+              echo "❌ Validation failed! This should not happen if PR validation passed."
+              echo "Please check the validation workflow."
+              exit 1
+            fi
+
+            echo "✅ All files validated successfully"
+          else
+            echo "ℹ️ No place files changed, skipping validation"
+          fi
+
+      - name: Build places index
+        run: pnpm build:index
+
+      - name: Build stats file
+        run: pnpm build:stats
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet apps/web/src/data/places.json apps/web/src/data/stats.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit built files
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add apps/web/src/data/places.json apps/web/src/data/stats.json
+          git commit -m "chore: auto-generate places index and stats [skip ci]"
+          git push
+
+      - name: Trigger Vercel deployment
+        if: steps.check_changes.outputs.changed == 'true'
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$VERCEL_DEPLOY_HOOK" ]; then
+            echo "Triggering Vercel deployment..."
+            curl -X POST "$VERCEL_DEPLOY_HOOK"
+            echo "Deployment triggered successfully!"
+          else
+            echo "VERCEL_DEPLOY_HOOK not set. Skipping deployment trigger."
+            echo "Please set up the deploy hook in GitHub repository secrets."
+          fi

@@ -1,0 +1,168 @@
+name: Validate Place Files
+
+on:
+  pull_request:
+    paths:
+      - 'apps/web/src/data/places/*.json'
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    name: Validate Changed Place Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9.0.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Get changed files
+        id: changed-files
+        run: |
+          # Get list of changed place files
+          CHANGED_FILES=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...HEAD | grep 'apps/web/src/data/places/.*\.json$' || true)
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No place files changed"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changed files:"
+            echo "$CHANGED_FILES"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+
+            # Save to file for later steps
+            echo "$CHANGED_FILES" > changed_files.txt
+          fi
+
+      - name: Validate changed files
+        if: steps.changed-files.outputs.has_changes == 'true'
+        id: validate
+        run: |
+          # Initialize validation results
+          ALL_VALID=true
+          VALIDATION_OUTPUT=""
+
+          # Read changed files
+          while IFS= read -r file; do
+            if [ -f "$file" ]; then
+              echo "Validating $file..."
+
+              # Run validation and capture output
+              if OUTPUT=$(pnpm validate:place "$file" 2>&1); then
+                VALIDATION_OUTPUT="${VALIDATION_OUTPUT}### ✅ \`${file}\`\n\nValidation passed!\n\n"
+              else
+                ALL_VALID=false
+                # Escape special characters for markdown
+                ESCAPED_OUTPUT=$(echo "$OUTPUT" | sed 's/`/\\`/g' | sed 's/$/\\n/' | tr -d '\n')
+                VALIDATION_OUTPUT="${VALIDATION_OUTPUT}### ❌ \`${file}\`\n\n\`\`\`\n${OUTPUT}\n\`\`\`\n\n"
+              fi
+            fi
+          done < changed_files.txt
+
+          # Save validation output
+          echo "validation_output<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$VALIDATION_OUTPUT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          # Set validation status
+          if [ "$ALL_VALID" = true ]; then
+            echo "all_valid=true" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "all_valid=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Comment PR - Success
+        if: steps.changed-files.outputs.has_changes == 'true' && steps.validate.outputs.all_valid == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const output = `## ✅ Place File Validation Passed
+
+            All changed place files have been validated successfully!
+
+            ${{ steps.validate.outputs.validation_output }}
+
+            ---
+
+            **Next Steps:**
+            - Wait for review from maintainers
+            - Once merged, the places index will be automatically rebuilt
+            - Your changes will be deployed to production
+
+            Thank you for contributing to Where In Maginhawa! 🍴`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            });
+
+      - name: Comment PR - Failure
+        if: steps.changed-files.outputs.has_changes == 'true' && steps.validate.outputs.all_valid == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const output = `## ❌ Place File Validation Failed
+
+            Some place files have validation errors that need to be fixed:
+
+            ${{ steps.validate.outputs.validation_output }}
+
+            ---
+
+            **How to Fix:**
+
+            1. Review the validation errors above
+            2. Fix the issues in your JSON files
+            3. Common fixes:
+               - Ensure \`id\` is a valid UUID (generate at https://www.uuidgenerator.net/)
+               - Check \`slug\` uses only lowercase letters, numbers, and hyphens
+               - Verify \`operatingHours\` uses 24-hour format (HH:MM)
+               - Confirm all URLs start with \`http://\` or \`https://\`
+            4. Push your changes to update this PR
+
+            **Need Help?**
+            - Check [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md) for examples
+            - See [places/README.md](../blob/main/apps/web/src/data/places/README.md) for schema details
+            - Ask questions in the PR comments
+
+            The validation will run again automatically when you push changes.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            });
+
+      - name: Fail if validation errors
+        if: steps.changed-files.outputs.has_changes == 'true' && steps.validate.outputs.all_valid == 'false'
+        run: |
+          echo "❌ Validation failed. Please fix the errors above."
+          exit 1
+
+      - name: No changes detected
+        if: steps.changed-files.outputs.has_changes == 'false'
+        run: |
+          echo "ℹ️ No place files were changed in this PR"
