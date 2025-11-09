@@ -1123,6 +1123,27 @@
     "updatedAt": "2025-11-09T00:00:00Z"
   },
   {
+    "id": "abab872f-a5aa-4fe8-92d7-e349e7b0f7c2",
+    "name": "Champoloca Maginhawa",
+    "slug": "champoloca-maginhawa",
+    "description": "Ang Champorado na Walang Cocoa!\nServing this November. 🍚🤎",
+    "address": "Teachers village east, 104 Maginhawa, Diliman, Quezon City, 1101 Metro Manila",
+    "coverImageUrl": "https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/580482168_122136246230964099_2109270231904140441_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=_F3re5YEI_4Q7kNvwHIUJ4R&_nc_oc=AdmUR0K3Sqa6ybEKZSltX7pXOIVkBlSn2lJQOSJ-SupLMYB1gl22EVhrSwaEPZIilM0&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=78N3yfAXK7lMe2pgM8Dnhg&oh=00_AfgZ5PILcKszjfxl9f7qeHPZDlqVTfGGQyCrm0R6IKCczA&oe=69167F7E",
+    "priceRange": "$",
+    "tags": [
+      "cheap",
+      "casual"
+    ],
+    "amenities": [],
+    "cuisineTypes": [
+      "filipino"
+    ],
+    "specialties": [
+      "champorado"
+    ],
+    "updatedAt": "2025-11-09T17:01:02.120Z"
+  },
+  {
     "id": "3dc9a2e8-4bdc-4442-b978-7bdff124365b",
     "name": "Chapter Coffee Roastery & Cafe",
     "slug": "chapter-coffee-roastery-cafe",

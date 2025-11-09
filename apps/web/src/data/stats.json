@@ -1,8 +1,8 @@
 {
-  "totalPlaces": 202,
+  "totalPlaces": 203,
   "uniqueCuisines": 92,
   "uniqueAmenities": 50,
-  "uniqueTags": 255,
+  "uniqueTags": 256,
   "priceRanges": [
     "$",
     "$$",
@@ -210,6 +210,7 @@
     "cat-cafe",
     "chain",
     "charcuterie",
+    "cheap",
     "chicken",
     "chicken-wings",
     "chinese",
@@ -419,5 +420,5 @@
     "wood-fired",
     "work-friendly"
   ],
-  "generatedAt": "2025-11-09T16:48:55.080Z"
+  "generatedAt": "2025-11-09T17:03:11.191Z"
 }
