@@ -65,21 +65,47 @@ jobs:
             if [ -f "$file" ]; then
               echo "Validating $file..."
 
-              # Run validation and capture output
-              if OUTPUT=$(pnpm validate:place "$file" 2>&1); then
-                VALIDATION_OUTPUT="${VALIDATION_OUTPUT}### ✅ \`${file}\`\n\nValidation passed!\n\n"
+              # Run validation with --ci flag for clean output
+              if OUTPUT=$(pnpm validate:place "$file" --ci 2>&1); then
+                VALIDATION_OUTPUT="${VALIDATION_OUTPUT}### ✅ \`${file}\`
+
+Validation passed!
+
+"
               else
                 ALL_VALID=false
-                # Escape special characters for markdown
-                ESCAPED_OUTPUT=$(echo "$OUTPUT" | sed 's/`/\\`/g' | sed 's/$/\\n/' | tr -d '\n')
-                VALIDATION_OUTPUT="${VALIDATION_OUTPUT}### ❌ \`${file}\`\n\n\`\`\`\n${OUTPUT}\n\`\`\`\n\n"
+
+                # Format error output for markdown
+                FILE_ERRORS="### ❌ \`${file}\`
+
+**Validation Errors:**
+
+"
+                # Parse ERROR and HINT lines
+                while IFS= read -r line; do
+                  if [[ $line == ERROR:* ]]; then
+                    # Extract field and message
+                    ERROR_MSG="${line#ERROR: }"
+                    FILE_ERRORS="${FILE_ERRORS}- **${ERROR_MSG}**
+"
+                  elif [[ $line == HINT:* ]]; then
+                    # Extract hint
+                    HINT_MSG="${line#HINT: }"
+                    FILE_ERRORS="${FILE_ERRORS}  - 💡 ${HINT_MSG}
+"
+                  fi
+                done <<< "$OUTPUT"
+
+                FILE_ERRORS="${FILE_ERRORS}
+"
+                VALIDATION_OUTPUT="${VALIDATION_OUTPUT}${FILE_ERRORS}"
               fi
             fi
           done < changed_files.txt
 
           # Save validation output
           echo "validation_output<<EOF" >> $GITHUB_OUTPUT
-          echo -e "$VALIDATION_OUTPUT" >> $GITHUB_OUTPUT
+          echo "$VALIDATION_OUTPUT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
           # Set validation status
