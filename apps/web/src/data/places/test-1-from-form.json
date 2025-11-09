@@ -1,0 +1,65 @@
+{
+  "id": "c366c675-d2a8-4cc2-b594-60a1429d7aaa",
+  "name": "Test 1 from Form",
+  "slug": "test-1-from-form",
+  "description": "Lorem exercitation mollit proident irure quis non veniam occaecat.",
+  "address": "A3, TKC Square, 107 Maginhawa St",
+  "phone": "+639173091234",
+  "email": "test@duck.com",
+  "website": "https://jofftiquez.dev",
+  "photosUrls": [],
+  "operatingHours": {
+    "monday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "tuesday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "wednesday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "thursday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "friday": {
+      "open": "10:00",
+      "close": "23:00"
+    },
+    "saturday": {
+      "closed": true
+    },
+    "sunday": {
+      "closed": true
+    }
+  },
+  "priceRange": "$$$$",
+  "paymentMethods": [
+    "gcash",
+    "cash"
+  ],
+  "tags": [
+    "family-friendly",
+    "pet friendly",
+    "no smoking"
+  ],
+  "amenities": [
+    "pool",
+    "wifi",
+    "free parking",
+    "street parking"
+  ],
+  "cuisineTypes": [
+    "Filipino",
+    "Asian",
+    "Local"
+  ],
+  "specialties": [
+    "Adobong Puti"
+  ],
+  "createdAt": "2025-11-09T15:34:00.973Z",
+  "updatedAt": "2025-11-09T15:34:00.973Z"
+}
