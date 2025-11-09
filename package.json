@@ -5,15 +5,23 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "prebuild": "npm run build:index && npm run build:stats",
     "start": "turbo run start",
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
     "clean": "turbo run clean && rm -rf node_modules",
     "merge-places": "node scripts/merge-places.js",
-    "generate-stats": "node scripts/generate-stats.js"
+    "generate-stats": "node scripts/generate-stats.js",
+    "build:index": "tsx scripts/build-places-index.ts",
+    "build:stats": "tsx scripts/build-stats.ts",
+    "validate:places": "tsx scripts/validate-place.ts apps/web/src/data/places",
+    "validate:place": "tsx scripts/validate-place.ts",
+    "migrate": "tsx scripts/migrate-to-individual-files.ts"
   },
   "devDependencies": {
-    "turbo": "^2.3.3"
+    "tsx": "^4.20.6",
+    "turbo": "^2.3.3",
+    "zod": "^4.1.12"
   },
   "engines": {
     "node": ">=18.0.0",
