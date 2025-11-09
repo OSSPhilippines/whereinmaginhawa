@@ -1,7 +1,4 @@
 {
-  "id": "dfe470a3-9cee-4087-bf0d-25544857e132",
-  "name": "000",
-  "slug": "000",
   "description": "Convenience store chain offering ready-to-eat meals, snacks, beverages, and 24/7 access. Popular for quick bites, late-night munchies, hot meals, and Slurpees. Essential stop for students and night owls.",
   "address": "Maginhawa Street, Teacher's Village, Quezon City",
   "phone": "+63 2 XXX XXXX",
@@ -12,7 +9,7 @@
   "operatingHours": {
     "monday": {
       "open": "00:00",
-      "close": "23:59"
+      "closed": "23:59"
     },
     "tuesday": {
       "open": "00:00",
