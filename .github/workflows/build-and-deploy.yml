@@ -102,54 +102,84 @@ jobs:
 
       - name: Commit built files
         if: steps.check_changes.outputs.changed == 'true'
+        id: commit
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add apps/web/src/data/places.json apps/web/src/data/stats.json
           git commit -m "chore: auto-generate places index and stats"
+
+          echo "📤 Pushing changes to main..."
           git push
+
+          # Get the commit SHA that was just pushed
+          COMMIT_SHA=$(git rev-parse HEAD)
+          echo "commit_sha=$COMMIT_SHA" >> $GITHUB_OUTPUT
+          echo "✅ Pushed commit: $COMMIT_SHA"
+
+      - name: Wait for GitHub to process commit
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          echo "⏳ Waiting 10 seconds for GitHub to process the commit..."
+          sleep 10
+          echo "✅ Ready to trigger deployment"
 
       - name: Trigger Vercel deployment
         if: steps.check_changes.outputs.changed == 'true'
         env:
           VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
         run: |
-          if [ -n "$VERCEL_DEPLOY_HOOK" ]; then
-            echo "🚀 Triggering Vercel deployment..."
-            echo "📦 Repository: ${{ github.repository }}"
-            echo "🌿 Branch: ${{ github.ref_name }}"
-            echo "📝 Commit: ${{ github.sha }}"
+          if [ -z "$VERCEL_DEPLOY_HOOK" ]; then
+            echo "❌ VERCEL_DEPLOY_HOOK not set!"
+            echo "Please add your Vercel Deploy Hook URL to repository secrets."
             echo ""
+            echo "To create a deploy hook:"
+            echo "1. Go to Vercel Dashboard → Your Project → Settings → Git → Deploy Hooks"
+            echo "2. Create a new deploy hook for the 'main' branch"
+            echo "3. Copy the URL and add it as VERCEL_DEPLOY_HOOK secret in GitHub"
+            exit 1
+          fi
 
-            # Trigger deployment with proper headers and response handling
-            RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "$VERCEL_DEPLOY_HOOK" \
-              -H "Content-Type: application/json" \
-              -d '{
-                "ref": "${{ github.ref }}",
-                "sha": "${{ github.sha }}",
-                "target": "production"
-              }')
+          echo "🚀 Triggering Vercel deployment..."
+          echo "📦 Repository: ${{ github.repository }}"
+          echo "🌿 Branch: main"
+          echo "📝 Commit: ${{ steps.commit.outputs.commit_sha }}"
+          echo ""
 
-            HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
-            BODY=$(echo "$RESPONSE" | sed '$d')
+          # Trigger deployment
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "$VERCEL_DEPLOY_HOOK")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
 
-            echo "📊 Response Code: $HTTP_CODE"
-            echo "📄 Response Body: $BODY"
-            echo ""
+          echo "📊 HTTP Status: $HTTP_CODE"
+          echo "📄 Response:"
+          echo "$BODY" | jq '.' 2>/dev/null || echo "$BODY"
+          echo ""
 
-            if [ "$HTTP_CODE" = "201" ] || [ "$HTTP_CODE" = "200" ]; then
-              JOB_ID=$(echo "$BODY" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+          # Check if successful
+          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+            JOB_ID=$(echo "$BODY" | jq -r '.job.id' 2>/dev/null)
+            JOB_STATE=$(echo "$BODY" | jq -r '.job.state' 2>/dev/null)
+
+            if [ -n "$JOB_ID" ] && [ "$JOB_ID" != "null" ]; then
               echo "✅ Deployment triggered successfully!"
               echo "📋 Job ID: $JOB_ID"
-              echo "🔗 Check deployment at: https://vercel.com/dashboard"
+              echo "📊 State: $JOB_STATE"
               echo ""
-              echo "Note: It may take 1-2 minutes for the deployment to appear in the dashboard"
+              echo "🔗 View deployment at:"
+              echo "   https://vercel.com/dashboard"
+              echo ""
+              echo "💡 If you don't see the deployment in your dashboard:"
+              echo "   1. Make sure you're viewing the correct Vercel project"
+              echo "   2. Check the 'Deployments' tab (not just production)"
+              echo "   3. Try refreshing the page after 1-2 minutes"
+              echo "   4. Verify the deploy hook is for the correct project and branch"
             else
-              echo "⚠️ Unexpected response code: $HTTP_CODE"
-              echo "This may still work - check your Vercel dashboard"
+              echo "⚠️  Deployment may have been triggered, but response format unexpected"
+              echo "Check your Vercel dashboard to confirm"
             fi
           else
-            echo "⚠️ VERCEL_DEPLOY_HOOK not set"
-            echo "Vercel will auto-deploy if GitHub integration is configured"
-            echo "Otherwise, set up the deploy hook in repository secrets"
+            echo "❌ Deployment trigger failed with HTTP $HTTP_CODE"
+            echo "Response: $BODY"
+            exit 1
           fi
