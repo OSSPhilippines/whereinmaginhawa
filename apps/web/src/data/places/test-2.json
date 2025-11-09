@@ -1,0 +1,65 @@
+{
+  "id": "e2d33005-b9d8-41a0-aee2-c2b8e5185cca",
+  "name": "Test 2",
+  "slug": "test-2",
+  "description": "Laborum eiusmod consequat labore.",
+  "address": "Block 18 Lot 61",
+  "website": "https://ossph.org",
+  "photosUrls": [],
+  "operatingHours": {
+    "monday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "tuesday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "wednesday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "thursday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "friday": {
+      "open": "10:00",
+      "close": "23:00"
+    },
+    "saturday": {
+      "closed": true
+    },
+    "sunday": {
+      "closed": true
+    }
+  },
+  "priceRange": "$$",
+  "paymentMethods": [
+    "debit-card",
+    "gcash",
+    "grab-pay",
+    "bank-transfer"
+  ],
+  "tags": [
+    "date-spot",
+    "budget-friendly"
+  ],
+  "amenities": [
+    "wifi",
+    "parking"
+  ],
+  "cuisineTypes": [
+    "filipino",
+    "american",
+    "korean",
+    "spanish"
+  ],
+  "specialties": [
+    "adobo",
+    "ramen",
+    "burger"
+  ],
+  "createdAt": "2025-11-09T15:54:52.786Z",
+  "updatedAt": "2025-11-09T15:54:52.786Z"
+}
