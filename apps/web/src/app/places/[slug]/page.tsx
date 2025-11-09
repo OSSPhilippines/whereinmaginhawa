@@ -33,7 +33,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PlacePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const place = getPlaceBySlug(slug);
+  const place = await getPlaceBySlug(slug);
 
   if (!place) {
     return {
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PlacePageProps): Promise<Meta
 
 export default async function PlacePage({ params }: PlacePageProps) {
   const { slug } = await params;
-  const place = getPlaceBySlug(slug);
+  const place = await getPlaceBySlug(slug);
 
   if (!place) {
     notFound();

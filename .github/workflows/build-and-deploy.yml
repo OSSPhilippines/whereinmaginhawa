@@ -106,7 +106,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add apps/web/src/data/places.json apps/web/src/data/stats.json
-          git commit -m "chore: auto-generate places index and stats [skip ci]"
+          git commit -m "chore: auto-generate places index and stats"
           git push
 
       - name: Trigger Vercel deployment
@@ -115,10 +115,41 @@ jobs:
           VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
         run: |
           if [ -n "$VERCEL_DEPLOY_HOOK" ]; then
-            echo "Triggering Vercel deployment..."
-            curl -X POST "$VERCEL_DEPLOY_HOOK"
-            echo "Deployment triggered successfully!"
+            echo "🚀 Triggering Vercel deployment..."
+            echo "📦 Repository: ${{ github.repository }}"
+            echo "🌿 Branch: ${{ github.ref_name }}"
+            echo "📝 Commit: ${{ github.sha }}"
+            echo ""
+
+            # Trigger deployment with proper headers and response handling
+            RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "$VERCEL_DEPLOY_HOOK" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "ref": "${{ github.ref }}",
+                "sha": "${{ github.sha }}",
+                "target": "production"
+              }')
+
+            HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+            BODY=$(echo "$RESPONSE" | sed '$d')
+
+            echo "📊 Response Code: $HTTP_CODE"
+            echo "📄 Response Body: $BODY"
+            echo ""
+
+            if [ "$HTTP_CODE" = "201" ] || [ "$HTTP_CODE" = "200" ]; then
+              JOB_ID=$(echo "$BODY" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+              echo "✅ Deployment triggered successfully!"
+              echo "📋 Job ID: $JOB_ID"
+              echo "🔗 Check deployment at: https://vercel.com/dashboard"
+              echo ""
+              echo "Note: It may take 1-2 minutes for the deployment to appear in the dashboard"
+            else
+              echo "⚠️ Unexpected response code: $HTTP_CODE"
+              echo "This may still work - check your Vercel dashboard"
+            fi
           else
-            echo "VERCEL_DEPLOY_HOOK not set. Skipping deployment trigger."
-            echo "Please set up the deploy hook in GitHub repository secrets."
+            echo "⚠️ VERCEL_DEPLOY_HOOK not set"
+            echo "Vercel will auto-deploy if GitHub integration is configured"
+            echo "Otherwise, set up the deploy hook in repository secrets"
           fi
