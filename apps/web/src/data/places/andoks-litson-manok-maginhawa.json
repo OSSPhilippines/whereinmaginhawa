@@ -5,9 +5,9 @@
   "description": "Roasted chicken chain offering affordable lechon manok (roasted chicken) with crispy skin and juicy meat. A Filipino household favorite for quick, tasty, and budget-friendly roasted chicken meals.",
   "address": "192 Maginhawa St, Teacher's Village, Quezon City",
   "phone": "+63 2 8650 1234",
-  "email": "",
   "website": "https://www.andoks.com",
-  "coverImageUrl": "",
+  "logoUrl": "https://www.businessnews.com.ph/wp-content/uploads/2016/01/andoks-litson-manok-promo.jpg",
+  "coverImageUrl": "https://www.businessnews.com.ph/wp-content/uploads/2016/01/andoks-litson-manok-promo.jpg",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
@@ -31,12 +31,10 @@
       "close": "22:00"
     },
     "saturday": {
-      "open": "09:00",
-      "close": "22:00"
+      "closed": true
     },
     "sunday": {
-      "open": "09:00",
-      "close": "21:00"
+      "closed": true
     }
   },
   "priceRange": "$",
@@ -68,6 +66,6 @@
   ],
   "latitude": 14.6434,
   "longitude": 121.0696,
-  "createdAt": "2025-01-01T00:00:00Z",
-  "updatedAt": "2025-11-09T00:00:00Z"
+  "createdAt": "2025-11-09T16:03:07.724Z",
+  "updatedAt": "2025-11-09T16:03:07.724Z"
 }
