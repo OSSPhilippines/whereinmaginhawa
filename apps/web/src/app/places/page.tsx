@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, Suspense } from 'react';
-import { X, SlidersHorizontal } from 'lucide-react';
+import { X, SlidersHorizontal, Plus, Edit3 } from 'lucide-react';
 import { PlaceCard } from '@/components/place/place-card';
 import { PlaceFilters } from '@/components/filters/place-filters';
 import { Button } from '@/components/ui/button';
@@ -106,6 +106,50 @@ function PlacesContent() {
                 {places.map((place, index) => (
                   <PlaceCard key={place.id} place={place} index={index} />
                 ))}
+              </div>
+            )}
+
+            {/* Contribute Section */}
+            {places.length > 0 && (
+              <div className="mt-12 p-8 bg-white rounded-lg border border-gray-200 text-center">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Help Us Improve This Directory
+                </h3>
+                <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+                  Know a place we're missing? Found outdated information? Help us keep Where In Maginhawa accurate and comprehensive.
+                </p>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    asChild
+                    className="gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  >
+                    <a
+                      href="https://forms.gle/XxUuNUtXYJDsucQv6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Plus className="w-5 h-5" />
+                      Add a New Place
+                    </a>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    asChild
+                    className="gap-2"
+                  >
+                    <a
+                      href="https://forms.gle/pu9VjrG7JNkYmm9K9"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Edit3 className="w-5 h-5" />
+                      Report an Issue
+                    </a>
+                  </Button>
+                </div>
               </div>
             )}
           </div>

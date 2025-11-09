@@ -10,6 +10,7 @@ import {
   CreditCard,
   ChevronLeft,
   ExternalLink,
+  Edit3,
 } from 'lucide-react';
 import { getPlaceBySlug, getAllPlaces } from '@/lib/places';
 import { Badge } from '@/components/ui/badge';
@@ -281,6 +282,25 @@ export default async function PlacePage({ params }: PlacePageProps) {
                     ))}
                   </div>
                 </div>
+
+                <Separator />
+
+                {/* Report Issue Button */}
+                <Button
+                  variant="outline"
+                  size="default"
+                  asChild
+                  className="w-full gap-2 border-gray-300 hover:border-primary hover:bg-primary/5"
+                >
+                  <a
+                    href={`https://forms.gle/pu9VjrG7JNkYmm9K9?entry.123456789=${encodeURIComponent(place.name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Edit3 className="w-4 h-4" />
+                    Report Outdated Information
+                  </a>
+                </Button>
               </CardContent>
             </Card>
           </div>

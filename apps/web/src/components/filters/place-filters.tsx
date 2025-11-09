@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, X, DollarSign, Utensils, Wifi, Search, Heart } from 'lucide-react';
+import { Check, X, DollarSign, Utensils, Wifi, Search, Heart, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import type { SearchFilters, PriceRange } from '@/types/place';
@@ -137,6 +137,17 @@ export function PlaceFilters({
           <Check className="w-5 h-5 text-red-500" />
         )}
       </button>
+
+      {/* Add New Place Button */}
+      <a
+        href="https://forms.gle/XxUuNUtXYJDsucQv6"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-white border border-gray-200 hover:border-primary hover:bg-primary/5 transition-all text-gray-700 hover:text-primary"
+      >
+        <Plus className="w-5 h-5" />
+        <span className="text-sm font-medium">Add a New Place</span>
+      </a>
 
       {/* Filter Header */}
       <div className="flex items-center justify-between">

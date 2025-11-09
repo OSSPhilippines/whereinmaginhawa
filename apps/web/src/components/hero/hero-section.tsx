@@ -2,11 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { Plus, Edit3 } from 'lucide-react';
 import { GradientBackground } from './gradient-bg';
 import { SparklesText } from '../ui/sparkles-text';
 import { WordRotate } from '../ui/word-rotate';
 import { NumberTicker } from '../ui/number-ticker';
 import { SearchBar } from '../search/search-bar';
+import { Button } from '../ui/button';
 import stats from '@/data/stats.json';
 
 export function HeroSection() {
@@ -125,6 +127,45 @@ export function HeroSection() {
               </p>
               <p className="text-base md:text-lg font-medium text-gray-600">Amenities</p>
             </article>
+          </motion.div>
+
+          {/* Contribute Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6, duration: 0.6 }}
+            className="flex flex-wrap gap-4 justify-center pt-8"
+          >
+            <Button
+              variant="outline"
+              size="lg"
+              asChild
+              className="gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            >
+              <a
+                href="https://forms.gle/XxUuNUtXYJDsucQv6"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Plus className="w-5 h-5" />
+                Add a New Place
+              </a>
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              asChild
+              className="gap-2"
+            >
+              <a
+                href="https://forms.gle/pu9VjrG7JNkYmm9K9"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Edit3 className="w-5 h-5" />
+                Report an Issue
+              </a>
+            </Button>
           </motion.div>
         </div>
       </div>
