@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { PlaceImage } from '@/components/place/place-image';
+import { PlaceShare } from '@/components/place/place-share';
 import type { Metadata } from 'next';
 
 interface PlacePageProps {
@@ -114,6 +115,9 @@ export default async function PlacePage({ params }: PlacePageProps) {
   if (!place) {
     notFound();
   }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://whereinmaginhawa.com';
+  const placeUrl = `${siteUrl}/places/${place.slug}`;
 
   const formatTime = (time: string) => {
     const [hours, minutes] = time.split(':');
@@ -480,6 +484,12 @@ export default async function PlacePage({ params }: PlacePageProps) {
 
                 {/* Action Buttons */}
                 <div className="space-y-2">
+                  <PlaceShare
+                    placeName={place.name}
+                    placeUrl={placeUrl}
+                    description={place.description}
+                  />
+
                   <Button
                     variant="outline"
                     size="default"
