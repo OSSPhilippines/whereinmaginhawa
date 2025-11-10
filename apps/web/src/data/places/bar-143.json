@@ -1,0 +1,88 @@
+{
+  "id": "a654e815-3f10-440d-acd7-e76616118837",
+  "name": "Bar 143",
+  "slug": "bar-143",
+  "description": "Stylish bar offering great cocktails, good beats, and billiards. ",
+  "address": "143 Maginhawa St. ",
+  "email": "bar143qc@gmail.com",
+  "website": "https://www.instagram.com/bar143qc/?hl=en",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/bar-143/profile-1762762794600.blob",
+  "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/bar-143/cover-1762762769785.blob",
+  "photosUrls": [],
+  "operatingHours": {
+    "monday": {
+      "open": "17:00",
+      "close": "01:00"
+    },
+    "tuesday": {
+      "closed": true
+    },
+    "wednesday": {
+      "open": "17:00",
+      "close": "01:00"
+    },
+    "thursday": {
+      "open": "17:00",
+      "close": "01:00"
+    },
+    "friday": {
+      "open": "17:00",
+      "close": "04:00"
+    },
+    "saturday": {
+      "open": "17:00",
+      "close": "04:00"
+    },
+    "sunday": {
+      "open": "17:00",
+      "close": "01:00"
+    }
+  },
+  "priceRange": "$$",
+  "paymentMethods": [
+    "cash",
+    "gcash"
+  ],
+  "tags": [
+    "instagram-worthy",
+    "lively",
+    "date-spot",
+    "casual",
+    "group-friendly",
+    "trendy",
+    "aesthetic",
+    "bar",
+    "cocktails",
+    "beer",
+    "billiards",
+    "party"
+  ],
+  "amenities": [
+    "parking",
+    "air-conditioned",
+    "smoking-area",
+    "billiards",
+    "alcohol-served"
+  ],
+  "cuisineTypes": [
+    "bar chow",
+    "filipino",
+    "western"
+  ],
+  "specialties": [
+    "chicken tenders",
+    "chicken wings",
+    "amaretto sour",
+    "penicillin"
+  ],
+  "createdAt": "2025-11-10T08:28:11.672Z",
+  "updatedAt": "2025-11-10T08:28:11.672Z",
+  "createdBy": "Diana Utlang",
+  "contributors": [
+    {
+      "name": "Diana Utlang",
+      "contributedAt": "2025-11-10T08:28:11.672Z",
+      "action": "created"
+    }
+  ]
+}
