@@ -32,7 +32,8 @@
       "bar-chow",
       "sports-viewing"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "ba6ca806-3dbd-4739-8d1a-5a92e3c1569c",
@@ -65,7 +66,8 @@
       "beer",
       "bar-food"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "550e8400-e29b-41d4-a716-446655440000",
@@ -73,6 +75,7 @@
     "slug": "7-eleven-maginhawa",
     "description": "Convenience store chain offering ready-to-eat meals, snacks, beverages, and 24/7 access. Popular for quick bites, late-night munchies, hot meals, and Slurpees. Essential stop for students and night owls in Maginhawa.",
     "address": "Maginhawa Street, Teacher's Village, Quezon City",
+    "logoUrl": "",
     "coverImageUrl": "",
     "priceRange": "$",
     "tags": [
@@ -100,7 +103,8 @@
       "sandwiches",
       "snacks"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "dfe470a3-9cee-4087-bf0d-25544857e131",
@@ -135,7 +139,8 @@
       "sandwiches",
       "snacks"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "f57f7906-c415-47b2-85c0-211864d5857e",
@@ -167,7 +172,8 @@
       "fries",
       "milkshakes"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "db1554a9-3af4-4a9f-a79f-f3185d15b459",
@@ -200,7 +206,8 @@
       "grilled-meat",
       "sauces"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "c1327364-5914-4fcd-bc00-5bc8cdd0aa79",
@@ -232,7 +239,8 @@
       "mixed-grill",
       "arabic-food"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "fd25a814-83cc-4c10-88d8-ed5d34d292fd",
@@ -263,7 +271,8 @@
       "kapampangan-food",
       "sizzling-plates"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b4bb9d80-369a-48d5-9af8-38ca6016f9d0",
@@ -295,7 +304,8 @@
       "roasted-chicken",
       "dokito"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "d8885c2d-de4d-4ac0-aa7a-ab41c5ce22ff",
@@ -329,7 +339,8 @@
       "freedom-fries",
       "starving-sailor"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "393f9939-b592-4412-9026-8963f16035d7",
@@ -358,7 +369,8 @@
       "silog-meals",
       "filipino-breakfast"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "33fd3e4c-a9b5-4f94-9baa-772c21596dd4",
@@ -390,7 +402,8 @@
       "empanada",
       "longganisa"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6e82ed25-650e-49bc-91df-dfd0b92a8a41",
@@ -421,7 +434,8 @@
       "roasted-chicken",
       "filipino-food"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "3fb951ea-e194-4e47-8d5a-44dac69a4139",
@@ -455,7 +469,8 @@
       "pancit",
       "filipino-sides"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "731ecbee-ac21-4675-b414-13397316357f",
@@ -488,7 +503,8 @@
       "bagnet",
       "family-packs"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "9fc5af60-b651-45fc-a6c2-2535481645f9",
@@ -520,7 +536,8 @@
       "pulled-pork",
       "bbq-sauce"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "27342594-2ad8-4a16-83fe-94eb36c45dbb",
@@ -555,7 +572,8 @@
       "comfort-food",
       "brunch"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "4b4af29d-78eb-44e9-931d-59bd295fd021",
@@ -587,7 +605,8 @@
       "unique-flavors",
       "desserts"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "376516be-d965-4a7a-967c-806df733938b",
@@ -620,7 +639,8 @@
       "desserts",
       "artisan"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "81d83b3f-28ac-49f4-82a6-11f54298790e",
@@ -653,7 +673,8 @@
       "sandwiches",
       "iced-coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6ed43a70-adfb-4a35-9ddb-2a0373241fbc",
@@ -684,7 +705,8 @@
       "spicy-chicken",
       "bibimbap"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "927af0b8-fc17-4503-b70c-1120967e66f6",
@@ -718,7 +740,8 @@
       "tapsilog",
       "waffles"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6d43d6d2-e503-420d-a21b-b0674b1ead99",
@@ -752,7 +775,8 @@
       "coffee-education",
       "espresso"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "bfd3ea4a-a4e0-4d8d-80df-ace14ed1d1b0",
@@ -784,7 +808,8 @@
       "burger-combos",
       "fries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "d4d55432-6c1e-403f-831e-004923f74d28",
@@ -816,7 +841,8 @@
       "turkish-food",
       "wraps"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "482eea10-9daf-43a8-b984-40ac850d8c60",
@@ -847,7 +873,8 @@
       "fries",
       "shakes"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "ab2ab3f8-f232-453e-a56f-1008ad77df8a",
@@ -881,7 +908,8 @@
       "spanish-fusion",
       "wine-pairing"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "af5ab5e4-be01-4892-962f-455bc757d2b0",
@@ -916,7 +944,8 @@
       "callos",
       "lengua"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "57293156-09e4-449d-9da4-8ff905bb0251",
@@ -950,7 +979,8 @@
       "breakfast-meals",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "76cbc009-ec32-4d20-bfa1-d17492310727",
@@ -985,7 +1015,8 @@
       "sandwiches",
       "brunch"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "742ed882-49b9-497f-811f-dde34d8a0d71",
@@ -1020,7 +1051,8 @@
       "tsoknut",
       "pasta"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "c9dad02b-ad2a-4696-9747-7a476dba336b",
@@ -1050,7 +1082,8 @@
       "smoked-meat",
       "canadian-food"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b6497978-e5e6-48b5-8edb-2fe1cdaab3d7",
@@ -1086,7 +1119,8 @@
       "light-meals",
       "adoption-services"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "97e2de42-a757-4553-a066-5c7bb1debdd2",
@@ -1120,7 +1154,8 @@
       "wine-pairing",
       "charcuterie"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "abab872f-a5aa-4fe8-92d7-e349e7b0f7c2",
@@ -1128,6 +1163,7 @@
     "slug": "champoloca-maginhawa",
     "description": "Ang Champorado na Walang Cocoa!\nServing this November. 🍚🤎",
     "address": "Teachers village east, 104 Maginhawa, Diliman, Quezon City, 1101 Metro Manila",
+    "logoUrl": "https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/578212736_122136070802964099_3126505699673608743_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=hkvRYJ5Rm9UQ7kNvwHSvdIm&_nc_oc=AdmkeaTC1D94-xi4nPtEz-lxB4H4K4JzcQe7eOKSdLhGSTpEytHsCcSABI6p0hr0sbg&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=onTbPSE8gJ89oNrSVKek0g&oh=00_AfiFlynW1Y6BjcwdmQDqC9Rg8DuBpPXnKmMIlEKx4CJ60w&oe=6916B464",
     "coverImageUrl": "https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/580482168_122136246230964099_2109270231904140441_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=_F3re5YEI_4Q7kNvwHIUJ4R&_nc_oc=AdmUR0K3Sqa6ybEKZSltX7pXOIVkBlSn2lJQOSJ-SupLMYB1gl22EVhrSwaEPZIilM0&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=78N3yfAXK7lMe2pgM8Dnhg&oh=00_AfgZ5PILcKszjfxl9f7qeHPZDlqVTfGGQyCrm0R6IKCczA&oe=69167F7E",
     "priceRange": "$",
     "tags": [
@@ -1141,7 +1177,8 @@
     "specialties": [
       "champorado"
     ],
-    "updatedAt": "2025-11-09T17:01:02.120Z"
+    "updatedAt": "2025-11-09T17:01:02.120Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "3dc9a2e8-4bdc-4442-b978-7bdff124365b",
@@ -1175,7 +1212,8 @@
       "cold-brew",
       "coffee-beans"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "725b1ee1-a628-4e44-92dc-dcaaad051279",
@@ -1208,7 +1246,8 @@
       "siomai",
       "halo-halo"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b303c6d8-be9c-4d4d-a926-7fabb2f24ccc",
@@ -1243,7 +1282,8 @@
       "halo-halo",
       "wonton-noodles"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "0e7c5ff2-1379-480f-af03-4a9356dcd1fa",
@@ -1278,7 +1318,8 @@
       "fusion-food",
       "live-music"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b441308a-e033-4bcd-9f4a-5536a043e214",
@@ -1313,7 +1354,8 @@
       "vietnamese-iced-coffee",
       "vietnamese-snacks"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "3dbe7658-d6f1-496b-9e4a-a791cbb11b56",
@@ -1351,7 +1393,8 @@
       "pasta",
       "reading-room"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b6944f7d-71b9-4e13-81d9-27d77f5f6f8c",
@@ -1385,7 +1428,8 @@
       "pastries",
       "sandwiches"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "916bb38a-7ca2-40ff-bb76-b83b21be9ce3",
@@ -1417,7 +1461,8 @@
       "sinigang",
       "bulalo"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "47bb5f39-8029-4d9e-9dc9-e75509ec2753",
@@ -1448,7 +1493,8 @@
       "pork-katsu",
       "katsu-curry"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "d592c1ae-5573-4b88-be1b-e8c4bd43d7c9",
@@ -1482,7 +1528,8 @@
       "pastries",
       "brunch"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "1b360c44-18c5-4a8d-8067-75f49558bb55",
@@ -1517,7 +1564,8 @@
       "pasta",
       "sandwiches"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "328a9e4b-8add-4a01-9832-06bcaa268978",
@@ -1550,7 +1598,8 @@
       "sandwiches",
       "craft-beer"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "f96af003-0f04-4f12-947f-4279b42a655d",
@@ -1584,7 +1633,8 @@
       "hummus",
       "mediterranean-bowl"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "bcc70186-6283-405c-bc89-ea6420c5ba8d",
@@ -1616,7 +1666,8 @@
       "all-day-breakfast",
       "comfort-food"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "ed71d9be-cc12-4920-b253-e046a3d26d48",
@@ -1649,7 +1700,8 @@
       "blue-cheese-dip",
       "loaded-fries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "1ff9407a-bd3c-47ac-b136-626fa1fb2908",
@@ -1680,7 +1732,8 @@
       "risotto",
       "italian-wine"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "9a169f6a-daa3-410a-89a8-4d8bf3a5fdef",
@@ -1713,7 +1766,8 @@
       "pastries",
       "coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "027a5afe-e742-4403-92de-73553a60ecb9",
@@ -1745,7 +1799,8 @@
       "garlic-shrimp",
       "garlic-dishes"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "1cbfa658-8451-4b41-9f0a-8ef8124b4653",
@@ -1779,7 +1834,8 @@
       "sisig",
       "crispy-pata"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "e68f3ca4-1968-4cfa-befd-d9e11ef70173",
@@ -1812,7 +1868,8 @@
       "charcuterie",
       "tapas"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "13ab8085-b835-443f-9daa-42b00dc0bfd2",
@@ -1847,7 +1904,8 @@
       "garlic-bread",
       "pasta"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "88c61796-c781-4512-9cb1-5e7058531d7a",
@@ -1880,7 +1938,8 @@
       "pasta",
       "chicken-wings"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "cd0efbde-8d46-4cc1-ba28-9210780f65e2",
@@ -1914,7 +1973,8 @@
       "pasta",
       "chicken-wings"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "1034ec5c-24b9-40bf-bedd-1fe94fd45605",
@@ -1948,7 +2008,8 @@
       "burgers",
       "rice-meals"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "59228d88-334d-4ccb-8bac-059505250a8e",
@@ -1983,7 +2044,8 @@
       "burgers",
       "cyclist-hangout"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "079bf760-6052-4953-878e-6ed4f6cbae56",
@@ -2013,7 +2075,8 @@
       "adobo",
       "sinigang"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "7aed9428-d15f-4618-89fc-490ab495bb5d",
@@ -2047,7 +2110,8 @@
       "pour-over",
       "espresso"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "03d1d6ce-a6c0-43ff-bb6e-06f9b4642ae7",
@@ -2079,7 +2143,8 @@
       "tahdig",
       "persian-rice"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "bb2e99b0-b1ce-4a5b-9602-c50246987dca",
@@ -2112,7 +2177,8 @@
       "tahdig",
       "ghormeh-sabzi"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "fa9cd91b-b39d-4f41-9029-bca34e9599b1",
@@ -2146,7 +2212,8 @@
       "hotdogs",
       "fries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "5c651149-252e-4243-a24a-15e244a7361c",
@@ -2180,7 +2247,8 @@
       "palabok",
       "yumburger"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "a69ce7b6-a1c5-46d7-ac84-019462131144",
@@ -2215,7 +2283,8 @@
       "palabok",
       "yumburger"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "27130590-9750-4dff-a409-727ef8ca0ac3",
@@ -2246,7 +2315,8 @@
       "bulgogi",
       "korean-soju"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "dec0a0c0-8988-4229-9c87-285554d970d5",
@@ -2276,7 +2346,8 @@
       "iced-coffee",
       "sandwiches"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "e24ac5ea-18f9-4ecd-9dcd-ee76502e3eb4",
@@ -2311,7 +2382,8 @@
       "fries",
       "gravy"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6facc9de-7832-468b-a8df-17a1af80f902",
@@ -2343,7 +2415,8 @@
       "fried-rice",
       "sweet-and-sour"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "2a5bb739-3c55-49ce-b318-477ff0457c55",
@@ -2377,7 +2450,8 @@
       "rice-meals",
       "silog-meals"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "88be02b6-4d83-45e3-b3ea-b526e1d0fa65",
@@ -2411,7 +2485,8 @@
       "charcuterie",
       "cheese-board"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "a6398dd7-2fbd-4e3c-95db-4cc6f4290459",
@@ -2443,7 +2518,8 @@
       "spanish-cuisine",
       "charcuterie"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "f1182136-3ad2-4363-9803-4df852c8132e",
@@ -2476,7 +2552,8 @@
       "sweet-and-sour",
       "noodles"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6cb316a9-3fc6-4f50-9e9a-93699edab22d",
@@ -2509,7 +2586,8 @@
       "naan",
       "paneer-tikka"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b4869d83-89e9-4b56-a42e-6518af92085b",
@@ -2544,7 +2622,8 @@
       "sisig",
       "local-ingredients"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "1e0e0ccc-e030-4f2c-bf43-ea6584fb252c",
@@ -2577,7 +2656,8 @@
       "comfort-food",
       "fusion"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "0149666e-7c97-43a9-87c3-710faf185dac",
@@ -2606,7 +2686,8 @@
       "silog-meals",
       "home-cooked"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6c9d91b8-968f-4719-a321-6618f323a95a",
@@ -2637,7 +2718,8 @@
       "italian-comfort-food",
       "homemade-pasta"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "517ea1d2-244a-4aae-8964-f9253846e074",
@@ -2669,7 +2751,8 @@
       "pork-bbq",
       "halo-halo"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "a794c63f-0d1f-4c28-a1ca-fde4f402dbe9",
@@ -2703,7 +2786,8 @@
       "halo-halo",
       "chicken-oil"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "16192a87-5804-4fc3-90a2-d12fc6b06b5a",
@@ -2733,7 +2817,8 @@
       "grilled-fish",
       "daily-viands"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "530fd9b9-8b91-430b-a8c4-3e265e361107",
@@ -2764,7 +2849,8 @@
       "mango-desserts",
       "halo-halo"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "00098dbb-3a13-4466-8e51-169c1d3fee32",
@@ -2798,7 +2884,8 @@
       "pancit",
       "sizzling-tofu"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "9595fc04-cdcc-46ff-af28-9eabcb838d68",
@@ -2833,7 +2920,8 @@
       "mcdo-fries",
       "mcspaghetti"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "fea78d70-b4ad-4478-82c9-f5683a5ee49f",
@@ -2870,7 +2958,8 @@
       "fries",
       "mccafe-coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "9eb19440-08b7-46f5-9c28-249996a355b6",
@@ -2901,7 +2990,8 @@
       "spring-rolls",
       "vietnamese-coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "9442d886-03a4-4109-a24c-02167cb35154",
@@ -2936,7 +3026,8 @@
       "pasta",
       "wine"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "7329ed85-71f7-4d2e-a73e-5ee282fe6068",
@@ -2972,7 +3063,8 @@
       "uncle-johns",
       "hot-meals"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "8ef83042-d13a-46a2-b419-b9428e1b2c2f",
@@ -3004,7 +3096,8 @@
       "bavarian",
       "pon-de-ring"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "5c4c247f-3897-4af8-8bee-f5653a264de4",
@@ -3035,7 +3128,8 @@
       "quesadillas",
       "nachos"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "54323dfd-61cd-456a-830a-ee7dbccf1561",
@@ -3069,7 +3163,8 @@
       "tibetan-food",
       "tea"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "a4fa8313-44cc-46c4-b18a-47e8683706e5",
@@ -3102,7 +3197,8 @@
       "shabu-shabu",
       "japanese-curry"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b8d75b6d-4968-4001-8ee9-e7e6476c0708",
@@ -3133,7 +3229,8 @@
       "spring-rolls",
       "vietnamese-coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "db5ea3e3-a756-4095-9cad-a6de2fea562a",
@@ -3166,7 +3263,8 @@
       "quesadillas",
       "burritos"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "85511913-146e-43d7-86ae-ee5efda836a7",
@@ -3198,7 +3296,8 @@
       "pasta",
       "calzone"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "1d4e6b22-42de-422a-a7ee-160ab5449cf9",
@@ -3228,7 +3327,8 @@
       "grilled-seafood",
       "bbq"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "803178f9-7187-45f3-9a6c-3597be43f1ad",
@@ -3258,7 +3358,8 @@
       "gyoza",
       "japanese-cuisine"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "5db42e95-c4aa-4502-a5eb-324e7ea59a6a",
@@ -3291,7 +3392,8 @@
       "teppanyaki",
       "bento"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "57f32157-fd83-466e-a060-4a38d7e9e201",
@@ -3323,7 +3425,8 @@
       "organic-rice",
       "indigenous-dishes"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "ebd410fe-1fe1-484d-b482-b58f180565c8",
@@ -3354,7 +3457,8 @@
       "chinese-filipino",
       "lumpia"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "d9ad0e55-52a2-448f-b43c-d8056b1e36c8",
@@ -3387,7 +3491,8 @@
       "ensaymada",
       "pan-de-ube"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "e2b9beec-bd66-4860-8e10-d37e88081842",
@@ -3417,7 +3522,8 @@
       "desserts",
       "waffles"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "e5205d83-3634-4d28-8564-2db58086bf55",
@@ -3450,7 +3556,8 @@
       "charcoal-grilled",
       "spicy-chicken"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "5c91ca1c-3c40-4372-8606-e1328b1ffb66",
@@ -3481,7 +3588,8 @@
       "bun-bo-hue",
       "vietnamese-coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "aad23204-c6f5-4bbe-8047-b6acab493667",
@@ -3513,7 +3621,8 @@
       "heirloom-recipes",
       "regional-cuisine"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "8ba7fc10-0db8-400d-b4ff-bf1a5e0a3fa1",
@@ -3547,7 +3656,8 @@
       "mango-gelato",
       "italian-flavors"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "38b7b1ec-da26-4cdc-ae70-5bdedf2ce4d0",
@@ -3580,7 +3690,8 @@
       "innovative-adobo",
       "elevated-sinigang"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "0d5eb366-99e7-47e1-bd34-6f05962cb81b",
@@ -3613,7 +3724,8 @@
       "wings",
       "nachos"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "c39541bf-0fe6-4dd3-a51a-43f674f73ca1",
@@ -3644,7 +3756,8 @@
       "tofu-dishes",
       "vegetarian-filipino"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "04b86141-94db-41e1-9cf9-4d5bde6db4f9",
@@ -3680,7 +3793,8 @@
       "chicken-wings",
       "stuffed-crust"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "ed83f719-736c-410b-8a93-7f00eb851e1a",
@@ -3712,7 +3826,8 @@
       "pasta",
       "calzone"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "02081244-5a66-4f35-9641-c0def04ced30",
@@ -3743,7 +3858,8 @@
       "bbq-fries",
       "cheese-fries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "36fb76a7-bf9c-4582-8429-b3a804958c40",
@@ -3775,7 +3891,8 @@
       "italian-cuisine",
       "mediterranean"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6e7f6175-29b8-432d-aa0c-ceecd092f5d7",
@@ -3806,7 +3923,8 @@
       "quesadillas",
       "nachos"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6ea55cfe-e474-40cd-aff5-a0f2e8c62414",
@@ -3837,7 +3955,8 @@
       "tapioca-pearls",
       "fruit-tea"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "53997e9a-9ff9-4305-9de0-e3c7b18a26b5",
@@ -3870,7 +3989,8 @@
       "bubble-tea",
       "specialty-tea"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "7fb902c8-9039-436f-94be-410c8e7ab21b",
@@ -3904,7 +4024,8 @@
       "burgers",
       "fries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "ec43e970-21e1-46c2-ae6e-d27d8b0d5866",
@@ -3937,7 +4058,8 @@
       "coffee",
       "breakfast"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "cf58e13f-4db7-4b27-9132-d61d92f7bc41",
@@ -3969,7 +4091,8 @@
       "mamon",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "937b5c3e-0062-4a2e-a2af-e704b2b4a321",
@@ -3999,7 +4122,8 @@
       "breakfast",
       "silog-meals"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "ad2fc63b-fd32-43bc-a97c-af6290a14e13",
@@ -4030,7 +4154,8 @@
       "bulgogi",
       "korean-bbq"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "d43afa45-da5e-4d59-bb1a-bf47c50d5076",
@@ -4061,7 +4186,8 @@
       "chicken-bbq",
       "grilled-seafood"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "27dadf93-808a-4e37-92ce-eaddd6f46b4f",
@@ -4091,7 +4217,8 @@
       "cheese-burgers",
       "loaded-fries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "512156bd-b114-4ae0-8165-4a29ad33c210",
@@ -4120,7 +4247,8 @@
       "fruit-tea",
       "brown-sugar-milk-tea"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "3dbf1082-10a6-45e6-9360-b4c9c5732900",
@@ -4152,7 +4280,8 @@
       "noodle-soup",
       "mami"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "64047298-28c9-4be9-9247-fce1781e83ae",
@@ -4183,7 +4312,8 @@
       "quesadillas",
       "nachos"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "de513143-462b-45cb-806c-fc788c5b0483",
@@ -4214,7 +4344,8 @@
       "banh-mi",
       "spring-rolls"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "ef9001ec-80f0-4f6c-8a29-9c02553fd356",
@@ -4244,7 +4375,8 @@
       "yangnyeom",
       "soy-garlic-chicken"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "8ea57aff-f15c-4019-af98-15ec08e4153d",
@@ -4278,7 +4410,8 @@
       "unlimited-meat",
       "banchan"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "5e2092bc-572b-478a-86c6-7a13078abe2a",
@@ -4309,7 +4442,8 @@
       "pizza",
       "italian-dishes"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "3e605c72-9567-44ba-8ff1-5bd06ba16932",
@@ -4344,7 +4478,8 @@
       "frappuccino",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "92dc4925-8c5f-40b5-94da-61abd08db73c",
@@ -4377,7 +4512,8 @@
       "avocado",
       "unique-flavors"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "e402a57c-7a01-480e-87ac-9eaf961ce165",
@@ -4408,7 +4544,8 @@
       "spanish-chicken",
       "affordable-meals"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "7a45d7b4-3273-4b45-bfe6-4d2272d8758c",
@@ -4440,7 +4577,8 @@
       "barako",
       "benguet-coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "e68ef1fd-8ccc-4733-ab74-7048315a0cd6",
@@ -4475,7 +4613,8 @@
       "chicken",
       "pizza-buffet"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "a53c6b4a-fb71-46a2-a744-6672cb748479",
@@ -4510,7 +4649,8 @@
       "fried-chicken",
       "lunch-buffet"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6fec6593-a41c-49be-a9a4-c9f52ae2aa4d",
@@ -4541,7 +4681,8 @@
       "dim-sum",
       "chinese-food"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "919534d6-fec2-4a91-8270-771ba2538837",
@@ -4574,7 +4715,8 @@
       "adobo-tacos",
       "fil-mex-fusion"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "df68f0ed-fc3e-4b81-8b18-cf49bd2b863f",
@@ -4607,7 +4749,8 @@
       "brisket",
       "bbq-sauce"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "a34592c3-4c6e-4b98-91bb-c220b9fadfe4",
@@ -4641,7 +4784,8 @@
       "sandwiches",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "fb4195b2-9d16-488e-9694-4ff2300fa4fb",
@@ -4679,7 +4823,8 @@
       "pastries",
       "sandwiches"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "c5d31c14-fc90-4b4b-b5c1-c02967708fb4",
@@ -4710,7 +4855,8 @@
       "honey-chicken",
       "spicy-chicken"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "c323f7b3-b1a1-4106-ac99-7b6b0db13d56",
@@ -4741,7 +4887,8 @@
       "cold-brew",
       "onigiri"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6e215c37-371b-4e7d-bc9c-f98805b5db6a",
@@ -4772,7 +4919,8 @@
       "vietnamese-coffee",
       "pho"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "259e3ce7-dc41-4bda-a6da-bd19b0f4486f",
@@ -4807,7 +4955,8 @@
       "pasta",
       "coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "fbdf6bb6-4da7-4e53-92f9-5da698666839",
@@ -4839,7 +4988,8 @@
       "fresh-juices",
       "protein-shakes"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "d56fb96b-692b-45fc-bc46-e925b62a9074",
@@ -4870,7 +5020,8 @@
       "burritos",
       "margaritas"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "820180c2-7059-467e-b00b-523cc5c6feb9",
@@ -4904,7 +5055,8 @@
       "nachos",
       "margaritas"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "04945914-e5bf-4d13-97d7-29e104b96d85",
@@ -4936,7 +5088,8 @@
       "lechon-kawali",
       "heirloom-recipes"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "5a283698-4122-45e1-b2c6-9af986a6283f",
@@ -4969,7 +5122,8 @@
       "english-breakfast",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b3b3a73c-c385-4926-8bdf-a42c08b60a40",
@@ -5001,7 +5155,8 @@
       "tom-yum",
       "mango-sticky-rice"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "2908e7cf-150d-42df-bc6e-457e8322374d",
@@ -5035,7 +5190,8 @@
       "sisig",
       "inihaw"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "af97d85a-8aa8-4014-9d11-a90ec676756d",
@@ -5069,7 +5225,8 @@
       "pastries",
       "sandwiches"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "63f5ab37-7522-4ec6-be27-36b1b9d039b0",
@@ -5103,7 +5260,8 @@
       "comfort-food",
       "game-nights"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "ed092a0e-92d6-4d75-9539-075fe8eff92f",
@@ -5135,7 +5293,8 @@
       "tea",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b03ff95e-b018-4f80-88b7-5a11cae5dfb4",
@@ -5172,7 +5331,8 @@
       "matcha",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "4216f7d1-c596-4b1b-98fa-c9a8f55d2a86",
@@ -5207,7 +5367,8 @@
       "organic-salads",
       "cold-pressed-juice"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "85fa9495-258b-42b2-8709-b3c14d70ef25",
@@ -5241,7 +5402,8 @@
       "coffee",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "bf229e3c-b49e-4540-979a-13425fd17dee",
@@ -5274,7 +5436,8 @@
       "meatball-subs",
       "pasta"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "83fb497e-9f10-47fe-ab31-d1c81b179b26",
@@ -5310,7 +5473,8 @@
       "rice-meals",
       "coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b21c6529-a2f7-4494-8b3f-13ffac34a6b6",
@@ -5342,7 +5506,8 @@
       "ribs",
       "sandwiches"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "0e0c9a44-62c8-49ce-a1bc-f65c1b6a8d5a",
@@ -5375,7 +5540,8 @@
       "buffalo-wings",
       "nachos"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "66394bc3-0fee-4a7b-94be-8926e7815fed",
@@ -5404,7 +5570,8 @@
       "panini",
       "club-sandwich"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "a9e3fae1-1786-4d8d-bbfd-1482432a5b62",
@@ -5439,7 +5606,8 @@
       "wings",
       "cocktails"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6297dce4-a2bb-4a01-b1ea-13f6638b7ce8",
@@ -5473,7 +5641,8 @@
       "pasta",
       "italian-cuisine"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "4120e3ce-e5db-49c9-9c69-6ee56a383749",
@@ -5505,7 +5674,8 @@
       "gourmet-sisig",
       "fusion-dishes"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "a3893e53-c175-4cf1-974c-7faed11b6181",
@@ -5539,7 +5709,8 @@
       "cakes",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "1148ca88-4fe0-4069-87ae-9da74eb8408e",
@@ -5570,7 +5741,8 @@
       "fried-chicken",
       "halo-halo"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "aa736cfd-d64e-4b6f-8a47-e0c6648fdb55",
@@ -5602,7 +5774,8 @@
       "wraps",
       "garlic-sauce"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "928945fa-487a-44b2-a8c1-442e24138e47",
@@ -5637,7 +5810,8 @@
       "milkshakes",
       "coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "5169a17a-5862-44f0-9145-f49c79ca6e05",
@@ -5667,7 +5841,8 @@
       "chicken-varieties",
       "comfort-food"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "a7e759b5-ab95-4897-af7c-2c10dfea39b0",
@@ -5699,7 +5874,8 @@
       "vegan-options",
       "unique-experience"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6fc81de1-5477-41d6-aa71-5f74e91ce4b7",
@@ -5732,7 +5908,8 @@
       "plant-based-meat",
       "smoothie-bowls"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "6c5c759f-5847-42d7-967d-ccaf1888c9a7",
@@ -5765,7 +5942,8 @@
       "milk-tea",
       "sweet-toppings"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "2e527e4d-f49e-41a6-8b59-460ff58722de",
@@ -5796,7 +5974,8 @@
       "japanese-food",
       "donburi"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "32e22631-c6b3-416e-a3bc-3c251c58a60d",
@@ -5831,7 +6010,8 @@
       "brunch",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "fbae9cdb-3ec7-4254-8d54-699d84d4a392",
@@ -5863,7 +6043,8 @@
       "sauces",
       "spicy"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "9ef2fdf1-fdc0-43ae-9195-0fd36d485d12",
@@ -5895,7 +6076,8 @@
       "sweet-and-sour",
       "fried-rice"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "29e943b4-091e-4878-958c-3f68232f466c",
@@ -5926,7 +6108,8 @@
       "hot-chocolate",
       "spanish-desserts"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "52587e13-1fe0-44dd-a97f-d2ec1055dead",
@@ -5957,7 +6140,8 @@
       "sandwiches",
       "fries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "c9fc7b76-b1f8-4c16-bd78-63e2a5e157c9",
@@ -5991,7 +6175,8 @@
       "4-cheese",
       "pasta"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "3490270a-3c28-457f-bd82-574efea9e135",
@@ -6026,7 +6211,8 @@
       "4-cheese-pizza",
       "buffalo-wings"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "82632533-14f1-44dc-b368-ef6a05e43b1e",
@@ -6060,7 +6246,8 @@
       "gyudon",
       "katsudon"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "b96c8553-3153-4325-bb73-f22d7ef9df5f",
@@ -6091,7 +6278,8 @@
       "kbl",
       "pinakbet"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "096183a4-305b-44fa-9a3e-500882b6d0df",
@@ -6122,7 +6310,8 @@
       "unlimited-refills",
       "grilled-meats"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "9950511c-c8d3-4beb-97d0-277eacaa1954",
@@ -6152,7 +6341,8 @@
       "loaded-fries",
       "cheese-burgers"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "537f6033-beb4-42ec-9e64-c1ce0cb74ce7",
@@ -6183,7 +6373,8 @@
       "honey-garlic-wings",
       "spicy-wings"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "37efd8b2-9d4f-4c3f-bf6c-95d162911f9e",
@@ -6213,7 +6404,8 @@
       "americano",
       "specialty-drinks"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "a09d9661-8396-495a-bfc2-38423eba6e07",
@@ -6243,7 +6435,8 @@
       "tteokbokki",
       "kimbap"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "e85a72e8-cbd3-4483-9a51-abf8e4911549",
@@ -6273,7 +6466,8 @@
       "milkshakes",
       "filipino-flavors"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "645b3b70-823f-48e3-91d9-1a0e8370c545",
@@ -6304,7 +6498,8 @@
       "spring-rolls",
       "vietnamese-coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "3c3bd9e7-fc3e-4f36-99ce-1a0709b06d37",
@@ -6335,7 +6530,8 @@
       "falafel",
       "hummus"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "ca13db91-53b9-4d99-b9a5-e1d7a16ef704",
@@ -6365,7 +6561,8 @@
       "brown-sugar",
       "cheese-tea"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "4464522b-07f6-4a2a-8f07-0a16bcbe2682",
@@ -6396,7 +6593,8 @@
       "bolognese",
       "seafood-pasta"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "c05aa2f4-5676-4ea1-ad7f-bcb9c35ff82a",
@@ -6427,7 +6625,8 @@
       "shoyu-ramen",
       "spicy-ramen"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "d9542f4a-78a1-4b21-92e8-1f9e99e07442",
@@ -6459,7 +6658,8 @@
       "loaded-fries",
       "fusion-dishes"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "56157d1e-9b73-4444-97a8-80eb2d0437e4",
@@ -6489,7 +6689,8 @@
       "tuna-sisig",
       "tofu-sisig"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "bd5ad509-281f-431f-9fa2-fdb00f67be91",
@@ -6520,7 +6721,8 @@
       "burritos",
       "nachos"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "5b3c55ea-9bee-4d2b-9cde-be570a3c9b8e",
@@ -6550,7 +6752,8 @@
       "waffle-with-ice-cream",
       "chocolate-waffles"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "84a9d6ca-c4ba-4b16-b220-9d2085f18509",
@@ -6581,7 +6784,8 @@
       "fruit-shakes",
       "refreshments"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   },
   {
     "id": "51f75bdd-db6d-4cff-b3df-b902d3f2e6ed",
@@ -6613,6 +6817,7 @@
       "loaded-fries",
       "milkshakes"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z"
+    "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
   }
 ]
