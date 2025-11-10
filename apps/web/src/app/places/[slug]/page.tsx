@@ -6,12 +6,15 @@ import {
   Mail,
   Globe,
   Clock,
-  DollarSign,
   CreditCard,
   ChevronLeft,
   ExternalLink,
   Edit3,
   XCircle,
+  Image as ImageIcon,
+  User,
+  Github,
+  Mail as MailIcon,
 } from 'lucide-react';
 import { getPlaceBySlug, getAllPlaces } from '@/lib/places';
 import { Badge } from '@/components/ui/badge';
@@ -78,19 +81,20 @@ export default async function PlacePage({ params }: PlacePageProps) {
           className="w-full h-full object-cover"
           fallbackContent={
             <div className="w-full h-full flex items-center justify-center">
-              <span className="text-9xl font-bold text-primary opacity-50">
-                {place.name.charAt(0)}
-              </span>
+              <ImageIcon className="w-32 h-32 text-primary opacity-30" />
             </div>
           }
         />
+
+        {/* Gradient overlay for better text/logo visibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
 
         {/* Back Button */}
         <Link href="/places">
           <Button
             variant="secondary"
             size="sm"
-            className="absolute top-4 left-4 gap-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-sm"
+            className="absolute top-4 left-4 gap-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-sm z-10"
           >
             <ChevronLeft className="w-4 h-4" />
             Back
@@ -99,7 +103,31 @@ export default async function PlacePage({ params }: PlacePageProps) {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-8 -mt-20 relative z-10">
+      <div className="container mx-auto px-4 py-8 relative">
+        {/* Profile Photo / Logo */}
+        <div className="-mt-32 mb-8 ml-4">
+          {place.logoUrl ? (
+            <PlaceImage
+              src={place.logoUrl}
+              alt={`${place.name} logo`}
+              className="w-48 h-48 rounded-full object-cover border-4 bg-white border-slate-100 shadow-md"
+              fallbackContent={
+                <div className="w-48 h-48 rounded-full bg-white border-4 border-slate-100 flex items-center justify-center shadow-md">
+                  <span className="text-7xl font-bold text-primary">
+                    {place.name.charAt(0)}
+                  </span>
+                </div>
+              }
+            />
+          ) : (
+            <div className="w-48 h-48 rounded-full bg-white border-4 border-slate-100 flex items-center justify-center shadow-md">
+              <span className="text-7xl font-bold text-primary">
+                {place.name.charAt(0)}
+              </span>
+            </div>
+          )}
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
@@ -167,7 +195,7 @@ export default async function PlacePage({ params }: PlacePageProps) {
                         <span className="text-red-600 font-medium">Closed</span>
                       ) : (
                         <span className="text-gray-600">
-                          {formatTime(hours.open)} - {formatTime(hours.close)}
+                          {formatTime(hours.open!)} - {formatTime(hours.close!)}
                         </span>
                       )}
                     </div>
@@ -194,6 +222,115 @@ export default async function PlacePage({ params }: PlacePageProps) {
                       </div>
                     ))}
                   </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Contributors */}
+            {(place.createdBy || (place.contributors && place.contributors.length > 0)) && (
+              <Card className="shadow-sm">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <User className="w-5 h-5" />
+                    Contributors
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {/* Creator */}
+                  {place.createdBy && (
+                    <div className="pb-4 border-b border-gray-200">
+                      <div className="text-sm font-medium text-gray-700 mb-1">Created by</div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="w-8 h-8 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center">
+                          <User className="w-4 h-4" />
+                        </div>
+                        <span className="font-medium text-gray-900">{place.createdBy}</span>
+                      </div>
+                      <div className="text-xs text-gray-500 ml-10">
+                        {new Date(place.createdAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Contribution Timeline */}
+                  {place.contributors && place.contributors.length > 0 && (
+                    <div>
+                      <div className="text-sm font-medium text-gray-700 mb-3">
+                        Contribution History
+                      </div>
+                      <div className="space-y-3">
+                        {place.contributors.map((contributor, index) => {
+                          const date = new Date(contributor.contributedAt);
+                          const formattedDate = date.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                          });
+
+                          return (
+                            <div key={index} className="flex gap-3">
+                              <div className="flex flex-col items-center">
+                                <div className="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center flex-shrink-0">
+                                  <User className="w-4 h-4" />
+                                </div>
+                                {index < place.contributors!.length - 1 && (
+                                  <div className="w-px h-full bg-gray-200 mt-2" />
+                                )}
+                              </div>
+                              <div className="flex-1 pb-4">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="font-medium text-gray-900">
+                                    {contributor.name}
+                                  </span>
+                                  <Badge
+                                    variant="outline"
+                                    className="text-xs capitalize"
+                                  >
+                                    {contributor.action}
+                                  </Badge>
+                                </div>
+                                <div className="text-xs text-gray-500 mb-2">
+                                  {formattedDate}
+                                </div>
+                                {(contributor.email || contributor.github) && (
+                                  <div className="flex gap-3 mt-2">
+                                    {contributor.email && (
+                                      <a
+                                        href={`mailto:${contributor.email}`}
+                                        className="text-xs text-orange-600 hover:underline flex items-center gap-1"
+                                      >
+                                        <MailIcon className="w-3 h-3" />
+                                        Email
+                                      </a>
+                                    )}
+                                    {contributor.github && (
+                                      <a
+                                        href={
+                                          contributor.github.startsWith('http')
+                                            ? contributor.github
+                                            : `https://github.com/${contributor.github}`
+                                        }
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-xs text-orange-600 hover:underline flex items-center gap-1"
+                                      >
+                                        <Github className="w-3 h-3" />
+                                        GitHub
+                                      </a>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             )}
