@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { updatePlacePR } from '@/lib/github';
 import { requireCsrfToken } from '@/lib/csrf';
 import { checkRateLimit } from '@/lib/rate-limiter';
+import { getPlaceBySlug } from '@/lib/places';
 import type { Place } from '@/types/place';
 
 // Operating hours schema (matches validation schema)
@@ -45,8 +46,8 @@ const updatePlaceRequestSchema = z.object({
   latitude: z.number().min(-90).max(90).optional(),
   longitude: z.number().min(-180).max(180).optional(),
 
-  // Contributor information (optional)
-  contributorName: z.string().optional(),
+  // Contributor information
+  contributorName: z.string().min(1, 'Contributor name is required'),
   contributorEmail: z.string().email('Invalid email format').optional().or(z.literal('')),
   contributorGithub: z.string().optional(),
 });
@@ -114,10 +115,36 @@ export async function POST(request: NextRequest) {
 
     const data = validation.data;
 
-    // Create timestamps (keep original createdAt if it exists, update updatedAt)
+    // Fetch existing place to preserve createdBy and createdAt
+    const existingPlace = await getPlaceBySlug(data.slug);
+
+    if (!existingPlace) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Place not found. Cannot update a non-existent place.',
+        },
+        { status: 404 }
+      );
+    }
+
+    // Create timestamps (preserve original createdAt, update updatedAt)
     const now = new Date().toISOString();
 
-    // Build Place object
+    // Build updated contributors array
+    const existingContributors = existingPlace.contributors || [];
+    const newContributor = {
+      name: data.contributorName,
+      email: data.contributorEmail || undefined,
+      github: data.contributorGithub || undefined,
+      contributedAt: now,
+      action: 'updated' as const,
+    };
+
+    // Add new contributor to the array
+    const updatedContributors = [...existingContributors, newContributor];
+
+    // Build Place object, preserving createdBy and createdAt from existing place
     const place: Place = {
       id: data.id,
       name: data.name,
@@ -139,8 +166,10 @@ export async function POST(request: NextRequest) {
       specialties: data.specialties,
       latitude: data.latitude,
       longitude: data.longitude,
-      createdAt: now, // This will be overwritten by the actual value from the file in PR review
+      createdAt: existingPlace.createdAt, // Preserve original creation date
       updatedAt: now,
+      createdBy: existingPlace.createdBy || 'Anonymous', // Preserve original creator
+      contributors: updatedContributors, // Add new contributor to history
     };
 
     // Create GitHub PR for update

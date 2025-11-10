@@ -42,8 +42,8 @@ const createPlaceRequestSchema = z.object({
   latitude: z.number().min(-90).max(90).optional(),
   longitude: z.number().min(-180).max(180).optional(),
 
-  // Contributor information (optional)
-  contributorName: z.string().optional(),
+  // Contributor information
+  contributorName: z.string().min(1, 'Contributor name is required'),
   contributorEmail: z.string().email('Invalid email format').optional().or(z.literal('')),
   contributorGithub: z.string().optional(),
 });
@@ -134,6 +134,15 @@ export async function POST(request: NextRequest) {
     // Create timestamps
     const now = new Date().toISOString();
 
+    // Create initial contributor entry
+    const initialContributor = {
+      name: data.contributorName,
+      email: data.contributorEmail || undefined,
+      github: data.contributorGithub || undefined,
+      contributedAt: now,
+      action: 'created' as const,
+    };
+
     // Build Place object
     const place: Place = {
       id,
@@ -158,6 +167,8 @@ export async function POST(request: NextRequest) {
       longitude: data.longitude,
       createdAt: now,
       updatedAt: now,
+      createdBy: data.contributorName,
+      contributors: [initialContributor],
     };
 
     // Create GitHub PR
