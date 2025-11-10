@@ -5126,6 +5126,23 @@
     "createdBy": "Joff Tiquez"
   },
   {
+    "id": "7acc2028-e2f6-416d-9321-b6c8959475e7",
+    "name": "Test 3",
+    "slug": "test-3",
+    "description": "Et ad consectetur et nostrud in adipisicing mollit qui et est dolore laborum dolor et irure.",
+    "address": "Consequat officia proident proident commodo minim culpa consectetur nisi reprehenderit deserunt ad.",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/new-place/cover-1762740312364.blob",
+    "priceRange": "$$$",
+    "tags": [],
+    "amenities": [],
+    "cuisineTypes": [
+      "japanese",
+      "mexican"
+    ],
+    "specialties": [],
+    "updatedAt": "2025-11-10T02:05:55.266Z"
+  },
+  {
     "id": "b3b3a73c-c385-4926-8bdf-a42c08b60a40",
     "name": "Thai Me Up",
     "slug": "thai-me-up",
