@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { TagInput } from '@/components/ui/tag-input';
+import { ImageUploadField } from '@/components/ui/image-upload-field';
 import { csrfFetch } from '@/lib/csrf-client';
 import type { PriceRange } from '@/types/place';
 
@@ -137,6 +138,17 @@ export function AddPlaceForm({ onSuccess, onCancel }: AddPlaceFormProps) {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Generate slug from place name for image uploads
+  const slug = useMemo(() => {
+    return formData.name
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      || 'new-place';
+  }, [formData.name]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -466,48 +478,45 @@ export function AddPlaceForm({ onSuccess, onCancel }: AddPlaceFormProps) {
 
       {/* Media */}
       <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-4">Media (Optional)</h3>
-        <div className="space-y-4">
-          <div>
-            <label htmlFor="coverImageUrl" className="block text-sm font-medium mb-1">
-              Cover Image URL
-            </label>
-            <Input
-              id="coverImageUrl"
-              name="coverImageUrl"
-              type="url"
-              value={formData.coverImageUrl}
-              onChange={handleChange}
-              placeholder="https://example.com/image.jpg"
-            />
-          </div>
+        <h3 className="text-lg font-semibold mb-4">Photos</h3>
+        <p className="text-sm text-muted-foreground mb-6">
+          Upload high-quality images to showcase your place. Images will be automatically compressed and optimized.
+        </p>
+        <div className="space-y-6">
+          <ImageUploadField
+            type="cover"
+            value={formData.coverImageUrl}
+            onChange={(url) => setFormData((prev) => ({ ...prev, coverImageUrl: url }))}
+            slug={slug}
+            label="Cover Photo"
+            description="Wide cover photo (recommended: 1920x1080px, 16:9 aspect ratio)"
+            aspect={16 / 9}
+            required={false}
+          />
 
-          <div>
-            <label htmlFor="logoUrl" className="block text-sm font-medium mb-1">
-              Logo URL
-            </label>
-            <Input
-              id="logoUrl"
-              name="logoUrl"
-              type="url"
-              value={formData.logoUrl}
-              onChange={handleChange}
-              placeholder="https://example.com/logo.png"
-            />
-          </div>
+          <ImageUploadField
+            type="profile"
+            value={formData.logoUrl}
+            onChange={(url) => setFormData((prev) => ({ ...prev, logoUrl: url }))}
+            slug={slug}
+            label="Profile Photo / Logo"
+            description="Square profile photo or logo (recommended: 800x800px, 1:1 aspect ratio)"
+            aspect={1}
+            required={false}
+          />
         </div>
       </Card>
 
       {/* Contributor Information */}
       <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-4">Your Information (Optional)</h3>
+        <h3 className="text-lg font-semibold mb-4">Your Information</h3>
         <p className="text-sm text-muted-foreground mb-4">
           Help us give you credit for your contribution!
         </p>
         <div className="space-y-4">
           <div>
             <label htmlFor="contributorName" className="block text-sm font-medium mb-1">
-              Your Name
+              Your Name <span className="text-red-500">*</span>
             </label>
             <Input
               id="contributorName"
@@ -515,12 +524,13 @@ export function AddPlaceForm({ onSuccess, onCancel }: AddPlaceFormProps) {
               value={formData.contributorName}
               onChange={handleChange}
               placeholder="John Doe"
+              required
             />
           </div>
 
           <div>
             <label htmlFor="contributorEmail" className="block text-sm font-medium mb-1">
-              Your Email
+              Your Email (Optional)
             </label>
             <Input
               id="contributorEmail"
