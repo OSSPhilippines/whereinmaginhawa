@@ -103,8 +103,8 @@ function PlacesContent() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {places.map((place, index) => (
-                  <PlaceCard key={place.id} place={place} index={index} />
+                {places.map((place) => (
+                  <PlaceCard key={place.id} place={place} />
                 ))}
               </div>
             )}
@@ -171,16 +171,7 @@ function PlacesContent() {
 
 export default function PlacesPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <div className="text-4xl mb-4">🍽️</div>
-            <p className="text-gray-600">Loading places...</p>
-          </div>
-        </div>
-      }
-    >
+    <Suspense fallback={null}>
       <PlacesContent />
     </Suspense>
   );

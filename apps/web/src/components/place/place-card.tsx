@@ -2,8 +2,7 @@
 
 import { useState, useEffect, type ReactElement } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { MapPin, Clock, DollarSign, Wifi, ParkingCircle, Heart } from 'lucide-react';
+import { MapPin, Clock, DollarSign, Wifi, ParkingCircle, Heart, Image as ImageIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { PlaceImage } from './place-image';
@@ -11,12 +10,11 @@ import type { PlaceIndex } from '@/types/place';
 
 interface PlaceCardProps {
   place: PlaceIndex;
-  index?: number;
 }
 
 const FAVORITES_KEY = 'whereinmaginhawa_favorites';
 
-export function PlaceCard({ place, index = 0 }: PlaceCardProps) {
+export function PlaceCard({ place }: PlaceCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -64,24 +62,18 @@ export function PlaceCard({ place, index = 0 }: PlaceCardProps) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-    >
+    <div>
       <Link href={`/places/${place.slug}`}>
-        <Card className="group transition-all duration-300 overflow-hidden border border-gray-200 hover:border-primary h-full p-0">
+        <Card className="group transition-all duration-300 overflow-visible border border-gray-200 hover:border-primary h-full p-0">
           {/* Image */}
-          <div className="relative h-48 bg-orange-50 overflow-hidden">
+          <div className="relative aspect-video bg-orange-50 overflow-hidden rounded-t-xl">
             <PlaceImage
               src={place.coverImageUrl}
               alt={place.name}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               fallbackContent={
                 <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-4xl font-bold text-primary opacity-50">
-                    {place.name.charAt(0)}
-                  </span>
+                  <ImageIcon className="w-16 h-16 text-primary opacity-30" />
                 </div>
               }
             />
@@ -102,14 +94,38 @@ export function PlaceCard({ place, index = 0 }: PlaceCardProps) {
             </button>
 
             {/* Price range badge */}
-            <div className="absolute bottom-3 left-3">
+            <div className="absolute bottom-3 right-3">
               <Badge className="bg-white/90 backdrop-blur-sm text-green-700 font-bold border border-gray-200 hover:bg-white">
                 {place.priceRange}
               </Badge>
             </div>
           </div>
 
-          <CardHeader className="pb-3">
+          <CardHeader className="pb-3 pt-4 relative">
+            {/* Profile Photo / Logo */}
+            <div className="-mt-16 mb-2">
+              {place.logoUrl ? (
+                <PlaceImage
+                  src={place.logoUrl}
+                  alt={`${place.name} logo`}
+                  className="w-16 h-16 rounded-full object-cover border-4 border-white shadow-sm"
+                  fallbackContent={
+                    <div className="w-16 h-16 rounded-full bg-white border-4 border-white shadow-sm flex items-center justify-center">
+                      <span className="text-2xl font-bold text-primary">
+                        {place.name.charAt(0)}
+                      </span>
+                    </div>
+                  }
+                />
+              ) : (
+                <div className="w-16 h-16 rounded-full bg-white border-4 border-white shadow-sm flex items-center justify-center">
+                  <span className="text-2xl font-bold text-primary">
+                    {place.name.charAt(0)}
+                  </span>
+                </div>
+              )}
+            </div>
+
             <div className="space-y-2">
               <h3 className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-1">
                 {place.name}
@@ -149,6 +165,6 @@ export function PlaceCard({ place, index = 0 }: PlaceCardProps) {
           </CardContent>
         </Card>
       </Link>
-    </motion.div>
+    </div>
   );
 }
