@@ -1177,7 +1177,7 @@
     "specialties": [
       "champorado"
     ],
-    "updatedAt": "2025-11-09T17:01:02.120Z",
+    "updatedAt": "2025-11-10T07:13:52.593Z",
     "createdBy": "Joff Tiquez"
   },
   {
@@ -5131,6 +5131,7 @@
     "slug": "test-3",
     "description": "Et ad consectetur et nostrud in adipisicing mollit qui et est dolore laborum dolor et irure.",
     "address": "Consequat officia proident proident commodo minim culpa consectetur nisi reprehenderit deserunt ad.",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/new-place/profile-1762740319995.blob",
     "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/new-place/cover-1762740312364.blob",
     "priceRange": "$$$",
     "tags": [],

@@ -30,12 +30,10 @@
       "close": "23:00"
     },
     "saturday": {
-      "open": "10:00",
-      "close": "23:00"
+      "closed": true
     },
     "sunday": {
-      "open": "10:00",
-      "close": "22:00"
+      "closed": true
     }
   },
   "priceRange": "$",
@@ -55,6 +53,14 @@
     "champorado"
   ],
   "createdAt": "2025-11-09T17:01:02.120Z",
-  "updatedAt": "2025-11-09T17:01:02.120Z",
-  "createdBy": "Joff Tiquez"
+  "updatedAt": "2025-11-10T07:13:52.593Z",
+  "createdBy": "Joff Tiquez",
+  "contributors": [
+    {
+      "name": "Joff Tiquez",
+      "github": "https://instagram.com/jofftiquez",
+      "contributedAt": "2025-11-10T07:13:52.593Z",
+      "action": "updated"
+    }
+  ]
 }
