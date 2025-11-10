@@ -5,7 +5,6 @@
     "slug": "154-backdoor",
     "description": "A trendy sports bar and restobar offering craft beers, cocktails, and comfort food. Features multiple TV screens for sports viewing, pool tables, and a lively atmosphere perfect for nightlife and watching games with friends.",
     "address": "154 Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
     "priceRange": "$$",
     "tags": [
       "bar",
@@ -32,7 +31,7 @@
       "bar-chow",
       "sports-viewing"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z",
+    "updatedAt": "2025-11-10T15:22:39.167Z",
     "createdBy": "Joff Tiquez"
   },
   {
