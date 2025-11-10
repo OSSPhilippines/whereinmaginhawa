@@ -1,8 +1,8 @@
 {
-  "totalPlaces": 203,
-  "uniqueCuisines": 92,
-  "uniqueAmenities": 50,
-  "uniqueTags": 256,
+  "totalPlaces": 204,
+  "uniqueCuisines": 94,
+  "uniqueAmenities": 53,
+  "uniqueTags": 260,
   "priceRanges": [
     "$",
     "$$",
@@ -22,6 +22,7 @@
     "arab",
     "asian",
     "bakery",
+    "bar chow",
     "bar-food",
     "bbq",
     "beverages",
@@ -107,6 +108,7 @@
     "vegetarian",
     "vietnamese",
     "waffles",
+    "western",
     "wine-bar",
     "wings"
   ],
@@ -116,11 +118,13 @@
     "adoption-program",
     "aesthetic-interiors",
     "air-conditioned",
+    "alcohol-served",
     "atm",
     "bar",
     "beer",
     "bike-parking",
     "bike-repair",
+    "billiards",
     "bills-payment",
     "board-games",
     "books",
@@ -151,6 +155,7 @@
     "reservation-required",
     "reservations-recommended",
     "seating",
+    "smoking-area",
     "sports-tv",
     "study-area",
     "takeout",
@@ -165,6 +170,7 @@
   "tags": [
     "24-7",
     "24-hours",
+    "aesthetic",
     "affordable",
     "afternoon-tea",
     "all-day-breakfast",
@@ -187,6 +193,7 @@
     "beer",
     "beverages",
     "bike-cafe",
+    "billiards",
     "bistro",
     "board-game-cafe",
     "books",
@@ -304,6 +311,7 @@
     "library",
     "live-music",
     "live-sports",
+    "lively",
     "local",
     "local-favorite",
     "mango",
@@ -328,6 +336,7 @@
     "oversized",
     "pancakes",
     "pandesal",
+    "party",
     "pasta",
     "pastries",
     "persian",
@@ -420,5 +429,5 @@
     "wood-fired",
     "work-friendly"
   ],
-  "generatedAt": "2025-11-10T07:31:24.201Z"
+  "generatedAt": "2025-11-10T09:22:17.368Z"
 }

@@ -471,6 +471,50 @@
     "createdBy": "Joff Tiquez"
   },
   {
+    "id": "a654e815-3f10-440d-acd7-e76616118837",
+    "name": "Bar 143",
+    "slug": "bar-143",
+    "description": "Stylish bar offering great cocktails, good beats, and billiards. ",
+    "address": "143 Maginhawa St. ",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/bar-143/profile-1762762794600.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/bar-143/cover-1762762769785.blob",
+    "priceRange": "$$",
+    "tags": [
+      "instagram-worthy",
+      "lively",
+      "date-spot",
+      "casual",
+      "group-friendly",
+      "trendy",
+      "aesthetic",
+      "bar",
+      "cocktails",
+      "beer",
+      "billiards",
+      "party"
+    ],
+    "amenities": [
+      "parking",
+      "air-conditioned",
+      "smoking-area",
+      "billiards",
+      "alcohol-served"
+    ],
+    "cuisineTypes": [
+      "bar chow",
+      "filipino",
+      "western"
+    ],
+    "specialties": [
+      "chicken tenders",
+      "chicken wings",
+      "amaretto sour",
+      "penicillin"
+    ],
+    "updatedAt": "2025-11-10T08:28:11.672Z",
+    "createdBy": "Diana Utlang"
+  },
+  {
     "id": "9fc5af60-b651-45fc-a6c2-2535481645f9",
     "name": "Barrel Smokers",
     "slug": "barrel-smokers",
