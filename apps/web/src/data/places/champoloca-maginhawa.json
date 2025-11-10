@@ -11,31 +11,29 @@
   "operatingHours": {
     "monday": {
       "open": "10:00",
-      "close": "22:00"
+      "close": "18:00"
     },
     "tuesday": {
       "open": "10:00",
-      "close": "22:00"
+      "close": "18:00"
     },
     "wednesday": {
       "open": "10:00",
-      "close": "22:00"
+      "close": "18:00"
     },
     "thursday": {
       "open": "10:00",
-      "close": "22:00"
+      "close": "18:00"
     },
     "friday": {
       "open": "10:00",
-      "close": "23:00"
+      "close": "18:00"
     },
     "saturday": {
-      "open": "10:00",
-      "close": "23:00"
+      "closed": true
     },
     "sunday": {
-      "open": "10:00",
-      "close": "22:00"
+      "closed": true
     }
   },
   "priceRange": "$",
@@ -54,7 +52,6 @@
   "specialties": [
     "champorado"
   ],
-  "createdAt": "2025-11-09T17:01:02.120Z",
-  "updatedAt": "2025-11-09T17:01:02.120Z",
-  "createdBy": "Joff Tiquez"
+  "createdAt": "2025-11-10T06:57:15.922Z",
+  "updatedAt": "2025-11-10T06:57:15.922Z"
 }
