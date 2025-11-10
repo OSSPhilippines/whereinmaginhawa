@@ -25,22 +25,50 @@ jobs:
           fetch-depth: 0 # Full history for proper git operations
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check if this is an auto-generated commit
+        id: check_trigger
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          if [[ "$COMMIT_MSG" == "chore: auto-generate places index and stats" ]]; then
+            echo "is_auto_generated=true" >> $GITHUB_OUTPUT
+            echo "⏭️ Skipping workflow - this is an auto-generated commit"
+            echo ""
+            echo "ℹ️ This commit was created by the previous workflow run."
+            echo "   The index files are already up to date."
+            echo ""
+            echo "✅ Vercel will deploy this commit automatically."
+          else
+            echo "is_auto_generated=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ This is a regular commit - will build and generate index"
+          fi
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "is_manual=true" >> $GITHUB_OUTPUT
+            echo "ℹ️ Manual trigger detected"
+          else
+            echo "is_manual=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Setup Node.js
+        if: steps.check_trigger.outputs.is_auto_generated == 'false'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Setup pnpm
+        if: steps.check_trigger.outputs.is_auto_generated == 'false'
         uses: pnpm/action-setup@v3
         with:
           version: 9.0.0
 
       - name: Get pnpm store directory
+        if: steps.check_trigger.outputs.is_auto_generated == 'false'
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
       - name: Setup pnpm cache
+        if: steps.check_trigger.outputs.is_auto_generated == 'false'
         uses: actions/cache@v4
         with:
           path: ${{ env.STORE_PATH }}
@@ -49,9 +77,11 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
+        if: steps.check_trigger.outputs.is_auto_generated == 'false'
         run: pnpm install --frozen-lockfile
 
       - name: Validate changed place files
+        if: steps.check_trigger.outputs.is_auto_generated == 'false'
         run: |
           # Get list of changed place files
           CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep 'apps/web/src/data/places/.*\.json$' || true)
@@ -86,12 +116,15 @@ jobs:
           fi
 
       - name: Build places index
+        if: steps.check_trigger.outputs.is_auto_generated == 'false'
         run: pnpm build:index
 
       - name: Build stats file
+        if: steps.check_trigger.outputs.is_auto_generated == 'false'
         run: pnpm build:stats
 
       - name: Check for changes
+        if: steps.check_trigger.outputs.is_auto_generated == 'false'
         id: check_changes
         run: |
           if git diff --quiet apps/web/src/data/places.json apps/web/src/data/stats.json; then
@@ -101,7 +134,7 @@ jobs:
           fi
 
       - name: Commit built files
-        if: steps.check_changes.outputs.changed == 'true'
+        if: steps.check_trigger.outputs.is_auto_generated == 'false' && steps.check_changes.outputs.changed == 'true'
         id: commit
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -118,7 +151,7 @@ jobs:
           echo "✅ Pushed commit: $COMMIT_SHA"
 
       - name: Deployment complete
-        if: steps.check_changes.outputs.changed == 'true'
+        if: steps.check_trigger.outputs.is_auto_generated == 'false' && steps.check_changes.outputs.changed == 'true'
         run: |
           echo "✅ Places data built and committed successfully!"
           echo ""
@@ -126,8 +159,8 @@ jobs:
           echo "  - apps/web/src/data/places.json"
           echo "  - apps/web/src/data/stats.json"
           echo ""
-          echo "🚀 Vercel will automatically detect the commit and deploy"
-          echo "   The custom build script will check if deployment is needed"
+          echo "🚀 The auto-generated commit will trigger Vercel to deploy"
+          echo "   Next workflow run will skip rebuilding (to avoid infinite loop)"
           echo ""
           echo "🔗 Check deployment at: https://vercel.com/dashboard"
 
