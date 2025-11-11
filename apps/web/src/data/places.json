@@ -2382,44 +2382,6 @@
     "createdBy": "Joff Tiquez"
   },
   {
-    "id": "fea78d70-b4ad-4478-82c9-f5683a5ee49f",
-    "name": "McDonald's Maginhawa",
-    "slug": "mcdonalds-maginhawa",
-    "description": "Global fast-food giant with Filipino menu adaptations including fried chicken and rice meals. Open 24/7 for convenient late-night dining, study sessions, and quick meals. Features McCafe specialty coffee and all-day breakfast.",
-    "address": "Maginhawa Street, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$",
-    "tags": [
-      "fast-food",
-      "american",
-      "24-7",
-      "study-spot",
-      "quick-service"
-    ],
-    "amenities": [
-      "takeout",
-      "delivery",
-      "dine-in",
-      "air-conditioned",
-      "wifi",
-      "24-hours",
-      "drive-thru"
-    ],
-    "cuisineTypes": [
-      "american",
-      "fast-food"
-    ],
-    "specialties": [
-      "big-mac",
-      "chicken-mcdo",
-      "mcspaghetti",
-      "fries",
-      "mccafe-coffee"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
     "id": "9eb19440-08b7-46f5-9c28-249996a355b6",
     "name": "Me Love You Long Time",
     "slug": "me-love-you-long-time-streat",
