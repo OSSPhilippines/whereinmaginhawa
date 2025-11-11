@@ -56,20 +56,13 @@ export async function generateMetadata({
       url,
       siteName: 'Where In Maginhawa',
       type: 'website',
-      images: [
-        {
-          url: 'https://whereinmaginhawa.com/og-image.png',
-          width: 1200,
-          height: 630,
-          alt: category.heading,
-        },
-      ],
+      // images array removed - Next.js will automatically use opengraph-image.tsx
     },
     twitter: {
       card: 'summary_large_image',
       title: category.title,
       description: category.description,
-      images: ['https://whereinmaginhawa.com/og-image.png'],
+      // images array removed - Next.js will automatically use opengraph-image.tsx
     },
     alternates: {
       canonical: url,
