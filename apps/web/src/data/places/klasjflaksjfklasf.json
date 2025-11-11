@@ -1,0 +1,56 @@
+{
+  "id": "3a598577-ef00-4144-88f4-b53551730453",
+  "name": "klasjflaksjfklasf",
+  "slug": "klasjflaksjfklasf",
+  "description": "alksfaksljfalksjf",
+  "address": "asfasfasf",
+  "photosUrls": [],
+  "operatingHours": {
+    "monday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "tuesday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "wednesday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "thursday": {
+      "open": "10:00",
+      "close": "22:00"
+    },
+    "friday": {
+      "open": "10:00",
+      "close": "23:00"
+    },
+    "saturday": {
+      "open": "10:00",
+      "close": "23:00"
+    },
+    "sunday": {
+      "open": "10:00",
+      "close": "22:00"
+    }
+  },
+  "priceRange": "$$",
+  "paymentMethods": [],
+  "tags": [],
+  "amenities": [],
+  "cuisineTypes": [
+    "spanish"
+  ],
+  "specialties": [],
+  "createdAt": "2025-11-11T15:03:09.530Z",
+  "updatedAt": "2025-11-11T15:03:09.530Z",
+  "createdBy": "sdf",
+  "contributors": [
+    {
+      "name": "sdf",
+      "contributedAt": "2025-11-11T15:03:09.530Z",
+      "action": "created"
+    }
+  ]
+}
