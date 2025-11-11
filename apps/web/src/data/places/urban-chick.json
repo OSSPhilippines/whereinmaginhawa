@@ -5,45 +5,46 @@
   "description": "A modern Filipino restaurant specializing in fried chicken and comfort food. Features their signature crispy fried chicken with various flavors and dips, served in a contemporary casual dining setting.",
   "address": "Maginhawa St, Teacher's Village, Quezon City",
   "phone": "+63 917 678 2345",
-  "email": "",
+  "email": "jullianofernando_guiang@yahoo.com",
   "website": "https://www.instagram.com/urbanchickmaginhawa",
-  "coverImageUrl": "",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/urban-chick/profile-1762867885179.blob",
+  "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/urban-chick/cover-1762867851087.blob",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
-      "open": "11:00",
-      "close": "21:00"
+      "open": "09:00",
+      "close": "22:00"
     },
     "tuesday": {
-      "open": "11:00",
-      "close": "21:00"
+      "open": "09:00",
+      "close": "22:00"
     },
     "wednesday": {
-      "open": "11:00",
-      "close": "21:00"
+      "open": "09:00",
+      "close": "22:00"
     },
     "thursday": {
-      "open": "11:00",
-      "close": "21:00"
+      "open": "09:00",
+      "close": "22:00"
     },
     "friday": {
-      "open": "11:00",
-      "close": "21:00"
+      "open": "09:00",
+      "close": "22:00"
     },
     "saturday": {
-      "open": "11:00",
-      "close": "21:00"
+      "open": "09:00",
+      "close": "22:00"
     },
     "sunday": {
-      "open": "11:00",
-      "close": "21:00"
+      "open": "09:00",
+      "close": "22:00"
     }
   },
   "priceRange": "$$",
   "paymentMethods": [
     "cash",
     "gcash",
-    "credit-card"
+    "bank-transfer"
   ],
   "tags": [
     "filipino",
@@ -58,7 +59,8 @@
     "air-conditioned"
   ],
   "cuisineTypes": [
-    "filipino"
+    "filipino",
+    "american"
   ],
   "specialties": [
     "fried-chicken",
@@ -68,6 +70,14 @@
   "latitude": 14.6425,
   "longitude": 121.0633,
   "createdAt": "2025-11-09T00:00:00Z",
-  "updatedAt": "2025-11-09T00:00:00Z",
-  "createdBy": "Joff Tiquez"
+  "updatedAt": "2025-11-11T13:31:44.868Z",
+  "createdBy": "Joff Tiquez",
+  "contributors": [
+    {
+      "name": "Jules Guiang",
+      "email": "jullianofernando_guiang@yahoo.com",
+      "contributedAt": "2025-11-11T13:31:44.868Z",
+      "action": "updated"
+    }
+  ]
 }
