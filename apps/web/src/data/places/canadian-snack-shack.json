@@ -1,13 +1,11 @@
 {
   "id": "c9dad02b-ad2a-4696-9747-7a476dba336b",
-  "name": "Canadian Snack Shack",
+  "name": "Canadian Snack Shack asf",
   "slug": "canadian-snack-shack",
   "description": "A food stall at 150 Maginhawa bringing Canadian comfort food to Manila. Specializes in poutine with various toppings, Montreal smoked meat, and other Canadian favorites.",
   "address": "150 Maginhawa St, Sikatuna Village (Food Park), Quezon City",
   "phone": "+63 926 456 7890",
-  "email": "",
   "website": "https://www.facebook.com/canadiansnackshack",
-  "coverImageUrl": "",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
@@ -67,6 +65,13 @@
   "latitude": 14.6413,
   "longitude": 121.0649,
   "createdAt": "2025-01-01T00:00:00Z",
-  "updatedAt": "2025-11-09T00:00:00Z",
-  "createdBy": "Joff Tiquez"
+  "updatedAt": "2025-11-11T14:55:26.476Z",
+  "createdBy": "Joff Tiquez",
+  "contributors": [
+    {
+      "name": "Joff Tiquez",
+      "contributedAt": "2025-11-11T14:55:26.476Z",
+      "action": "updated"
+    }
+  ]
 }
