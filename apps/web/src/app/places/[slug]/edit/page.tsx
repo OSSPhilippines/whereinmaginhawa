@@ -15,8 +15,6 @@ export default function EditPlacePage() {
 
   const [place, setPlace] = useState<Place | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [prUrl, setPrUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const loadPlace = async () => {
@@ -39,13 +37,8 @@ export default function EditPlacePage() {
   }, [slug, router]);
 
   const handleSuccess = (prUrl: string) => {
-    setPrUrl(prUrl);
-    setIsSubmitted(true);
-
-    // Redirect to GitHub PR after a short delay
-    setTimeout(() => {
-      window.open(prUrl, '_blank');
-    }, 2000);
+    // Redirect to success page with query parameters
+    router.push(`/success?type=update&prUrl=${encodeURIComponent(prUrl)}&placeName=${encodeURIComponent(place?.name || '')}`);
   };
 
   const handleCancel = () => {
@@ -66,41 +59,6 @@ export default function EditPlacePage() {
 
   if (!place) {
     return null;
-  }
-
-  if (isSubmitted && prUrl) {
-    return (
-      <main className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-white to-gray-50/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center py-20">
-            <div className="mb-6 text-6xl">🎉</div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Changes Submitted!
-            </h1>
-            <p className="text-lg text-gray-600 mb-8">
-              Thank you for helping keep {place.name}'s information up to date!
-              <br />
-              Your suggested changes will be reviewed and applied soon.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                onClick={() => router.push(`/places/${slug}`)}
-              >
-                Back to {place.name}
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => window.open(prUrl, '_blank')}
-              >
-                View Submission Status
-              </Button>
-            </div>
-          </div>
-        </div>
-      </main>
-    );
   }
 
   return (

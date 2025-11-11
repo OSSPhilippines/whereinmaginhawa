@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,57 +7,15 @@ import { AddPlaceForm } from '@/components/place/add-place-form';
 
 export default function AddPlacePage() {
   const router = useRouter();
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [prUrl, setPrUrl] = useState<string | null>(null);
 
   const handleSuccess = (prUrl: string) => {
-    setPrUrl(prUrl);
-    setIsSubmitted(true);
-
-    // Redirect to GitHub PR after a short delay
-    setTimeout(() => {
-      window.open(prUrl, '_blank');
-    }, 2000);
+    // Redirect to success page with query parameters
+    router.push(`/success?type=create&prUrl=${encodeURIComponent(prUrl)}`);
   };
 
   const handleCancel = () => {
     router.push('/');
   };
-
-  if (isSubmitted && prUrl) {
-    return (
-      <main className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-white to-gray-50/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center py-20">
-            <div className="mb-6 text-6xl">🎉</div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Submission Received!
-            </h1>
-            <p className="text-lg text-gray-600 mb-8">
-              Thank you for contributing to Where In Maginhawa!
-              <br />
-              Your submission will be reviewed and added to the directory soon.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                onClick={() => router.push('/')}
-              >
-                Back to Home
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => window.open(prUrl, '_blank')}
-              >
-                View Submission Status
-              </Button>
-            </div>
-          </div>
-        </div>
-      </main>
-    );
-  }
 
   return (
     <main className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-white to-gray-50/50">

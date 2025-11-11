@@ -23,6 +23,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { PlaceImage } from '@/components/place/place-image';
 import { PlaceShare } from '@/components/place/place-share';
+import { GradientBackground } from '@/components/hero/gradient-bg';
 import type { Metadata } from 'next';
 
 interface PlacePageProps {
@@ -137,9 +138,11 @@ export default async function PlacePage({ params }: PlacePageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50 pt-16">
+    <div className="min-h-screen pt-16 relative overflow-hidden">
+      <GradientBackground />
+
       {/* Header Image */}
-      <div className="relative h-[400px] bg-orange-50">
+      <div className="relative h-[400px] bg-orange-50 z-10">
         <PlaceImage
           src={place.coverImageUrl}
           alt={place.name}
@@ -168,7 +171,7 @@ export default async function PlacePage({ params }: PlacePageProps) {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-8 relative">
+      <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Profile Photo / Logo */}
         <div className="-mt-32 mb-8 ml-4">
           {place.logoUrl ? (

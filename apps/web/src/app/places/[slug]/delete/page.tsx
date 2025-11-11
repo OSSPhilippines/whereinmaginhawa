@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { getPlaceBySlug } from '@/lib/places';
 import { csrfFetch } from '@/lib/csrf-client';
+import { toast } from 'sonner';
 import type { Place } from '@/types/place';
 
 export default function DeletePlacePage() {
@@ -18,9 +19,6 @@ export default function DeletePlacePage() {
   const [place, setPlace] = useState<Place | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [prUrl, setPrUrl] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
   // Form data
   const [reason, setReason] = useState('');
@@ -49,7 +47,6 @@ export default function DeletePlacePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
     setIsSubmitting(true);
 
     try {
@@ -68,20 +65,49 @@ export default function DeletePlacePage() {
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        throw new Error(data.error || 'Failed to submit closure report. Please try again.');
+        // Show detailed validation errors if available
+        if (data.details) {
+          const errors: string[] = [];
+          const formatZodErrors = (obj: any, prefix = '') => {
+            if (obj._errors && obj._errors.length > 0) {
+              errors.push(`${prefix}: ${obj._errors.join(', ')}`);
+            }
+            for (const [key, value] of Object.entries(obj)) {
+              if (key !== '_errors' && typeof value === 'object') {
+                formatZodErrors(value, prefix ? `${prefix}.${key}` : key);
+              }
+            }
+          };
+          formatZodErrors(data.details);
+          toast.error('Validation Failed', {
+            description: errors.join('\n'),
+            duration: 6000,
+          });
+        } else {
+          toast.error('Submission Failed', {
+            description: data.error || 'Failed to submit closure report. Please try again.',
+            duration: 5000,
+          });
+        }
+        return;
       }
 
       // Success!
-      setPrUrl(data.prUrl);
-      setIsSubmitted(true);
+      toast.success('Report Submitted!', {
+        description: 'Your closure report has been received and will be reviewed.',
+        duration: 2000,
+      });
 
-      // Redirect to GitHub PR after a short delay
+      // Redirect to success page with query parameters
       setTimeout(() => {
-        window.open(data.prUrl, '_blank');
-      }, 2000);
+        router.push(`/success?type=delete&prUrl=${encodeURIComponent(data.prUrl)}&placeName=${encodeURIComponent(place!.name)}`);
+      }, 500);
     } catch (err) {
       console.error('Form submission error:', err);
-      setError(err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.');
+      toast.error('Unexpected Error', {
+        description: err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.',
+        duration: 5000,
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -105,41 +131,6 @@ export default function DeletePlacePage() {
 
   if (!place) {
     return null;
-  }
-
-  if (isSubmitted && prUrl) {
-    return (
-      <main className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-white to-gray-50/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center py-20">
-            <div className="mb-6 text-6xl">✅</div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Closure Report Submitted
-            </h1>
-            <p className="text-lg text-gray-600 mb-8">
-              Thank you for letting us know that {place.name} is no longer operating.
-              <br />
-              Our team will review and update the listing accordingly.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                onClick={() => router.push('/places')}
-              >
-                Browse Other Places
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => window.open(prUrl, '_blank')}
-              >
-                View Submission Status
-              </Button>
-            </div>
-          </div>
-        </div>
-      </main>
-    );
   }
 
   return (
@@ -173,12 +164,6 @@ export default function DeletePlacePage() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            {error && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-                <p className="text-sm text-red-800">{error}</p>
-              </div>
-            )}
-
             <Card className="p-6">
               <h3 className="text-lg font-semibold mb-4">Closure Information</h3>
               <div className="space-y-4">
@@ -243,6 +228,36 @@ export default function DeletePlacePage() {
                 </div>
               </div>
             </Card>
+
+            {/* Terms Agreement */}
+            <div className="border-t border-gray-200 pt-6">
+              <div className="text-sm text-gray-600 space-y-3">
+                <p>
+                  By submitting this report, you acknowledge and agree to our{' '}
+                  <a
+                    href="/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Terms of Use
+                  </a>{' '}
+                  and{' '}
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Privacy Policy
+                  </a>.
+                </p>
+                <p className="text-xs text-gray-500">
+                  Your report will be publicly visible. If you provide your name or contact information, it will be displayed
+                  publicly. We will never sell your data.
+                </p>
+              </div>
+            </div>
 
             {/* Form Actions */}
             <div className="flex items-center justify-end gap-4">
