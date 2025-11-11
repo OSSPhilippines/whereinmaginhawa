@@ -3,59 +3,60 @@
   "name": "Friuli Trattoria",
   "slug": "friuli-trattoria",
   "description": "An authentic Italian trattoria serving traditional Northern Italian cuisine. Known for their house-made pasta, wood-fired pizzas, and extensive wine selection, Friuli brings a taste of Italy to the heart of Maginhawa.",
-  "address": "93 Maginhawa St, Teacher's Village, Quezon City",
-  "phone": "+63 2 8709 9339",
-  "email": "",
-  "website": "https://www.facebook.com/FriuliTrattoria",
-  "coverImageUrl": "",
+  "address": "79 A Maginhawa St, Teacher's Village, Quezon City",
+  "phone": "+63 2 79347663",
+  "email": "maginhawa@friulitrattoria.ph",
+  "website": "https://friulitrattoria.ph/",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
-      "open": "11:30",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "02:00"
     },
     "tuesday": {
-      "open": "11:30",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "02:00"
     },
     "wednesday": {
-      "open": "11:30",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "02:00"
     },
     "thursday": {
-      "open": "11:30",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "02:00"
     },
     "friday": {
-      "open": "11:30",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "02:00"
     },
     "saturday": {
-      "open": "11:30",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "02:00"
     },
     "sunday": {
-      "open": "11:30",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "02:00"
     }
   },
-  "priceRange": "$$$",
+  "priceRange": "$$",
   "paymentMethods": [
     "cash",
     "credit-card",
-    "debit-card"
+    "debit-card",
+    "gcash",
+    "grab-pay"
   ],
   "tags": [
     "italian",
-    "fine-dining",
-    "romantic",
-    "wine-bar"
+    "family-friendly",
+    "casual",
+    "group-friendly",
+    "budget-friendly"
   ],
   "amenities": [
     "dine-in",
     "air-conditioned",
-    "wine-selection",
-    "outdoor-seating"
+    "wine-selection"
   ],
   "cuisineTypes": [
     "italian"
@@ -63,12 +64,19 @@
   "specialties": [
     "pasta",
     "pizza",
-    "risotto",
     "italian-wine"
   ],
   "latitude": 14.6422,
   "longitude": 121.0654,
   "createdAt": "2025-11-09T00:00:00Z",
-  "updatedAt": "2025-11-09T00:00:00Z",
-  "createdBy": "Joff Tiquez"
+  "updatedAt": "2025-11-11T13:42:39.745Z",
+  "createdBy": "Joff Tiquez",
+  "contributors": [
+    {
+      "name": "Pebble",
+      "email": "maginhawa@friulitrattoria.ph",
+      "contributedAt": "2025-11-11T13:42:39.745Z",
+      "action": "updated"
+    }
+  ]
 }
