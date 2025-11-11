@@ -3,39 +3,38 @@
   "name": "Pino Restaurant",
   "slug": "pino-restaurant",
   "description": "An upscale Filipino restaurant reinventing traditional dishes with modern techniques and presentations. Celebrates Filipino culinary heritage through innovative interpretations of classic recipes using premium local ingredients.",
-  "address": "132 Maginhawa St, Teacher's Village, Quezon City",
+  "address": "39 Maginhawa St, Teacher's Village, Quezon City",
   "phone": "+63 945 238 5437",
   "email": "pinorestaurantph@gmail.com",
-  "website": "https://www.facebook.com/PinoRestoPH",
-  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/pino-restaurant/profile-1762825021392.blob",
+  "website": "https://www.facebook.com/pinorestaurant",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
-      "open": "11:00",
+      "open": "10:00",
       "close": "22:00"
     },
     "tuesday": {
-      "open": "11:00",
+      "open": "10:00",
       "close": "22:00"
     },
     "wednesday": {
-      "open": "11:00",
+      "open": "10:00",
       "close": "22:00"
     },
     "thursday": {
-      "open": "11:00",
+      "open": "10:00",
       "close": "22:00"
     },
     "friday": {
-      "open": "11:00",
-      "close": "23:00"
+      "open": "10:00",
+      "close": "22:00"
     },
     "saturday": {
-      "open": "11:00",
-      "close": "23:00"
+      "open": "10:00",
+      "close": "22:00"
     },
     "sunday": {
-      "open": "11:00",
+      "open": "10:00",
       "close": "22:00"
     }
   },
@@ -72,12 +71,18 @@
   "latitude": 14.6426,
   "longitude": 121.0632,
   "createdAt": "2025-01-01T00:00:00Z",
-  "updatedAt": "2025-11-11T01:37:30.996Z",
+  "updatedAt": "2025-11-11T02:13:55.590Z",
   "createdBy": "Joff Tiquez",
   "contributors": [
     {
       "name": "Leeland Lee",
       "contributedAt": "2025-11-11T01:37:30.996Z",
+      "action": "updated"
+    },
+    {
+      "name": "Harvey Soliven",
+      "email": "harveysoliven@rtheptagonholdings.com",
+      "contributedAt": "2025-11-11T02:13:55.590Z",
       "action": "updated"
     }
   ]
