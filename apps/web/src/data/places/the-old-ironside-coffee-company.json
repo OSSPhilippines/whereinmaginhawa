@@ -1,0 +1,73 @@
+{
+  "id": "bcafafcc-16cb-4cc6-b7ff-81acba1e8ed2",
+  "name": "The Old Ironside Coffee Company",
+  "slug": "the-old-ironside-coffee-company",
+  "description": "A museum-themed coffee shop",
+  "address": "40 Malingap St. Teachers Village East, Quezon City, Philippines",
+  "website": "https://www.facebook.com/p/The-Old-Ironside-Coffee-Company-100092491908839/",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/the-old-ironside-coffee-company/profile-1762794882124.blob",
+  "photosUrls": [],
+  "operatingHours": {
+    "monday": {
+      "closed": true
+    },
+    "tuesday": {
+      "open": "10:00",
+      "close": "21:00"
+    },
+    "wednesday": {
+      "open": "10:00",
+      "close": "21:00"
+    },
+    "thursday": {
+      "open": "10:00",
+      "close": "21:00"
+    },
+    "friday": {
+      "open": "10:00",
+      "close": "21:00"
+    },
+    "saturday": {
+      "open": "10:00",
+      "close": "21:00"
+    },
+    "sunday": {
+      "open": "10:00",
+      "close": "21:00"
+    }
+  },
+  "priceRange": "$$",
+  "paymentMethods": [
+    "cash",
+    "gcash",
+    "credit-card"
+  ],
+  "tags": [
+    "group-friendly",
+    "quiet",
+    "study-spot",
+    "cozy",
+    "casual",
+    "family-friendly"
+  ],
+  "amenities": [
+    "outdoor-seating",
+    "air-conditioned",
+    "parking"
+  ],
+  "cuisineTypes": [
+    "italian",
+    "filipino"
+  ],
+  "specialties": [],
+  "createdAt": "2025-11-10T17:15:16.017Z",
+  "updatedAt": "2025-11-10T17:15:16.017Z",
+  "createdBy": "anon",
+  "contributors": [
+    {
+      "name": "anon",
+      "contributedAt": "2025-11-10T17:15:16.017Z",
+      "action": "created"
+    }
+  ]
+}
