@@ -1,13 +1,13 @@
 {
   "id": "7329ed85-71f7-4d2e-a73e-5ee282fe6068",
-  "name": "MiniStop Maginhawa",
+  "name": "Uncle John's Teacher's Village",
   "slug": "ministop-maginhawa",
-  "description": "Japanese-inspired convenience store offering hot meals, bento boxes, and their famous soft-serve ice cream. Open 24/7 with seating area, perfect for quick meals, study breaks, and late-night cravings.",
-  "address": "Maginhawa Street, Teacher's Village, Quezon City",
-  "phone": "+63 2 XXX XXXX",
-  "email": "",
-  "website": "https://www.ministop.com.ph",
-  "coverImageUrl": "",
+  "description": "Uncle John's Teacher's Village",
+  "address": "44 Magiting, Diliman, Quezon City, Kalakhang Maynila",
+  "phone": "0286350757",
+  "website": "http://www.unclejohns.ph/",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/ministop-maginhawa/profile-1762864673464.blob",
+  "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/ministop-maginhawa/cover-1762864712233.blob",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
@@ -62,7 +62,6 @@
     "seating"
   ],
   "cuisineTypes": [
-    "japanese",
     "convenience",
     "quick-service"
   ],
@@ -76,6 +75,13 @@
   "latitude": 14.6419,
   "longitude": 121.065,
   "createdAt": "2025-01-01T00:00:00Z",
-  "updatedAt": "2025-11-09T00:00:00Z",
-  "createdBy": "Joff Tiquez"
+  "updatedAt": "2025-11-11T12:38:54.239Z",
+  "createdBy": "Joff Tiquez",
+  "contributors": [
+    {
+      "name": "Joff Tiquez",
+      "contributedAt": "2025-11-11T12:38:54.239Z",
+      "action": "updated"
+    }
+  ]
 }
