@@ -5,9 +5,8 @@
   "description": "Authentic Persian restaurant bringing the flavors of Iran to Maginhawa. Known for their traditional kebabs, rice dishes, and warm hospitality in a cozy setting. Features classic Persian dishes like joojeh kebab, koobideh, and tahdig.",
   "address": "Malingap Street corner Maginhawa Street, Teacher's Village, Quezon City",
   "phone": "+63 917 123 4567",
-  "email": "",
   "website": "https://www.facebook.com/homa.maginhawa",
-  "coverImageUrl": "",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/homa-persian-cuisine/profile-1762864233079.blob",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
@@ -70,6 +69,13 @@
   "latitude": 14.6428,
   "longitude": 121.0651,
   "createdAt": "2024-07-01T00:00:00Z",
-  "updatedAt": "2025-11-09T00:00:00Z",
-  "createdBy": "Joff Tiquez"
+  "updatedAt": "2025-11-11T12:30:39.866Z",
+  "createdBy": "Joff Tiquez",
+  "contributors": [
+    {
+      "name": "Joff Tiquez",
+      "contributedAt": "2025-11-11T12:30:39.866Z",
+      "action": "updated"
+    }
+  ]
 }

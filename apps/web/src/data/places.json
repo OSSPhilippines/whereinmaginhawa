@@ -1576,111 +1576,6 @@
     "createdBy": "Joff Tiquez"
   },
   {
-    "id": "13ab8085-b835-443f-9daa-42b00dc0bfd2",
-    "name": "Greenwich Maginhawa",
-    "slug": "greenwich-maginhawa",
-    "description": "Filipino pizza and pasta chain offering affordable pizzas, lasagna, and fried chicken. Known for their Overload pizzas and buy-one-take-one deals. Popular for student groups and budget-friendly family meals.",
-    "address": "Maginhawa Street, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$",
-    "tags": [
-      "pizza",
-      "filipino",
-      "fast-food",
-      "affordable",
-      "family-friendly"
-    ],
-    "amenities": [
-      "takeout",
-      "delivery",
-      "dine-in",
-      "air-conditioned"
-    ],
-    "cuisineTypes": [
-      "filipino",
-      "italian",
-      "pizza"
-    ],
-    "specialties": [
-      "overload-pizza",
-      "lasagna",
-      "chicken",
-      "garlic-bread",
-      "pasta"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
-    "id": "88c61796-c781-4512-9cb1-5e7058531d7a",
-    "name": "Greenwich Pizza",
-    "slug": "greenwich-pizza",
-    "description": "A popular Filipino pizza and pasta chain offering affordable Italian-American food. Known for their thin-crust pizzas, lasagna, and pasta dishes that have become Filipino favorites for generations.",
-    "address": "Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$",
-    "tags": [
-      "pizza",
-      "pasta",
-      "family-friendly",
-      "budget-friendly",
-      "chain"
-    ],
-    "amenities": [
-      "dine-in",
-      "takeout",
-      "delivery",
-      "air-conditioned"
-    ],
-    "cuisineTypes": [
-      "italian",
-      "pizza"
-    ],
-    "specialties": [
-      "lasagna",
-      "pizza",
-      "pasta",
-      "chicken-wings"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
-    "id": "cd0efbde-8d46-4cc1-ba28-9210780f65e2",
-    "name": "Greenwich Pizza Maginhawa",
-    "slug": "greenwich-pizza-maginhawa",
-    "description": "Popular pizza chain offering affordable pizzas, pasta, and Filipino-style lasagna. Known for their overloaded pizzas with lots of toppings and budget-friendly combo meals perfect for students and families.",
-    "address": "187 Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$",
-    "tags": [
-      "pizza",
-      "affordable",
-      "fast-casual",
-      "student-friendly",
-      "delivery"
-    ],
-    "amenities": [
-      "air-conditioned",
-      "dine-in",
-      "takeout",
-      "delivery"
-    ],
-    "cuisineTypes": [
-      "american-filipino",
-      "pizza",
-      "pasta"
-    ],
-    "specialties": [
-      "overload-pizza",
-      "lasagna",
-      "pasta",
-      "chicken-wings"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
     "id": "1034ec5c-24b9-40bf-bedd-1fe94fd45605",
     "name": "Griddle: Steak X Wings",
     "slug": "griddle-steak-x-wings",
@@ -1823,7 +1718,7 @@
     "slug": "homa-persian-cuisine",
     "description": "Authentic Persian restaurant bringing the flavors of Iran to Maginhawa. Known for their traditional kebabs, rice dishes, and warm hospitality in a cozy setting. Features classic Persian dishes like joojeh kebab, koobideh, and tahdig.",
     "address": "Malingap Street corner Maginhawa Street, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/homa-persian-cuisine/profile-1762864233079.blob",
     "priceRange": "$$",
     "tags": [
       "persian",
@@ -1847,7 +1742,7 @@
       "tahdig",
       "persian-rice"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z",
+    "updatedAt": "2025-11-11T12:30:39.866Z",
     "createdBy": "Joff Tiquez"
   },
   {
@@ -2446,185 +2341,6 @@
       "kare-kare",
       "pancit",
       "sizzling-tofu"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
-    "id": "9595fc04-cdcc-46ff-af28-9eabcb838d68",
-    "name": "McDonald's",
-    "slug": "mcdonalds",
-    "description": "The world's largest fast-food chain with a Filipino twist, offering both international favorites and local menu items. Features 24-hour service, delivery, and a family-friendly atmosphere perfect for quick meals any time of day.",
-    "address": "Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$",
-    "tags": [
-      "american",
-      "fast-food",
-      "24-hours",
-      "family-friendly",
-      "chain"
-    ],
-    "amenities": [
-      "dine-in",
-      "takeout",
-      "delivery",
-      "air-conditioned",
-      "parking",
-      "24-hour"
-    ],
-    "cuisineTypes": [
-      "american",
-      "fast-food"
-    ],
-    "specialties": [
-      "big-mac",
-      "mcchicken",
-      "mcdo-fries",
-      "mcspaghetti"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
-    "id": "fea78d70-b4ad-4478-82c9-f5683a5ee49f",
-    "name": "McDonald's Maginhawa",
-    "slug": "mcdonalds-maginhawa",
-    "description": "Global fast-food giant with Filipino menu adaptations including fried chicken and rice meals. Open 24/7 for convenient late-night dining, study sessions, and quick meals. Features McCafe specialty coffee and all-day breakfast.",
-    "address": "Maginhawa Street, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$",
-    "tags": [
-      "fast-food",
-      "american",
-      "24-7",
-      "study-spot",
-      "quick-service"
-    ],
-    "amenities": [
-      "takeout",
-      "delivery",
-      "dine-in",
-      "air-conditioned",
-      "wifi",
-      "24-hours",
-      "drive-thru"
-    ],
-    "cuisineTypes": [
-      "american",
-      "fast-food"
-    ],
-    "specialties": [
-      "big-mac",
-      "chicken-mcdo",
-      "mcspaghetti",
-      "fries",
-      "mccafe-coffee"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
-    "id": "9eb19440-08b7-46f5-9c28-249996a355b6",
-    "name": "Me Love You Long Time",
-    "slug": "me-love-you-long-time-streat",
-    "description": "A Vietnamese restaurant at StrEAT Food Park specializing in pho and authentic Vietnamese cuisine. Known for rich broths, fresh herbs, and traditional Vietnamese flavors in a casual food park atmosphere.",
-    "address": "91 Maginhawa St, UP Village (StrEAT Food Park), Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$$",
-    "tags": [
-      "vietnamese",
-      "food-park",
-      "pho",
-      "noodles",
-      "authentic"
-    ],
-    "amenities": [
-      "outdoor-seating",
-      "food-stall"
-    ],
-    "cuisineTypes": [
-      "vietnamese",
-      "asian"
-    ],
-    "specialties": [
-      "pho",
-      "banh-mi",
-      "spring-rolls",
-      "vietnamese-coffee"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
-    "id": "9442d886-03a4-4109-a24c-02167cb35154",
-    "name": "Mesclun Bistro & Bar",
-    "slug": "mesclun-bistro-bar",
-    "description": "A contemporary bistro offering European-inspired cuisine with Asian influences. Features craft cocktails, wine selection, and sophisticated dishes in an elegant yet relaxed atmosphere perfect for special occasions.",
-    "address": "128 Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$$$",
-    "tags": [
-      "bistro",
-      "european",
-      "cocktails",
-      "upscale",
-      "date-spot"
-    ],
-    "amenities": [
-      "wifi",
-      "air-conditioned",
-      "bar",
-      "dine-in",
-      "wine-selection"
-    ],
-    "cuisineTypes": [
-      "european",
-      "fusion",
-      "contemporary"
-    ],
-    "specialties": [
-      "craft-cocktails",
-      "steaks",
-      "pasta",
-      "wine"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
-    "id": "7329ed85-71f7-4d2e-a73e-5ee282fe6068",
-    "name": "MiniStop Maginhawa",
-    "slug": "ministop-maginhawa",
-    "description": "Japanese-inspired convenience store offering hot meals, bento boxes, and their famous soft-serve ice cream. Open 24/7 with seating area, perfect for quick meals, study breaks, and late-night cravings.",
-    "address": "Maginhawa Street, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$",
-    "tags": [
-      "convenience-store",
-      "japanese",
-      "24-7",
-      "quick-service",
-      "soft-serve"
-    ],
-    "amenities": [
-      "takeout",
-      "dine-in",
-      "24-hours",
-      "air-conditioned",
-      "seating"
-    ],
-    "cuisineTypes": [
-      "japanese",
-      "convenience",
-      "quick-service"
-    ],
-    "specialties": [
-      "soft-serve-ice-cream",
-      "fried-chicken",
-      "bento-boxes",
-      "uncle-johns",
-      "hot-meals"
     ],
     "updatedAt": "2025-11-09T00:00:00Z",
     "createdBy": "Joff Tiquez"
@@ -5396,6 +5112,43 @@
       "garlic-sauce"
     ],
     "updatedAt": "2025-11-09T00:00:00Z",
+    "createdBy": "Joff Tiquez"
+  },
+  {
+    "id": "7329ed85-71f7-4d2e-a73e-5ee282fe6068",
+    "name": "Uncle John's Teacher's Village",
+    "slug": "ministop-maginhawa",
+    "description": "Uncle John's Teacher's Village",
+    "address": "44 Magiting, Diliman, Quezon City, Kalakhang Maynila",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/ministop-maginhawa/profile-1762864673464.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/ministop-maginhawa/cover-1762864712233.blob",
+    "priceRange": "$",
+    "tags": [
+      "convenience-store",
+      "japanese",
+      "24-7",
+      "quick-service",
+      "soft-serve"
+    ],
+    "amenities": [
+      "takeout",
+      "dine-in",
+      "24-hours",
+      "air-conditioned",
+      "seating"
+    ],
+    "cuisineTypes": [
+      "convenience",
+      "quick-service"
+    ],
+    "specialties": [
+      "soft-serve-ice-cream",
+      "fried-chicken",
+      "bento-boxes",
+      "uncle-johns",
+      "hot-meals"
+    ],
+    "updatedAt": "2025-11-11T12:38:54.239Z",
     "createdBy": "Joff Tiquez"
   },
   {
