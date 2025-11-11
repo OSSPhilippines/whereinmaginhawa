@@ -48,7 +48,6 @@ export async function generateMetadata({ params }: PlacePageProps): Promise<Meta
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://whereinmaginhawa.com';
   const pageUrl = `${siteUrl}/places/${place.slug}`;
-  const ogImage = place.coverImageUrl || `${siteUrl}/og-default.png`;
 
   return {
     title: `${place.name} | Where In Maginhawa`,
@@ -88,14 +87,17 @@ export async function generateMetadata({ params }: PlacePageProps): Promise<Meta
       description: place.description || 'Discover the best places in Maginhawa',
       url: pageUrl,
       siteName: 'Where In Maginhawa',
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${place.name} - ${place.description}`,
-        },
-      ],
+      // If place has cover image, use it; otherwise Next.js will use opengraph-image.tsx
+      ...(place.coverImageUrl && {
+        images: [
+          {
+            url: place.coverImageUrl,
+            width: 1200,
+            height: 630,
+            alt: `${place.name} - ${place.description}`,
+          },
+        ],
+      }),
       locale: 'en_PH',
       type: 'website',
     },
@@ -103,7 +105,10 @@ export async function generateMetadata({ params }: PlacePageProps): Promise<Meta
       card: 'summary_large_image',
       title: place.name,
       description: place.description || 'Discover the best places in Maginhawa',
-      images: [ogImage],
+      // If place has cover image, use it; otherwise Next.js will use opengraph-image.tsx
+      ...(place.coverImageUrl && {
+        images: [place.coverImageUrl],
+      }),
     },
   };
 }
