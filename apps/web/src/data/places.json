@@ -2933,38 +2933,6 @@
     "createdBy": "Joff Tiquez"
   },
   {
-    "id": "c39541bf-0fe6-4dd3-a51a-43f674f73ca1",
-    "name": "Pipino Vegetarian",
-    "slug": "pipino-vegetarian",
-    "description": "Vegetarian restaurant offering Filipino and Asian-inspired meat-free dishes. Known for their vegetarian sisig, tofu dishes, and creative plant-based versions of classic Filipino comfort food.",
-    "address": "Malingap Street, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$$",
-    "tags": [
-      "vegetarian",
-      "filipino",
-      "healthy",
-      "budget-friendly"
-    ],
-    "amenities": [
-      "dine-in",
-      "takeout",
-      "delivery"
-    ],
-    "cuisineTypes": [
-      "vegetarian",
-      "filipino",
-      "asian"
-    ],
-    "specialties": [
-      "vegetarian-sisig",
-      "tofu-dishes",
-      "vegetarian-filipino"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
     "id": "04b86141-94db-41e1-9cf9-4d5bde6db4f9",
     "name": "Pizza Hut Maginhawa",
     "slug": "pizza-hut-maginhawa",
