@@ -1,6 +1,6 @@
 {
-  "totalPlaces": 182,
-  "uniqueCuisines": 90,
+  "totalPlaces": 181,
+  "uniqueCuisines": 89,
   "uniqueAmenities": 52,
   "uniqueTags": 248,
   "priceRanges": [
@@ -92,7 +92,6 @@
     "ramen",
     "sandwiches",
     "snacks",
-    "southern",
     "spanish",
     "steakhouse",
     "sushi",
@@ -416,5 +415,5 @@
     "wood-fired",
     "work-friendly"
   ],
-  "generatedAt": "2025-11-12T06:15:09.447Z"
+  "generatedAt": "2025-11-14T16:03:30.792Z"
 }

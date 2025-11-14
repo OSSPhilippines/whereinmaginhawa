@@ -246,46 +246,14 @@
     "createdBy": "Diana Utlang"
   },
   {
-    "id": "9fc5af60-b651-45fc-a6c2-2535481645f9",
-    "name": "Barrel Smokers",
-    "slug": "barrel-smokers",
-    "description": "A barbecue specialist at StrEAT Food Park offering slow-smoked meats with authentic American BBQ techniques. Features brisket, ribs, and pulled pork with homemade sauces and traditional sides.",
-    "address": "91 Maginhawa St, UP Village (StrEAT Food Park), Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$$",
-    "tags": [
-      "bbq",
-      "american",
-      "food-park",
-      "smoked-meats",
-      "authentic"
-    ],
-    "amenities": [
-      "outdoor-seating",
-      "food-stall"
-    ],
-    "cuisineTypes": [
-      "american",
-      "bbq",
-      "southern"
-    ],
-    "specialties": [
-      "smoked-brisket",
-      "ribs",
-      "pulled-pork",
-      "bbq-sauce"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
     "id": "27342594-2ad8-4a16-83fe-94eb36c45dbb",
-    "name": "Black Betty",
+    "name": "Black Betty Diner",
     "slug": "black-betty",
     "description": "A cozy American comfort food restaurant known for their juicy burgers, hearty breakfast plates, and homestyle cooking. Popular spot for brunch and casual dining with a relaxed atmosphere perfect for catching up with friends.",
-    "address": "127 Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$$",
+    "address": "181 Maginhawa, Diliman, Quezon City, 1101 Kalakhang Maynila",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/black-betty/profile-1763133862193.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/black-betty/cover-1763133857759.blob",
+    "priceRange": "$$$",
     "tags": [
       "american",
       "burgers",
@@ -311,7 +279,7 @@
       "comfort-food",
       "brunch"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z",
+    "updatedAt": "2025-11-14T15:24:32.272Z",
     "createdBy": "Joff Tiquez"
   },
   {
