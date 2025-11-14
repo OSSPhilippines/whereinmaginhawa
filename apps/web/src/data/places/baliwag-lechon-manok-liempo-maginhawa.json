@@ -3,40 +3,40 @@
   "name": "Baliwag Lechon Manok Liempo Maginhawa",
   "slug": "baliwag-lechon-manok-liempo-maginhawa",
   "description": "Bulacan's famous lechon manok chain offering perfectly roasted chicken and crispy liempo (pork belly). Known for their flavorful roasted meats with signature sauce and affordable family meal packages.",
-  "address": "195 Maginhawa St, Teacher's Village, Quezon City",
-  "phone": "+63 2 8651 2345",
-  "email": "",
+  "address": "180 Maginhawa, Diliman, Quezon City, Kalakhang Maynila",
+  "phone": "09175229266",
   "website": "https://www.baliwag.com.ph",
-  "coverImageUrl": "",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/baliwag-lechon-manok-liempo-maginhawa/profile-1763133635562.blob",
+  "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/baliwag-lechon-manok-liempo-maginhawa/cover-1763133631446.blob",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
-      "open": "09:00",
-      "close": "21:00"
+      "open": "10:00",
+      "close": "22:00"
     },
     "tuesday": {
-      "open": "09:00",
-      "close": "21:00"
+      "open": "10:00",
+      "close": "22:00"
     },
     "wednesday": {
-      "open": "09:00",
-      "close": "21:00"
+      "open": "10:00",
+      "close": "22:00"
     },
     "thursday": {
-      "open": "09:00",
-      "close": "21:00"
+      "open": "10:00",
+      "close": "22:00"
     },
     "friday": {
-      "open": "09:00",
+      "open": "10:00",
       "close": "22:00"
     },
     "saturday": {
-      "open": "09:00",
+      "open": "10:00",
       "close": "22:00"
     },
     "sunday": {
-      "open": "09:00",
-      "close": "21:00"
+      "open": "10:00",
+      "close": "22:00"
     }
   },
   "priceRange": "$",
@@ -71,6 +71,13 @@
   "latitude": 14.6435,
   "longitude": 121.0699,
   "createdAt": "2025-01-01T00:00:00Z",
-  "updatedAt": "2025-11-09T00:00:00Z",
-  "createdBy": "Joff Tiquez"
+  "updatedAt": "2025-11-14T15:20:39.991Z",
+  "createdBy": "Joff Tiquez",
+  "contributors": [
+    {
+      "name": "Joff Tiquez",
+      "contributedAt": "2025-11-14T15:20:39.991Z",
+      "action": "updated"
+    }
+  ]
 }
