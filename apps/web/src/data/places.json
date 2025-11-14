@@ -137,8 +137,9 @@
     "name": "Baliwag Lechon Manok Liempo",
     "slug": "baliwag-lechon-manok-liempo",
     "description": "Renowned Filipino roasted chicken chain famous for their perfectly seasoned and crispy-skinned lechon manok. Also serves grilled pork belly (liempo), pancit, and traditional Filipino sides at affordable family-friendly prices.",
-    "address": "Maginhawa Street, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
+    "address": "82 Maginhawa, Diliman, Quezon City, 1101 Kalakhang Maynila",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/baliwag-lechon-manok-liempo/profile-1763133550217.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/baliwag-lechon-manok-liempo/cover-1763133547021.blob",
     "priceRange": "$",
     "tags": [
       "filipino",
@@ -164,7 +165,7 @@
       "pancit",
       "filipino-sides"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z",
+    "updatedAt": "2025-11-14T15:19:17.561Z",
     "createdBy": "Joff Tiquez"
   },
   {
