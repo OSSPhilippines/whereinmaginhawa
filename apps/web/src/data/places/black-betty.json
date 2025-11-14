@@ -1,45 +1,44 @@
 {
   "id": "27342594-2ad8-4a16-83fe-94eb36c45dbb",
-  "name": "Black Betty",
+  "name": "Black Betty Diner",
   "slug": "black-betty",
   "description": "A cozy American comfort food restaurant known for their juicy burgers, hearty breakfast plates, and homestyle cooking. Popular spot for brunch and casual dining with a relaxed atmosphere perfect for catching up with friends.",
-  "address": "127 Maginhawa St, Teacher's Village, Quezon City",
-  "phone": "+63 917 123 4567",
-  "email": "",
-  "website": "https://www.facebook.com/blackbettyph",
-  "coverImageUrl": "",
+  "address": "181 Maginhawa, Diliman, Quezon City, 1101 Kalakhang Maynila",
+  "phone": "09542637027",
+  "website": "https://www.facebook.com/blackbettydiner/",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/black-betty/profile-1763133862193.blob",
+  "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/black-betty/cover-1763133857759.blob",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
-      "open": "11:00",
-      "close": "22:00"
+      "closed": true
     },
     "tuesday": {
-      "open": "11:00",
-      "close": "22:00"
+      "open": "08:00",
+      "close": "00:00"
     },
     "wednesday": {
-      "open": "11:00",
-      "close": "22:00"
+      "open": "08:00",
+      "close": "00:00"
     },
     "thursday": {
-      "open": "11:00",
-      "close": "22:00"
+      "open": "08:00",
+      "close": "00:00"
     },
     "friday": {
-      "open": "11:00",
-      "close": "23:00"
+      "open": "08:00",
+      "close": "00:00"
     },
     "saturday": {
-      "open": "09:00",
-      "close": "23:00"
+      "open": "08:00",
+      "close": "00:00"
     },
     "sunday": {
-      "open": "09:00",
-      "close": "22:00"
+      "open": "08:00",
+      "close": "00:00"
     }
   },
-  "priceRange": "$$",
+  "priceRange": "$$$",
   "paymentMethods": [
     "cash",
     "gcash",
@@ -74,6 +73,13 @@
   "latitude": 14.6425,
   "longitude": 121.0628,
   "createdAt": "2025-01-01T00:00:00Z",
-  "updatedAt": "2025-11-09T00:00:00Z",
-  "createdBy": "Joff Tiquez"
+  "updatedAt": "2025-11-14T15:24:32.272Z",
+  "createdBy": "Joff Tiquez",
+  "contributors": [
+    {
+      "name": "Joff Tiquez",
+      "contributedAt": "2025-11-14T15:24:32.272Z",
+      "action": "updated"
+    }
+  ]
 }
