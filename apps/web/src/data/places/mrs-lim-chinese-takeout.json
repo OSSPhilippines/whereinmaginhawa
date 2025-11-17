@@ -1,0 +1,84 @@
+{
+  "id": "344ae1bd-1ce2-4e7c-9491-6f4f9adfd13f",
+  "name": "Mrs Lim Chinese Takeout",
+  "slug": "mrs-lim-chinese-takeout",
+  "description": "Nestled in the lively stretch of Maginhawa Street, Mrs. Lim Chinese Takeout is a cozy, no-frills gem for fans of straightforward and satisfying Chinese fare. Perfect for students, busy professionals, or anyone craving something familiar and comforting.",
+  "address": "104 Maginhawa Street Teachers Village East Quezon City",
+  "website": "https://web.facebook.com/Mrslimchinesetakeout",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/mrs-lim-chinese-takeout/profile-1763353473185.blob",
+  "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/mrs-lim-chinese-takeout/cover-1763353437111.blob",
+  "photosUrls": [],
+  "operatingHours": {
+    "monday": {
+      "open": "07:00",
+      "close": "21:00"
+    },
+    "tuesday": {
+      "open": "07:00",
+      "close": "21:00"
+    },
+    "wednesday": {
+      "open": "07:00",
+      "close": "21:00"
+    },
+    "thursday": {
+      "open": "07:00",
+      "close": "21:00"
+    },
+    "friday": {
+      "open": "07:00",
+      "close": "21:00"
+    },
+    "saturday": {
+      "open": "07:00",
+      "close": "21:00"
+    },
+    "sunday": {
+      "open": "07:00",
+      "close": "21:00"
+    }
+  },
+  "priceRange": "$",
+  "paymentMethods": [
+    "cash",
+    "gcash"
+  ],
+  "tags": [
+    "family-friendly",
+    "budget-friendly",
+    "casual",
+    "takeout",
+    "nostalgic",
+    "pork-free"
+  ],
+  "amenities": [
+    "outdoor-seating"
+  ],
+  "cuisineTypes": [
+    "chinese",
+    "filipino",
+    "fusion"
+  ],
+  "specialties": [
+    "pansit canton",
+    "chao fan",
+    "chicken poppers",
+    "longanisa",
+    "siomai",
+    "egg",
+    "lumpia",
+    "tapa",
+    "tocino",
+    "pork-free"
+  ],
+  "createdAt": "2025-11-17T04:24:58.369Z",
+  "updatedAt": "2025-11-17T04:24:58.369Z",
+  "createdBy": "Kenny",
+  "contributors": [
+    {
+      "name": "Kenny",
+      "contributedAt": "2025-11-17T04:24:58.369Z",
+      "action": "created"
+    }
+  ]
+}
