@@ -2,7 +2,7 @@
   "id": "abab872f-a5aa-4fe8-92d7-e349e7b0f7c2",
   "name": "Champoloca Maginhawa",
   "slug": "champoloca-maginhawa",
-  "description": "Ang Champorado na Walang Cocoa!\nServing this November. 🍚🤎",
+  "description": "Ang Champorado na Walang Cocoa!\nNow Open from 7AM to 9PM everyday  💛🤎",
   "address": "Teachers village east, 104 Maginhawa, Diliman, Quezon City, 1101 Metro Manila",
   "website": "https://www.facebook.com/champoloca",
   "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/champoloca-maginhawa/profile-1763137454886.blob",
@@ -10,30 +10,32 @@
   "photosUrls": [],
   "operatingHours": {
     "monday": {
-      "open": "10:00",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "21:00"
     },
     "tuesday": {
-      "open": "10:00",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "21:00"
     },
     "wednesday": {
-      "open": "10:00",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "21:00"
     },
     "thursday": {
-      "open": "10:00",
-      "close": "22:00"
+      "open": "07:00",
+      "close": "21:00"
     },
     "friday": {
-      "open": "10:00",
-      "close": "23:00"
+      "open": "07:00",
+      "close": "21:00"
     },
     "saturday": {
-      "closed": true
+      "open": "07:00",
+      "close": "21:00"
     },
     "sunday": {
-      "closed": true
+      "open": "07:00",
+      "close": "21:00"
     }
   },
   "priceRange": "$",
@@ -53,7 +55,7 @@
     "champorado"
   ],
   "createdAt": "2025-11-09T17:01:02.120Z",
-  "updatedAt": "2025-11-14T16:24:23.494Z",
+  "updatedAt": "2025-11-17T04:11:14.264Z",
   "createdBy": "Joff Tiquez",
   "contributors": [
     {
@@ -65,6 +67,11 @@
     {
       "name": "Joff Tiquez",
       "contributedAt": "2025-11-14T16:24:23.494Z",
+      "action": "updated"
+    },
+    {
+      "name": "Cleo",
+      "contributedAt": "2025-11-17T04:11:14.264Z",
       "action": "updated"
     }
   ]
