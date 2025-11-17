@@ -801,7 +801,7 @@
     "id": "abab872f-a5aa-4fe8-92d7-e349e7b0f7c2",
     "name": "Champoloca Maginhawa",
     "slug": "champoloca-maginhawa",
-    "description": "Ang Champorado na Walang Cocoa!\nServing this November. 🍚🤎",
+    "description": "Ang Champorado na Walang Cocoa!\nNow Open from 7AM to 9PM everyday  💛🤎",
     "address": "Teachers village east, 104 Maginhawa, Diliman, Quezon City, 1101 Metro Manila",
     "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/champoloca-maginhawa/profile-1763137454886.blob",
     "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/champoloca-maginhawa/cover-1763137450018.blob",
@@ -817,7 +817,7 @@
     "specialties": [
       "champorado"
     ],
-    "updatedAt": "2025-11-14T16:24:23.494Z",
+    "updatedAt": "2025-11-17T04:11:14.264Z",
     "createdBy": "Joff Tiquez"
   },
   {
@@ -2343,6 +2343,46 @@
     ],
     "updatedAt": "2025-11-09T00:00:00Z",
     "createdBy": "Joff Tiquez"
+  },
+  {
+    "id": "344ae1bd-1ce2-4e7c-9491-6f4f9adfd13f",
+    "name": "Mrs Lim Chinese Takeout",
+    "slug": "mrs-lim-chinese-takeout",
+    "description": "Nestled in the lively stretch of Maginhawa Street, Mrs. Lim Chinese Takeout is a cozy, no-frills gem for fans of straightforward and satisfying Chinese fare. Perfect for students, busy professionals, or anyone craving something familiar and comforting.",
+    "address": "104 Maginhawa Street Teachers Village East Quezon City",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/mrs-lim-chinese-takeout/profile-1763353473185.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/mrs-lim-chinese-takeout/cover-1763353437111.blob",
+    "priceRange": "$",
+    "tags": [
+      "family-friendly",
+      "budget-friendly",
+      "casual",
+      "takeout",
+      "nostalgic",
+      "pork-free"
+    ],
+    "amenities": [
+      "outdoor-seating"
+    ],
+    "cuisineTypes": [
+      "chinese",
+      "filipino",
+      "fusion"
+    ],
+    "specialties": [
+      "pansit canton",
+      "chao fan",
+      "chicken poppers",
+      "longanisa",
+      "siomai",
+      "egg",
+      "lumpia",
+      "tapa",
+      "tocino",
+      "pork-free"
+    ],
+    "updatedAt": "2025-11-17T04:24:58.369Z",
+    "createdBy": "Kenny"
   },
   {
     "id": "a4fa8313-44cc-46c4-b18a-47e8683706e5",

@@ -1,8 +1,8 @@
 {
-  "totalPlaces": 180,
+  "totalPlaces": 181,
   "uniqueCuisines": 89,
   "uniqueAmenities": 52,
-  "uniqueTags": 248,
+  "uniqueTags": 249,
   "priceRanges": [
     "$",
     "$$",
@@ -336,6 +336,7 @@
     "pizza",
     "plant-based",
     "pork",
+    "pork-free",
     "portuguese",
     "poutine",
     "premium",
@@ -415,5 +416,5 @@
     "wood-fired",
     "work-friendly"
   ],
-  "generatedAt": "2025-11-16T14:12:34.066Z"
+  "generatedAt": "2025-11-17T07:14:00.557Z"
 }
