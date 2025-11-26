@@ -3,9 +3,11 @@
   "name": "Al Jograts Kebab House",
   "slug": "al-jograts-kebab-house",
   "description": "A Middle Eastern restaurant serving authentic kebabs, shawarma, and other Arab specialties. Known for their flavorful meats, fresh ingredients, and generous portions at affordable prices.",
-  "address": "1226-A Concepcion St, Sampaloc, Manila, 1015 Metro Manila",
+  "address": "164A Maginhawa, Diliman, Quezon City, 1102 Kalakhang Maynila",
   "phone": "09053232121",
-  "website": "https://www.facebook.com/AlJograts",
+  "website": "http://facebook.com/aljograts",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/al-jograts-kebab-house/profile-1764169232414.blob",
+  "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/al-jograts-kebab-house/cover-1764169229827.blob",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
@@ -67,12 +69,17 @@
   "latitude": 14.6427,
   "longitude": 121.0644,
   "createdAt": "2025-11-09T00:00:00Z",
-  "updatedAt": "2025-11-10T15:28:03.684Z",
+  "updatedAt": "2025-11-26T15:00:42.394Z",
   "createdBy": "Joff Tiquez",
   "contributors": [
     {
       "name": "Joff Tiquez",
       "contributedAt": "2025-11-10T15:28:03.684Z",
+      "action": "updated"
+    },
+    {
+      "name": "Joff Tiquez",
+      "contributedAt": "2025-11-26T15:00:42.394Z",
       "action": "updated"
     }
   ]
