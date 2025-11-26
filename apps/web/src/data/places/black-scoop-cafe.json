@@ -3,11 +3,11 @@
   "name": "Black Scoop Cafe",
   "slug": "black-scoop-cafe",
   "description": "An innovative ice cream and dessert cafe famous for their activated charcoal black ice cream. Offers unique flavors and Instagram-worthy presentations, making it a must-visit dessert destination in Maginhawa.",
-  "address": "Maginhawa St, Teacher's Village, Quezon City",
-  "phone": "+63 917 890 1234",
-  "email": "",
-  "website": "https://www.facebook.com/BlackScoopCafe",
-  "coverImageUrl": "",
+  "address": "101 Maginhawa, Diliman, Quezon City, 1101 Kalakhang Maynila",
+  "phone": "09175222256",
+  "website": "https://www.blackscoopcafe.com/",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/black-scoop-cafe/profile-1764169518607.blob",
+  "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/black-scoop-cafe/cover-1764169513991.blob",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
@@ -70,6 +70,13 @@
   "latitude": 14.6421,
   "longitude": 121.0636,
   "createdAt": "2025-11-09T00:00:00Z",
-  "updatedAt": "2025-11-09T00:00:00Z",
-  "createdBy": "Joff Tiquez"
+  "updatedAt": "2025-11-26T15:05:23.951Z",
+  "createdBy": "Joff Tiquez",
+  "contributors": [
+    {
+      "name": "Joff Tiquez",
+      "contributedAt": "2025-11-26T15:05:23.951Z",
+      "action": "updated"
+    }
+  ]
 }
