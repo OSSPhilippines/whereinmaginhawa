@@ -41,7 +41,9 @@
     "name": "Al Jograts Kebab House",
     "slug": "al-jograts-kebab-house",
     "description": "A Middle Eastern restaurant serving authentic kebabs, shawarma, and other Arab specialties. Known for their flavorful meats, fresh ingredients, and generous portions at affordable prices.",
-    "address": "1226-A Concepcion St, Sampaloc, Manila, 1015 Metro Manila",
+    "address": "164A Maginhawa, Diliman, Quezon City, 1102 Kalakhang Maynila",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/al-jograts-kebab-house/profile-1764169232414.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/al-jograts-kebab-house/cover-1764169229827.blob",
     "priceRange": "$$",
     "tags": [
       "middle-eastern",
@@ -65,7 +67,7 @@
       "mixed-grill",
       "arabic-food"
     ],
-    "updatedAt": "2025-11-10T15:28:03.684Z",
+    "updatedAt": "2025-11-26T15:00:42.394Z",
     "createdBy": "Joff Tiquez"
   },
   {
@@ -74,6 +76,8 @@
     "slug": "andoks-litson-manok-maginhawa",
     "description": "Roasted chicken chain offering affordable lechon manok (roasted chicken) with crispy skin and juicy meat. A Filipino household favorite for quick, tasty, and budget-friendly roasted chicken meals.",
     "address": "107 V. Luna Ext, Diliman, Quezon City, Metro Manila",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/andoks-litson-manok-maginhawa/profile-1764169370454.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/andoks-litson-manok-maginhawa/cover-1764169356136.blob",
     "priceRange": "$",
     "tags": [
       "filipino",
@@ -97,7 +101,7 @@
       "roasted-chicken",
       "dokito"
     ],
-    "updatedAt": "2025-11-10T15:29:41.497Z",
+    "updatedAt": "2025-11-26T15:02:56.465Z",
     "createdBy": "Joff Tiquez"
   },
   {
@@ -257,8 +261,9 @@
     "name": "Black Scoop Cafe",
     "slug": "black-scoop-cafe",
     "description": "An innovative ice cream and dessert cafe famous for their activated charcoal black ice cream. Offers unique flavors and Instagram-worthy presentations, making it a must-visit dessert destination in Maginhawa.",
-    "address": "Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
+    "address": "101 Maginhawa, Diliman, Quezon City, 1101 Kalakhang Maynila",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/black-scoop-cafe/profile-1764169518607.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/black-scoop-cafe/cover-1764169513991.blob",
     "priceRange": "$$",
     "tags": [
       "dessert",
@@ -282,7 +287,7 @@
       "unique-flavors",
       "desserts"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z",
+    "updatedAt": "2025-11-26T15:05:23.951Z",
     "createdBy": "Joff Tiquez"
   },
   {
@@ -325,7 +330,8 @@
     "slug": "bos-coffee",
     "description": "A popular Filipino coffee chain offering premium coffee and pastries. Known for their high-quality beans and comfortable ambiance, Bo's Coffee provides a reliable spot for coffee lovers and remote workers.",
     "address": "Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/bos-coffee/profile-1764169633577.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/bos-coffee/cover-1764169630296.blob",
     "priceRange": "$$",
     "tags": [
       "coffee-shop",
@@ -350,39 +356,7 @@
       "sandwiches",
       "iced-coffee"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
-    "id": "6ed43a70-adfb-4a35-9ddb-2a0373241fbc",
-    "name": "Bonchon Chicken",
-    "slug": "bonchon-chicken",
-    "description": "A Korean fried chicken chain famous for their double-fried, hand-brushed chicken with signature sauces. Features crispy, juicy chicken in Soy Garlic or Spicy flavors, bringing authentic Korean flavors to the Philippines.",
-    "address": "Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$$",
-    "tags": [
-      "korean",
-      "fried-chicken",
-      "casual-dining",
-      "chain"
-    ],
-    "amenities": [
-      "dine-in",
-      "takeout",
-      "delivery",
-      "air-conditioned"
-    ],
-    "cuisineTypes": [
-      "korean"
-    ],
-    "specialties": [
-      "korean-fried-chicken",
-      "soy-garlic",
-      "spicy-chicken",
-      "bibimbap"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
+    "updatedAt": "2025-11-26T15:07:17.443Z",
     "createdBy": "Joff Tiquez"
   },
   {
