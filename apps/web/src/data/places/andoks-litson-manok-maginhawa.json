@@ -4,8 +4,10 @@
   "slug": "andoks-litson-manok-maginhawa",
   "description": "Roasted chicken chain offering affordable lechon manok (roasted chicken) with crispy skin and juicy meat. A Filipino household favorite for quick, tasty, and budget-friendly roasted chicken meals.",
   "address": "107 V. Luna Ext, Diliman, Quezon City, Metro Manila",
-  "phone": "+63 2 8650 1234",
-  "website": "https://andoks.com.ph/",
+  "phone": "09165674494",
+  "website": "http://www.andokscorp.com/",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/andoks-litson-manok-maginhawa/profile-1764169370454.blob",
+  "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/andoks-litson-manok-maginhawa/cover-1764169356136.blob",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
@@ -67,12 +69,17 @@
   "latitude": 14.6434,
   "longitude": 121.0696,
   "createdAt": "2025-01-01T00:00:00Z",
-  "updatedAt": "2025-11-10T15:29:41.497Z",
+  "updatedAt": "2025-11-26T15:02:56.465Z",
   "createdBy": "Joff Tiquez",
   "contributors": [
     {
       "name": "Joff Tiquez",
       "contributedAt": "2025-11-10T15:29:41.497Z",
+      "action": "updated"
+    },
+    {
+      "name": "Joff Tiquez",
+      "contributedAt": "2025-11-26T15:02:56.465Z",
       "action": "updated"
     }
   ]
