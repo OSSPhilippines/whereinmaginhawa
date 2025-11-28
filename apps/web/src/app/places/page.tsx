@@ -6,8 +6,11 @@ import { X, SlidersHorizontal, Plus, Edit3, Search } from 'lucide-react';
 import { PlaceCard } from '@/components/place/place-card';
 import { PlaceFilters } from '@/components/filters/place-filters';
 import { Button } from '@/components/ui/button';
+import { AdUnit } from '@/components/ads/ad-unit';
 import { searchPlaces, getAllPlaces } from '@/lib/places';
 import type { PlaceIndex, SearchFilters } from '@/types/place';
+
+const AD_INTERVAL = 12; // Show ad every 12 items
 
 function PlacesContent() {
   const searchParams = useSearchParams();
@@ -159,8 +162,19 @@ function PlacesContent() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {places.map((place) => (
-                  <PlaceCard key={place.id} place={place} />
+                {places.map((place, index) => (
+                  <>
+                    <PlaceCard key={place.id} place={place} />
+                    {/* Insert ad after every AD_INTERVAL items */}
+                    {(index + 1) % AD_INTERVAL === 0 && index < places.length - 1 && (
+                      <div key={`ad-${index}`} className="col-span-full">
+                        <AdUnit
+                          slot="4326037632"
+                          format="autorelaxed"
+                        />
+                      </div>
+                    )}
+                  </>
                 ))}
               </div>
             )}

@@ -17,6 +17,7 @@ import {
   Mail as MailIcon,
 } from 'lucide-react';
 import { getPlaceBySlug, getAllPlaces } from '@/lib/places';
+import { AdUnit } from '@/components/ads/ad-unit';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -248,6 +249,9 @@ export default async function PlacePage({ params }: PlacePageProps) {
                 </div>
               </CardHeader>
             </Card>
+
+            {/* Display Ad */}
+            <AdUnit slot="3925764143" />
 
             {/* Operating Hours */}
             <Card className="shadow-sm">

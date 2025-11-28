@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { HeroSection } from '@/components/hero/hero-section';
 import { PlaceMarquee } from '@/components/hero/place-marquee';
+import { AdUnit } from '@/components/ads/ad-unit';
 import placesIndex from '@/data/places.json';
 import type { PlaceIndex } from '@/types/place';
 
@@ -69,6 +70,13 @@ export default function Home() {
 
           {/* Second row - reversed direction */}
           <PlaceMarquee places={featuredPlaces.slice().reverse()} reverse={true} />
+        </div>
+      </section>
+
+      {/* Display Ad */}
+      <section className="py-8 bg-white">
+        <div className="container mx-auto px-4">
+          <AdUnit slot="5597938465" className="max-w-4xl mx-auto" />
         </div>
       </section>
     </main>
