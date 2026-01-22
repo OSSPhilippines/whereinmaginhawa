@@ -3,11 +3,11 @@
   "name": "But First Coffee",
   "slug": "but-first-coffee",
   "description": "Cozy neighborhood coffee shop serving specialty coffee and comfort food. Popular spot for students and remote workers with reliable wifi and a laid-back atmosphere perfect for studying or casual meetings.",
-  "address": "Malingap Street, Teacher's Village, Quezon City",
-  "phone": "+63 917 345 6789",
-  "email": "",
-  "website": "https://www.facebook.com/ButFirstCoffeePH",
-  "coverImageUrl": "",
+  "address": "48 1101 Malingap, Diliman, Quezon City, Kalakhang Maynila",
+  "phone": "09912125212",
+  "website": "http://butfirstcoffee.ph/",
+  "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/but-first-coffee/profile-1769089918208.blob",
+  "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/but-first-coffee/cover-1769089920631.blob",
   "photosUrls": [],
   "operatingHours": {
     "monday": {
@@ -39,7 +39,7 @@
       "close": "22:00"
     }
   },
-  "priceRange": "$$",
+  "priceRange": "$",
   "paymentMethods": [
     "cash",
     "gcash",
@@ -72,6 +72,13 @@
   "latitude": 14.6435,
   "longitude": 121.0645,
   "createdAt": "2020-03-01T00:00:00Z",
-  "updatedAt": "2025-11-09T00:00:00Z",
-  "createdBy": "Joff Tiquez"
+  "updatedAt": "2026-01-22T13:52:08.058Z",
+  "createdBy": "Joff Tiquez",
+  "contributors": [
+    {
+      "name": "Joff",
+      "contributedAt": "2026-01-22T13:52:08.058Z",
+      "action": "updated"
+    }
+  ]
 }
