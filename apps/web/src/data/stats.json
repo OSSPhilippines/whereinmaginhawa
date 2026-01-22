@@ -1,8 +1,8 @@
 {
-  "totalPlaces": 180,
+  "totalPlaces": 177,
   "uniqueCuisines": 89,
-  "uniqueAmenities": 52,
-  "uniqueTags": 249,
+  "uniqueAmenities": 51,
+  "uniqueTags": 248,
   "priceRanges": [
     "$",
     "$$",
@@ -150,7 +150,6 @@
     "quiet-zone",
     "reservation-recommended",
     "reservation-required",
-    "reservations-recommended",
     "seating",
     "smoking area",
     "smoking-area",
@@ -243,7 +242,6 @@
     "dumplings",
     "eclectic",
     "educational",
-    "european",
     "family-dining",
     "family-friendly",
     "family-meals",
@@ -416,5 +414,5 @@
     "wood-fired",
     "work-friendly"
   ],
-  "generatedAt": "2025-11-26T15:09:20.543Z"
+  "generatedAt": "2026-01-22T13:56:45.596Z"
 }
