@@ -26,7 +26,7 @@
     "framer-motion": "^12.23.24",
     "fuse.js": "^7.1.0",
     "lucide-react": "^0.553.0",
-    "next": "16.0.1",
+    "next": "16.0.7",
     "octokit": "^5.0.5",
     "octokit-plugin-create-pull-request": "^6.0.1",
     "react": "19.2.0",

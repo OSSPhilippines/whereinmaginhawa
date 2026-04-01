@@ -4,9 +4,9 @@
     "name": "7-Eleven Maginhawa",
     "slug": "7-eleven-maginhawa",
     "description": "Convenience store chain offering ready-to-eat meals, snacks, beverages, and 24/7 access. Popular for quick bites, late-night munchies, hot meals, and Slurpees. Essential stop for students and night owls in Maginhawa.",
-    "address": "Maginhawa Street, Teacher's Village, Quezon City",
-    "logoUrl": "",
-    "coverImageUrl": "",
+    "address": "D condo building, TEACHER'S VILLAGE EAST, 129 Maginhawa, Diliman, Quezon City, 1101 Kalakhang Maynila",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/7-eleven-maginhawa/profile-1769090093383.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/7-eleven-maginhawa/cover-1769090089110.blob",
     "priceRange": "$",
     "tags": [
       "convenience-store",
@@ -33,7 +33,7 @@
       "sandwiches",
       "snacks"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z",
+    "updatedAt": "2026-01-22T13:55:01.528Z",
     "createdBy": "Joff Tiquez"
   },
   {
@@ -563,49 +563,14 @@
     "createdBy": "Joff Tiquez"
   },
   {
-    "id": "af5ab5e4-be01-4892-962f-455bc757d2b0",
-    "name": "Buenisimo by Cafe Ysabel",
-    "slug": "buenisimo-by-cafe-ysabel",
-    "description": "Fine dining Spanish-Mediterranean restaurant from the renowned Cafe Ysabel family. Offers authentic Spanish tapas, paella, and Mediterranean specialties in an elegant setting with exceptional service and carefully curated wine selection.",
-    "address": "Maginhawa Street, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$$$",
-    "tags": [
-      "spanish",
-      "mediterranean",
-      "fine-dining",
-      "upscale",
-      "date-spot"
-    ],
-    "amenities": [
-      "wifi",
-      "air-conditioned",
-      "reservations-recommended",
-      "wine-selection"
-    ],
-    "cuisineTypes": [
-      "spanish",
-      "mediterranean",
-      "european"
-    ],
-    "specialties": [
-      "paella",
-      "tapas",
-      "spanish-wine",
-      "callos",
-      "lengua"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
     "id": "57293156-09e4-449d-9da4-8ff905bb0251",
     "name": "But First Coffee",
     "slug": "but-first-coffee",
     "description": "Cozy neighborhood coffee shop serving specialty coffee and comfort food. Popular spot for students and remote workers with reliable wifi and a laid-back atmosphere perfect for studying or casual meetings.",
-    "address": "Malingap Street, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$$",
+    "address": "48 1101 Malingap, Diliman, Quezon City, Kalakhang Maynila",
+    "logoUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/but-first-coffee/profile-1769089918208.blob",
+    "coverImageUrl": "https://w8jezpl1qx84ed0e.public.blob.vercel-storage.com/places/but-first-coffee/cover-1769089920631.blob",
+    "priceRange": "$",
     "tags": [
       "coffee-shop",
       "wifi",
@@ -630,79 +595,7 @@
       "breakfast-meals",
       "pastries"
     ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
-    "id": "76cbc009-ec32-4d20-bfa1-d17492310727",
-    "name": "Café Lidia",
-    "slug": "cafe-lidia",
-    "description": "A charming European-style cafe serving coffee, pastries, and light meals. Features a cozy interior with vintage decor, perfect for leisurely brunches, afternoon coffee, and quiet conversations.",
-    "address": "Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$$",
-    "tags": [
-      "cafe",
-      "european",
-      "coffee",
-      "pastries",
-      "cozy",
-      "vintage"
-    ],
-    "amenities": [
-      "wifi",
-      "dine-in",
-      "takeout",
-      "air-conditioned",
-      "outdoor-seating"
-    ],
-    "cuisineTypes": [
-      "cafe",
-      "european"
-    ],
-    "specialties": [
-      "coffee",
-      "pastries",
-      "sandwiches",
-      "brunch"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
-    "createdBy": "Joff Tiquez"
-  },
-  {
-    "id": "742ed882-49b9-497f-811f-dde34d8a0d71",
-    "name": "Cafe Mary Grace Maginhawa",
-    "slug": "cafe-mary-grace-maginhawa",
-    "description": "A beloved Filipino bakery and cafe chain famous for their ensaymada, cheese rolls, and comfort food. Offers a cozy ambiance with Filipino dishes, pasta, sandwiches, and baked goods perfect for merienda.",
-    "address": "169 Maginhawa St, Teacher's Village, Quezon City",
-    "coverImageUrl": "",
-    "priceRange": "$$",
-    "tags": [
-      "bakery",
-      "cafe",
-      "filipino",
-      "comfort-food",
-      "pastries"
-    ],
-    "amenities": [
-      "wifi",
-      "air-conditioned",
-      "dine-in",
-      "takeout",
-      "delivery"
-    ],
-    "cuisineTypes": [
-      "filipino",
-      "bakery",
-      "cafe"
-    ],
-    "specialties": [
-      "ensaymada",
-      "cheese-rolls",
-      "tsoknut",
-      "pasta"
-    ],
-    "updatedAt": "2025-11-09T00:00:00Z",
+    "updatedAt": "2026-01-22T13:52:08.058Z",
     "createdBy": "Joff Tiquez"
   },
   {
