@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 
@@ -43,19 +42,9 @@ export default function SuccessContent() {
   const searchParams = useSearchParams();
 
   const type = (searchParams.get('type') || 'create') as SubmissionType;
-  const prUrl = searchParams.get('prUrl');
   const placeName = searchParams.get('placeName');
 
   const config = successConfigs[type] || successConfigs.create;
-
-  // Redirect to PR if URL is provided
-  useEffect(() => {
-    if (prUrl) {
-      setTimeout(() => {
-        window.open(prUrl, '_blank');
-      }, 2000);
-    }
-  }, [prUrl]);
 
   return (
     <main className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-white to-gray-50/50">
@@ -77,15 +66,6 @@ export default function SuccessContent() {
             >
               {config.backButtonText}
             </Button>
-            {prUrl && (
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => window.open(prUrl, '_blank')}
-              >
-                View Submission Status
-              </Button>
-            )}
           </div>
         </div>
       </div>

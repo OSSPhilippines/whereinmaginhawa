@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { PlaceCard } from '@/components/place/place-card';
 import { Button } from '@/components/ui/button';
 import { Plus, Edit3 } from 'lucide-react';
-import { searchPlaces } from '@/lib/places';
+import { getAllPlaces } from '@/lib/places-server';
 import {
   getCategoryBySlug,
   getAllCategorySlugs,
@@ -89,7 +89,18 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   // Pre-filter places based on category configuration
-  const { places } = searchPlaces(category.filters);
+  const allPlaces = await getAllPlaces();
+  const categoryKeywords = category.filters.keywords ?? [];
+  const places = categoryKeywords.length > 0
+    ? allPlaces.filter((place) =>
+        categoryKeywords.some((keyword: string) =>
+          place.tags.includes(keyword) ||
+          place.amenities.includes(keyword) ||
+          place.cuisineTypes.includes(keyword) ||
+          place.specialties.includes(keyword)
+        )
+      )
+    : allPlaces;
 
   return (
     <div className="min-h-screen bg-gray-50/50 pt-16">

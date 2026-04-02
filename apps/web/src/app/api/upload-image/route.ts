@@ -1,12 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { put } from '@vercel/blob';
+import { createAdminClient } from '@/lib/supabase/admin';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
-/**
- * Upload image to Vercel Blob Storage
- * Handles both profile and cover images
- */
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
@@ -14,12 +10,8 @@ export async function POST(request: NextRequest) {
     const type = formData.get('type') as 'profile' | 'cover';
     const slug = formData.get('slug') as string;
 
-    // Validation
     if (!file) {
-      return NextResponse.json(
-        { error: 'No file provided' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
     if (!type || !['profile', 'cover'].includes(type)) {
@@ -30,13 +22,9 @@ export async function POST(request: NextRequest) {
     }
 
     if (!slug) {
-      return NextResponse.json(
-        { error: 'Slug is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
     }
 
-    // Validate file type
     const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
     if (!validTypes.includes(file.type)) {
       return NextResponse.json(
@@ -45,7 +33,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate file size (max 10MB before compression)
     const maxSize = 10 * 1024 * 1024; // 10MB
     if (file.size > maxSize) {
       return NextResponse.json(
@@ -54,33 +41,47 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate unique filename with timestamp
     const timestamp = Date.now();
     const fileExtension = file.name.split('.').pop() || 'webp';
-    const fileName = `places/${slug}/${type}-${timestamp}.${fileExtension}`;
+    const filePath = `places/${slug}/${type}-${timestamp}.${fileExtension}`;
 
-    // Upload to Vercel Blob
-    const blob = await put(fileName, file, {
-      access: 'public',
-      addRandomSuffix: false, // We already have timestamp for uniqueness
-    });
+    const supabase = createAdminClient();
+    const buffer = Buffer.from(await file.arrayBuffer());
+
+    const { error: uploadError } = await supabase.storage
+      .from('place-images')
+      .upload(filePath, buffer, {
+        contentType: file.type,
+        upsert: false,
+      });
+
+    if (uploadError) {
+      console.info('[upload-image] Upload error:', uploadError.message);
+      return NextResponse.json(
+        { error: 'Failed to upload image', message: uploadError.message },
+        { status: 500 }
+      );
+    }
+
+    const { data: urlData } = supabase.storage
+      .from('place-images')
+      .getPublicUrl(filePath);
 
     console.info('Image uploaded successfully:', {
-      url: blob.url,
+      url: urlData.publicUrl,
       size: file.size,
-      type: type,
-      slug: slug,
+      type,
+      slug,
     });
 
     return NextResponse.json({
       success: true,
-      url: blob.url,
+      url: urlData.publicUrl,
       size: file.size,
-      type: type,
+      type,
     });
   } catch (error) {
-    console.error('Error uploading image:', error);
-
+    console.info('[upload-image] Error:', error);
     return NextResponse.json(
       {
         error: 'Failed to upload image',

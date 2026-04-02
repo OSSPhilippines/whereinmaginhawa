@@ -100,9 +100,9 @@ export default function DeletePlacePage() {
         duration: 2000,
       });
 
-      // Redirect to success page with query parameters
+      // Redirect to success page
       setTimeout(() => {
-        router.push(`/success?type=delete&prUrl=${encodeURIComponent(data.prUrl)}&placeName=${encodeURIComponent(place!.name)}`);
+        router.push(`/success?type=delete&placeName=${encodeURIComponent(place!.name)}`);
       }, 500);
     } catch (err) {
       console.error('Form submission error:', err);

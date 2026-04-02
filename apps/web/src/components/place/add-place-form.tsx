@@ -61,7 +61,7 @@ interface FormData {
 }
 
 interface AddPlaceFormProps {
-  onSuccess?: (prUrl: string) => void;
+  onSuccess?: () => void;
   onCancel?: () => void;
 }
 
@@ -216,7 +216,7 @@ export function AddPlaceForm({ onSuccess, onCancel }: AddPlaceFormProps) {
         contributorGithub: formData.contributorGithub || undefined,
       };
 
-      const response = await csrfFetch('/api/places/create-pr', {
+      const response = await csrfFetch('/api/places/submit', {
         body: JSON.stringify(payload),
       });
 
@@ -254,13 +254,13 @@ export function AddPlaceForm({ onSuccess, onCancel }: AddPlaceFormProps) {
 
       // Success! Show success toast
       toast.success('Place Submitted!', {
-        description: 'Your submission has been received and will be reviewed soon.',
+        description: data.message || 'Your submission has been received and will be reviewed soon.',
         duration: 4000,
       });
 
       // Call the onSuccess callback
-      if (onSuccess && data.prUrl) {
-        onSuccess(data.prUrl);
+      if (onSuccess) {
+        onSuccess();
       }
     } catch (err) {
       console.error('Form submission error:', err);

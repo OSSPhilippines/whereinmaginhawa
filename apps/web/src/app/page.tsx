@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import { HeroSection } from '@/components/hero/hero-section';
 import { PlaceMarquee } from '@/components/hero/place-marquee';
 import { AdUnit } from '@/components/ads/ad-unit';
-import placesIndex from '@/data/places.json';
+import { getAllPlaces } from '@/lib/places-server';
 import type { PlaceIndex } from '@/types/place';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Where In Maginhawa | Find the Best Restaurants & Cafés in Maginhawa Street",
@@ -31,23 +33,27 @@ export const metadata: Metadata = {
 };
 
 // Get a selection of featured places for the marquee
-function getFeaturedPlaces(count: number = 20): PlaceIndex[] {
-  const places: PlaceIndex[] = placesIndex as PlaceIndex[];
-
-  // Get places with cover images for better visual impact
+function getFeaturedPlaces(places: PlaceIndex[], count: number = 20): PlaceIndex[] {
   const placesWithImages = places.filter(place => place.coverImageUrl);
-
-  // Shuffle and take the specified count
   const shuffled = [...placesWithImages].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, count);
 }
 
-export default function Home() {
-  const featuredPlaces = getFeaturedPlaces(20);
+export default async function Home() {
+  const allPlaces = await getAllPlaces();
+  const featuredPlaces = getFeaturedPlaces(allPlaces, 20);
+
+  const uniqueCuisines = new Set(allPlaces.flatMap(p => p.cuisineTypes));
+  const uniqueAmenities = new Set(allPlaces.flatMap(p => p.amenities));
+  const stats = {
+    totalPlaces: allPlaces.length,
+    uniqueCuisines: uniqueCuisines.size,
+    uniqueAmenities: uniqueAmenities.size,
+  };
 
   return (
     <main className="min-h-screen pt-16">
-      <HeroSection />
+      <HeroSection stats={stats} />
 
       {/* Featured Places Marquee */}
       <section className="py-12 bg-slate-50">

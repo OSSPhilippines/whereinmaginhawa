@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { X, SlidersHorizontal, Plus, Edit3, Search } from 'lucide-react';
 import { PlaceCard } from '@/components/place/place-card';
 import { PlaceFilters } from '@/components/filters/place-filters';
@@ -40,8 +40,8 @@ function PlacesContent() {
     applyFilters(initialFilters);
   }, [searchParams]);
 
-  const applyFilters = (newFilters: SearchFilters) => {
-    const results = searchPlaces(newFilters);
+  const applyFilters = async (newFilters: SearchFilters) => {
+    const results = await searchPlaces(newFilters);
     setPlaces(results.places);
   };
 
@@ -75,10 +75,11 @@ function PlacesContent() {
     updateURL(newFilters);
   };
 
-  const clearFilters = () => {
+  const clearFilters = async () => {
     const clearedFilters: SearchFilters = {};
     setFilters(clearedFilters);
-    setPlaces(getAllPlaces());
+    const all = await getAllPlaces();
+    setPlaces(all);
     router.push(pathname, { scroll: false });
   };
 
@@ -163,18 +164,17 @@ function PlacesContent() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {places.map((place, index) => (
-                  <>
-                    <PlaceCard key={place.id} place={place} />
-                    {/* Insert ad after every AD_INTERVAL items */}
+                  <React.Fragment key={place.id}>
+                    <PlaceCard place={place} />
                     {(index + 1) % AD_INTERVAL === 0 && index < places.length - 1 && (
-                      <div key={`ad-${index}`} className="col-span-full">
+                      <div className="col-span-full">
                         <AdUnit
                           slot="4326037632"
                           format="autorelaxed"
                         />
                       </div>
                     )}
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
             )}

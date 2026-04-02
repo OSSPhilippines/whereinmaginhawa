@@ -8,9 +8,8 @@ import { AddPlaceForm } from '@/components/place/add-place-form';
 export default function AddPlacePage() {
   const router = useRouter();
 
-  const handleSuccess = (prUrl: string) => {
-    // Redirect to success page with query parameters
-    router.push(`/success?type=create&prUrl=${encodeURIComponent(prUrl)}`);
+  const handleSuccess = () => {
+    router.push('/success?type=create');
   };
 
   const handleCancel = () => {

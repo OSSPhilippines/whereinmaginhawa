@@ -1,13 +1,13 @@
 import { ImageResponse } from 'next/og';
-import { getPlaceBySlug, getAllPlaces } from '@/lib/places';
+import { getPlaceBySlug, getAllPlaces } from '@/lib/places-server';
 
 export const alt = 'Where In Maginhawa Place';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 export async function generateStaticParams() {
-  const places = getAllPlaces();
-  return places.map((place) => ({
+  const places = await getAllPlaces();
+  return places.map((place: { slug: string }) => ({
     slug: place.slug,
   }));
 }

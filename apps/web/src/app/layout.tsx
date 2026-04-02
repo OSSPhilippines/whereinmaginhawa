@@ -8,6 +8,7 @@ import { WebsiteStructuredData } from "@/components/seo/structured-data";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
+import { AuthProvider } from "@/components/auth/auth-provider";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -127,9 +128,11 @@ export default function RootLayout({
       <body
         className={`${plusJakartaSans.variable} font-sans antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </AuthProvider>
         <Toaster position="top-center" richColors />
         <Analytics />
         <SpeedInsights />

@@ -38,9 +38,8 @@ export default function EditPlacePage() {
     loadPlace();
   }, [slug, router]);
 
-  const handleSuccess = (prUrl: string) => {
-    // Redirect to success page with query parameters
-    router.push(`/success?type=update&prUrl=${encodeURIComponent(prUrl)}&placeName=${encodeURIComponent(place?.name || '')}`);
+  const handleSuccess = () => {
+    router.push(`/success?type=update&placeName=${encodeURIComponent(place?.name || '')}`);
   };
 
   const handleCancel = () => {

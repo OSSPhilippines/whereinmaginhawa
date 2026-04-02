@@ -1,15 +1,10 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Check, X, DollarSign, Utensils, Wifi, Search, Heart, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import type { SearchFilters, PriceRange } from '@/types/place';
-import stats from '@/data/stats.json';
-
-// Format cuisine types for display (capitalize first letter)
-const CUISINE_TYPES = stats.cuisineTypes
-  .map((cuisine) => cuisine.charAt(0).toUpperCase() + cuisine.slice(1))
-  .slice(0, 20); // Show top 20 cuisines
+import { getAllCuisineTypes, getAllAmenities } from '@/lib/places';
 
 const PRICE_RANGES: Array<{ label: string; value: PriceRange; symbol: string }> = [
   { label: 'Budget', value: '$', symbol: '$' },
@@ -17,20 +12,12 @@ const PRICE_RANGES: Array<{ label: string; value: PriceRange; symbol: string }> 
   { label: 'Upscale', value: '$$$', symbol: '$$$' },
 ];
 
-// Format amenities for display (convert kebab-case to Title Case)
 const formatAmenityLabel = (amenity: string) => {
   return amenity
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 };
-
-const AMENITIES = stats.amenities
-  .map((amenity) => ({
-    label: formatAmenityLabel(amenity),
-    value: amenity,
-  }))
-  .slice(0, 15); // Show top 15 amenities
 
 interface PlaceFiltersProps {
   filters: SearchFilters;
@@ -43,6 +30,22 @@ export function PlaceFilters({
   onFiltersChange,
   onClearFilters,
 }: PlaceFiltersProps) {
+  const [cuisineTypes, setCuisineTypes] = useState<string[]>([]);
+  const [amenities, setAmenities] = useState<{ label: string; value: string }[]>([]);
+
+  useEffect(() => {
+    getAllCuisineTypes().then((types) => {
+      setCuisineTypes(
+        types.map((c) => c.charAt(0).toUpperCase() + c.slice(1)).slice(0, 20)
+      );
+    });
+    getAllAmenities().then((list) => {
+      setAmenities(
+        list.map((a) => ({ label: formatAmenityLabel(a), value: a })).slice(0, 15)
+      );
+    });
+  }, []);
+
   const toggleCuisine = (cuisine: string) => {
     const currentCuisines = filters.cuisineTypes || [];
     const newCuisines = currentCuisines.includes(cuisine)
@@ -204,7 +207,7 @@ export function PlaceFilters({
           <h3 className="text-sm font-semibold text-gray-900">Cuisine Type</h3>
         </div>
         <div className="flex flex-wrap gap-2">
-          {CUISINE_TYPES.map((cuisine) => {
+          {cuisineTypes.map((cuisine) => {
             const isSelected = filters.cuisineTypes?.includes(
               cuisine.toLowerCase()
             );
@@ -232,7 +235,7 @@ export function PlaceFilters({
           <h3 className="text-sm font-semibold text-gray-900">Amenities</h3>
         </div>
         <div className="space-y-1.5">
-          {AMENITIES.map((amenity) => {
+          {amenities.map((amenity) => {
             const isSelected = filters.amenities?.includes(amenity.value);
             return (
               <button

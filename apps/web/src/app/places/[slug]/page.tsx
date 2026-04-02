@@ -16,7 +16,7 @@ import {
   Github,
   Mail as MailIcon,
 } from 'lucide-react';
-import { getPlaceBySlug, getAllPlaces } from '@/lib/places';
+import { getPlaceBySlug, getAllPlaces } from '@/lib/places-server';
 import { AdUnit } from '@/components/ads/ad-unit';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -25,6 +25,8 @@ import { Separator } from '@/components/ui/separator';
 import { PlaceImage } from '@/components/place/place-image';
 import { PlaceShare } from '@/components/place/place-share';
 import { GradientBackground } from '@/components/hero/gradient-bg';
+import { VerifiedBadge } from '@/components/place/verified-badge';
+import { ClaimButton } from '@/components/claim/claim-button';
 import type { Metadata } from 'next';
 
 interface PlacePageProps {
@@ -32,8 +34,8 @@ interface PlacePageProps {
 }
 
 export async function generateStaticParams() {
-  const places = getAllPlaces();
-  return places.map((place) => ({
+  const places = await getAllPlaces();
+  return places.map((place: { slug: string }) => ({
     slug: place.slug,
   }));
 }
@@ -213,6 +215,11 @@ export default async function PlacePage({ params }: PlacePageProps) {
                     <div>
                       <CardTitle className="text-3xl md:text-4xl font-bold mb-2">
                         {place.name}
+                        {place.verified && (
+                          <span className="ml-2 align-middle inline-block">
+                            <VerifiedBadge />
+                          </span>
+                        )}
                       </CardTitle>
 
                       {/* Cuisine Types */}
@@ -510,6 +517,11 @@ export default async function PlacePage({ params }: PlacePageProps) {
                 </div>
 
                 <Separator />
+
+                {/* Claim Button */}
+                {!place.verified && (
+                  <ClaimButton placeSlug={place.slug} />
+                )}
 
                 {/* Action Buttons */}
                 <div className="space-y-2">

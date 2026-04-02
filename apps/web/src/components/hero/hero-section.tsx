@@ -7,9 +7,12 @@ import { SparklesText } from '../ui/sparkles-text';
 import { WordRotate } from '../ui/word-rotate';
 import { NumberTicker } from '../ui/number-ticker';
 import { SearchBar } from '../search/search-bar';
-import stats from '@/data/stats.json';
 
-export function HeroSection() {
+interface HeroSectionProps {
+  stats?: { totalPlaces: number; uniqueCuisines: number; uniqueAmenities: number };
+}
+
+export function HeroSection({ stats = { totalPlaces: 0, uniqueCuisines: 0, uniqueAmenities: 0 } }: HeroSectionProps) {
   const router = useRouter();
 
   return (

@@ -16,16 +16,14 @@ interface AddPlaceDialogProps {
 }
 
 export function AddPlaceDialog({ open, onOpenChange }: AddPlaceDialogProps) {
-  const [successUrl, setSuccessUrl] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSuccess = (prUrl: string) => {
-    setSuccessUrl(prUrl);
-    // Redirect to the PR after a short delay to show success message
+  const handleSuccess = () => {
+    setSubmitted(true);
     setTimeout(() => {
-      window.open(prUrl, '_blank');
       onOpenChange(false);
-      setSuccessUrl(null);
-    }, 2000);
+      setSubmitted(false);
+    }, 3000);
   };
 
   const handleCancel = () => {
@@ -35,14 +33,14 @@ export function AddPlaceDialog({ open, onOpenChange }: AddPlaceDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-        {successUrl ? (
+        {submitted ? (
           <div className="py-12 text-center">
             <div className="mb-4 text-4xl">🎉</div>
-            <DialogTitle className="mb-2">Success!</DialogTitle>
+            <DialogTitle className="mb-2">Submission Received!</DialogTitle>
             <DialogDescription className="mb-4">
-              Your pull request has been created successfully!
+              Your place has been submitted for review.
               <br />
-              Redirecting to GitHub...
+              We&apos;ll review it and add it to the directory soon!
             </DialogDescription>
           </div>
         ) : (

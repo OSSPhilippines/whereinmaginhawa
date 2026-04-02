@@ -6,6 +6,7 @@ import { MapPin, Clock, DollarSign, Wifi, ParkingCircle, Heart, Image as ImageIc
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { PlaceImage } from './place-image';
+import { VerifiedBadge } from './verified-badge';
 import type { PlaceIndex } from '@/types/place';
 
 interface PlaceCardProps {
@@ -129,6 +130,11 @@ export function PlaceCard({ place }: PlaceCardProps) {
             <div className="space-y-2">
               <h3 className="text-xl font-bold group-hover:text-primary transition-colors line-clamp-1">
                 {place.name}
+                {place.verified && (
+                  <span className="ml-1.5 align-middle inline-block">
+                    <VerifiedBadge />
+                  </span>
+                )}
               </h3>
 
               {/* Cuisine types */}
