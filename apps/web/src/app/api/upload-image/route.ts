@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { createClient } from '@/lib/supabase/server';
 
 export const runtime = 'nodejs';
 
@@ -11,12 +10,6 @@ const SLUG_PATTERN = /^[a-z0-9-]+$/;
 
 export async function POST(request: NextRequest) {
   try {
-    // Auth check - require logged in user
-    const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
-    }
 
     const formData = await request.formData();
     const file = formData.get('file') as File;
