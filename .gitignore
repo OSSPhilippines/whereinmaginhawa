@@ -55,3 +55,10 @@ next-env.d.ts
 *.swp
 *.swo
 *~
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# Dev screenshots
+hero-*.png
+contributing-page.png

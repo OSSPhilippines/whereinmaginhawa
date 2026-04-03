@@ -7,7 +7,7 @@ import type { Category } from '@/types/category';
 export const CATEGORIES: Category[] = [
   {
     slug: 'bars-in-maginhawa',
-    emoji: '🍻',
+    icon: 'beer',
     title: 'Best Bars in Maginhawa Street - Nightlife & Drinks Guide',
     description:
       'Discover the top bars and nightlife spots in Maginhawa Street, Quezon City. From craft cocktails to local beers, find the perfect bar for your night out in Maginhawa.',
@@ -29,7 +29,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'coffee-shops-in-maginhawa',
-    emoji: '☕',
+    icon: 'coffee',
     title: 'Best Coffee Shops in Maginhawa Street - Cafes & Work Spaces',
     description:
       'Find the best coffee shops and cafes in Maginhawa Street. Perfect for remote work, studying, or catching up with friends. WiFi, specialty coffee, and cozy ambiance await.',
@@ -51,7 +51,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'filipino-restaurants-in-maginhawa',
-    emoji: '🇵🇭',
+    icon: 'utensils',
     title: 'Best Filipino Restaurants in Maginhawa - Authentic Local Cuisine',
     description:
       'Experience authentic Filipino cuisine in Maginhawa Street. From classic adobo to modern Filipino fusion, discover the best local restaurants serving traditional Filipino food.',
@@ -72,7 +72,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'japanese-restaurants-in-maginhawa',
-    emoji: '🍣',
+    icon: 'fish',
     title: 'Best Japanese Restaurants in Maginhawa - Ramen, Sushi & More',
     description:
       'Craving Japanese food? Explore the best Japanese restaurants in Maginhawa Street. From authentic ramen and sushi to katsu and donburi, satisfy your Japanese cuisine cravings.',
@@ -93,7 +93,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'korean-restaurants-in-maginhawa',
-    emoji: '🍜',
+    icon: 'soup',
     title: 'Best Korean Restaurants in Maginhawa - Korean BBQ & K-Food',
     description:
       'Discover the best Korean restaurants in Maginhawa Street. Enjoy Korean BBQ, bibimbap, Korean fried chicken, and more authentic Korean dishes in the heart of Quezon City.',
@@ -114,7 +114,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'italian-restaurants-in-maginhawa',
-    emoji: '🍝',
+    icon: 'chef-hat',
     title: 'Best Italian Restaurants in Maginhawa - Pizza, Pasta & More',
     description:
       'Indulge in authentic Italian cuisine in Maginhawa Street. Find the best pizza, pasta, and Italian dishes prepared with traditional recipes and quality ingredients.',
@@ -135,7 +135,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'pet-friendly-restaurants-in-maginhawa',
-    emoji: '🐾',
+    icon: 'paw-print',
     title: 'Pet-Friendly Restaurants in Maginhawa - Dine with Your Pets',
     description:
       'Looking for pet-friendly restaurants in Maginhawa? Discover cafes and restaurants where your furry friends are welcome. Enjoy quality food with your pets by your side.',
@@ -156,7 +156,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'wifi-cafes-in-maginhawa',
-    emoji: '📶',
+    icon: 'wifi',
     title: 'Best WiFi Cafes in Maginhawa - Work & Study Friendly Spots',
     description:
       'Find the best WiFi cafes in Maginhawa Street perfect for remote work, studying, or freelancing. Reliable internet, power outlets, and comfortable seating in great cafes.',
@@ -178,7 +178,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'budget-restaurants-in-maginhawa',
-    emoji: '💰',
+    icon: 'wallet',
     title: 'Budget-Friendly Restaurants in Maginhawa - Affordable Dining',
     description:
       'Discover affordable and budget-friendly restaurants in Maginhawa Street. Great food at wallet-friendly prices. Perfect for students and budget-conscious diners.',
@@ -200,7 +200,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'late-night-dining-in-maginhawa',
-    emoji: '🌙',
+    icon: 'moon',
     title: 'Late Night Dining in Maginhawa - Open Late Restaurants & Cafes',
     description:
       'Craving food late at night? Discover restaurants and cafes in Maginhawa Street that stay open late. From midnight snacks to 24-hour dining, satisfy your late-night cravings.',
@@ -221,7 +221,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'pizza-in-maginhawa',
-    emoji: '🍕',
+    icon: 'pizza',
     title: 'Best Pizza Places in Maginhawa - Wood-Fired & New York Style',
     description:
       'Craving pizza? Find the best pizza places in Maginhawa Street. From authentic wood-fired pizzas to New York-style slices, discover pizzerias serving delicious pies with quality toppings.',
@@ -242,7 +242,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'chinese-restaurants-in-maginhawa',
-    emoji: '🥡',
+    icon: 'utensils',
     title: 'Best Chinese Restaurants in Maginhawa - Dim Sum & Cantonese',
     description:
       'Explore the best Chinese restaurants in Maginhawa Street. From authentic dim sum and Cantonese cuisine to Chinese-Filipino favorites, enjoy traditional Chinese flavors and comfort food.',
@@ -263,7 +263,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'burger-joints-in-maginhawa',
-    emoji: '🍔',
+    icon: 'sandwich',
     title: 'Best Burger Joints in Maginhawa - Gourmet & Classic Burgers',
     description:
       'Find the best burger joints in Maginhawa Street. From gourmet burgers to classic American-style patties, satisfy your burger cravings with juicy, flavorful options.',
@@ -284,7 +284,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'breakfast-brunch-in-maginhawa',
-    emoji: '🥪',
+    icon: 'sunrise',
     title: 'Best Breakfast & Brunch in Maginhawa - All-Day Breakfast Spots',
     description:
       'Start your day right with the best breakfast and brunch spots in Maginhawa Street. From all-day breakfast to weekend brunch specials, find pancakes, eggs, and morning favorites.',
@@ -305,7 +305,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'vietnamese-restaurants-in-maginhawa',
-    emoji: '🍜',
+    icon: 'soup',
     title: 'Best Vietnamese Restaurants in Maginhawa - Pho & Banh Mi',
     description:
       'Craving Vietnamese food? Discover the best Vietnamese restaurants in Maginhawa Street. From authentic pho noodle soups to delicious banh mi sandwiches, enjoy fresh Vietnamese flavors.',
@@ -326,7 +326,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'mexican-restaurants-in-maginhawa',
-    emoji: '🌮',
+    icon: 'flame',
     title: 'Best Mexican Restaurants in Maginhawa - Tacos, Burritos & More',
     description:
       'Discover the best Mexican restaurants in Maginhawa Street. From authentic tacos and burritos to Tex-Mex favorites, enjoy bold Mexican flavors and fresh ingredients.',
@@ -347,7 +347,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'thai-restaurants-in-maginhawa',
-    emoji: '🍛',
+    icon: 'flame',
     title: 'Best Thai Restaurants in Maginhawa - Curry, Pad Thai & More',
     description:
       'Explore the best Thai restaurants in Maginhawa Street. From fragrant curries to savory pad thai and authentic Thai street food, enjoy the bold flavors of Thailand.',
@@ -368,7 +368,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'desserts-ice-cream-in-maginhawa',
-    emoji: '🍦',
+    icon: 'ice-cream',
     title: 'Best Desserts & Ice Cream in Maginhawa - Sweet Treats',
     description:
       'Satisfy your sweet tooth with the best desserts and ice cream in Maginhawa Street. From artisan gelato to cakes, pastries, and frozen treats, find delicious sweets.',
@@ -389,7 +389,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'romantic-date-spots-in-maginhawa',
-    emoji: '💑',
+    icon: 'heart',
     title: 'Best Romantic Date Spots in Maginhawa - Couples Dining',
     description:
       'Planning a romantic date? Discover the best date spots in Maginhawa Street. From intimate restaurants to cozy cafes, find the perfect ambiance for couples.',
@@ -410,7 +410,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'family-friendly-restaurants-in-maginhawa',
-    emoji: '👨‍👩‍👧‍👦',
+    icon: 'users',
     title: 'Best Family-Friendly Restaurants in Maginhawa - Kid-Friendly Dining',
     description:
       'Find the best family-friendly restaurants in Maginhawa Street. Perfect for dining with kids, these spots offer welcoming atmospheres, spacious seating, and family-friendly menus.',
@@ -431,7 +431,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'instagram-worthy-spots-in-maginhawa',
-    emoji: '📸',
+    icon: 'camera',
     title: 'Instagram-Worthy Spots in Maginhawa - Aesthetic Cafes & Restaurants',
     description:
       'Discover the most Instagram-worthy restaurants and cafes in Maginhawa Street. From aesthetic interiors to photo-worthy dishes, find picture-perfect spots for your feed.',
@@ -452,7 +452,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'vegetarian-vegan-in-maginhawa',
-    emoji: '🥗',
+    icon: 'leaf',
     title: 'Best Vegetarian & Vegan Restaurants in Maginhawa - Plant-Based Dining',
     description:
       'Find the best vegetarian and vegan restaurants in Maginhawa Street. From plant-based meals to healthy options, discover restaurants offering delicious meat-free dining.',
@@ -473,7 +473,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'outdoor-seating-in-maginhawa',
-    emoji: '🌳',
+    icon: 'tree',
     title: 'Restaurants with Outdoor Seating in Maginhawa - Al Fresco Dining',
     description:
       'Enjoy outdoor dining in Maginhawa Street. Discover restaurants and cafes with outdoor seating, garden settings, and al fresco dining perfect for nice weather.',
@@ -494,7 +494,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'group-dining-in-maginhawa',
-    emoji: '🎉',
+    icon: 'party-popper',
     title: 'Best Group Dining in Maginhawa - Party Venues & Large Groups',
     description:
       'Planning a group meal or party? Find the best group-friendly restaurants in Maginhawa Street. Perfect for celebrations, gatherings, and large groups with party packages available.',
@@ -515,7 +515,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     slug: 'fried-chicken-in-maginhawa',
-    emoji: '🍗',
+    icon: 'drumstick',
     title: 'Best Fried Chicken in Maginhawa - Korean & American Style',
     description:
       'Craving fried chicken? Find the best fried chicken spots in Maginhawa Street. From Korean fried chicken to American-style wings, enjoy crispy and flavorful chicken.',

@@ -126,14 +126,15 @@ export default function PrivacyPage() {
                 pseudonym if you prefer to remain anonymous.
               </p>
 
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">4.2 GitHub Integration</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">4.2 Account and Submission Data</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Our platform uses GitHub for contribution management. When you submit information:
+                When you create an account or submit information on our platform:
               </p>
               <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4 mb-4">
-                <li>Your submission creates a pull request on our public GitHub repository</li>
-                <li>The pull request and its contents are publicly visible on GitHub</li>
-                <li>Any information you include (name, email, social media) will be visible in the pull request</li>
+                <li>Your submissions are stored in our database and reviewed by our team before publishing</li>
+                <li>Your contributor name (if provided) may be publicly visible on place pages</li>
+                <li>Your email address is used for authentication and is not publicly displayed</li>
+                <li>Account data is stored securely using Supabase authentication services</li>
               </ul>
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">4.3 Third Parties</h3>
@@ -143,7 +144,7 @@ export default function PrivacyPage() {
               <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
                 <li>Analytics providers (Google Analytics) for anonymous usage statistics</li>
                 <li>Hosting providers (Vercel) for platform infrastructure</li>
-                <li>GitHub for contribution and version control management</li>
+                <li>Supabase for database, authentication, and file storage services</li>
               </ul>
             </section>
 
@@ -199,6 +200,7 @@ export default function PrivacyPage() {
                 We use cookies and similar technologies to:
               </p>
               <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4 mb-4">
+                <li>Maintain your authentication session when signed in</li>
                 <li>Remember your preferences</li>
                 <li>Analyze platform usage and traffic patterns</li>
                 <li>Improve platform functionality</li>
@@ -247,14 +249,12 @@ export default function PrivacyPage() {
               </p>
               <ul className="list-none space-y-2 text-gray-700">
                 <li>
-                  <strong>GitHub:</strong>{' '}
+                  <strong>Email:</strong>{' '}
                   <a
-                    href="https://github.com/OSSPhilippines/whereinmaginhawa"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="mailto:drum-ice-scoundrel@duck.com"
                     className="text-primary hover:underline"
                   >
-                    github.com/OSSPhilippines/whereinmaginhawa
+                    drum-ice-scoundrel@duck.com
                   </a>
                 </li>
               </ul>

@@ -1,43 +1,58 @@
 import Fuse, { type IFuseOptions } from 'fuse.js';
-import placesIndex from '@/data/places.json';
+import { createClient } from '@/lib/supabase/client';
+import { dbRowToPlace, dbRowToPlaceIndex } from '@/lib/supabase/mappers';
 import type { Place, PlaceIndex, SearchFilters, SearchResult } from '@/types/place';
 
 /**
- * Get all places (index data only)
- * Returns lightweight PlaceIndex objects for listing and search
+ * Client-side cache for PlaceIndex data
  */
-export function getAllPlaces(): PlaceIndex[] {
-  return placesIndex as PlaceIndex[];
+let cachedPlaces: PlaceIndex[] | null = null;
+let cacheTimestamp = 0;
+const CACHE_TTL = 60_000; // 60 seconds
+
+/**
+ * Get all places (index data only) from Supabase
+ * Uses client-side caching with 60s TTL
+ */
+export async function getAllPlaces(): Promise<PlaceIndex[]> {
+  const now = Date.now();
+  if (cachedPlaces && now - cacheTimestamp < CACHE_TTL) {
+    return cachedPlaces;
+  }
+
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from('places')
+    .select('*')
+    .order('name');
+
+  if (error) {
+    console.info('[places] Error fetching places:', error.message);
+    return cachedPlaces ?? [];
+  }
+
+  cachedPlaces = (data ?? []).map(dbRowToPlaceIndex);
+  cacheTimestamp = now;
+  return cachedPlaces;
 }
 
 /**
- * Get a single place by slug (full data)
- * Dynamically imports the individual place file
+ * Get a single place by slug (full data) - client-side
  */
 export async function getPlaceBySlug(slug: string): Promise<Place | undefined> {
-  try {
-    // Dynamically import the individual place file
-    const placeData = await import(`@/data/places/${slug}.json`);
-    return placeData.default as Place;
-  } catch (error) {
-    // File not found or import failed
-    console.error(`Failed to load place: ${slug}`, error);
-    return undefined;
-  }
-}
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from('places')
+    .select('*')
+    .eq('slug', slug)
+    .single();
 
-/**
- * Get place by ID (searches index, returns full data)
- */
-export async function getPlaceById(id: string): Promise<Place | undefined> {
-  const placeIndex = placesIndex.find((place) => place.id === id) as PlaceIndex | undefined;
-  if (!placeIndex) return undefined;
-  return getPlaceBySlug(placeIndex.slug);
+  if (error || !data) return undefined;
+  return dbRowToPlace(data);
 }
 
 /**
  * Fuse.js configuration for fuzzy search
- * Uses PlaceIndex for lightweight searching
  */
 const fuseOptions: IFuseOptions<PlaceIndex> = {
   keys: [
@@ -55,9 +70,10 @@ const fuseOptions: IFuseOptions<PlaceIndex> = {
 
 /**
  * Search places with advanced filtering
+ * Uses Fuse.js for fuzzy text search on Supabase-sourced data
  */
-export function searchPlaces(filters: SearchFilters): SearchResult {
-  let results = getAllPlaces();
+export async function searchPlaces(filters: SearchFilters): Promise<SearchResult> {
+  let results = await getAllPlaces();
 
   // Text search using Fuse.js
   if (filters.query && filters.query.trim() !== '') {
@@ -108,22 +124,11 @@ export function searchPlaces(filters: SearchFilters): SearchResult {
     );
   }
 
-  // Filter by open now
-  // Note: This feature is disabled in the lightweight index mode
-  // To re-enable, operating hours would need to be added to PlaceIndex
-  // or we'd need to async load each place's full data (expensive)
-  if (filters.openNow) {
-    console.warn('openNow filter is not supported with PlaceIndex. Add operatingHours to index or load full place data.');
-    // Could be implemented by adding a minimal hours field to PlaceIndex
-    // or by making this function async and loading full data
-  }
-
   // Filter by favorites
   if (filters.favoritesOnly) {
     const FAVORITES_KEY = 'whereinmaginhawa_favorites';
     const stored = typeof window !== 'undefined' ? localStorage.getItem(FAVORITES_KEY) : null;
     const favorites: string[] = stored ? JSON.parse(stored) : [];
-
     results = results.filter((place) => favorites.includes(place.id));
   }
 
@@ -137,9 +142,10 @@ export function searchPlaces(filters: SearchFilters): SearchResult {
 /**
  * Get all unique tags from all places
  */
-export function getAllTags(): string[] {
+export async function getAllTags(): Promise<string[]> {
   const tags = new Set<string>();
-  getAllPlaces().forEach((place) => {
+  const places = await getAllPlaces();
+  places.forEach((place) => {
     place.tags.forEach((tag) => tags.add(tag));
   });
   return Array.from(tags).sort();
@@ -148,9 +154,10 @@ export function getAllTags(): string[] {
 /**
  * Get all unique amenities from all places
  */
-export function getAllAmenities(): string[] {
+export async function getAllAmenities(): Promise<string[]> {
   const amenities = new Set<string>();
-  getAllPlaces().forEach((place) => {
+  const places = await getAllPlaces();
+  places.forEach((place) => {
     place.amenities.forEach((amenity) => amenities.add(amenity));
   });
   return Array.from(amenities).sort();
@@ -159,9 +166,10 @@ export function getAllAmenities(): string[] {
 /**
  * Get all unique cuisine types from all places
  */
-export function getAllCuisineTypes(): string[] {
+export async function getAllCuisineTypes(): Promise<string[]> {
   const cuisines = new Set<string>();
-  getAllPlaces().forEach((place) => {
+  const places = await getAllPlaces();
+  places.forEach((place) => {
     place.cuisineTypes.forEach((cuisine) => cuisines.add(cuisine));
   });
   return Array.from(cuisines).sort();
@@ -169,14 +177,14 @@ export function getAllCuisineTypes(): string[] {
 
 /**
  * Get autocomplete suggestions based on query
- * Returns PlaceIndex for lightweight results
+ * Uses Fuse.js for fuzzy matching on Supabase-sourced data
  */
-export function getAutocompleteSuggestions(query: string): {
+export async function getAutocompleteSuggestions(query: string): Promise<{
   places: PlaceIndex[];
   tags: string[];
   amenities: string[];
   cuisines: string[];
-} {
+}> {
   if (!query || query.trim() === '') {
     return {
       places: [],
@@ -187,23 +195,27 @@ export function getAutocompleteSuggestions(query: string): {
   }
 
   const lowerQuery = query.toLowerCase();
+  const allPlaces = await getAllPlaces();
 
   // Search places
-  const fuse = new Fuse(getAllPlaces(), fuseOptions);
+  const fuse = new Fuse(allPlaces, fuseOptions);
   const placeResults = fuse.search(query).slice(0, 5);
 
   // Filter tags
-  const matchingTags = getAllTags()
+  const allTags = await getAllTags();
+  const matchingTags = allTags
     .filter((tag) => tag.toLowerCase().includes(lowerQuery))
     .slice(0, 5);
 
   // Filter amenities
-  const matchingAmenities = getAllAmenities()
+  const allAmenities = await getAllAmenities();
+  const matchingAmenities = allAmenities
     .filter((amenity) => amenity.toLowerCase().includes(lowerQuery))
     .slice(0, 5);
 
   // Filter cuisines
-  const matchingCuisines = getAllCuisineTypes()
+  const allCuisines = await getAllCuisineTypes();
+  const matchingCuisines = allCuisines
     .filter((cuisine) => cuisine.toLowerCase().includes(lowerQuery))
     .slice(0, 5);
 

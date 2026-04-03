@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { Camera, MapPin, Clock, Utensils, CreditCard, User, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
 import { TagInput } from '@/components/ui/tag-input';
 import { ImageUploadField } from '@/components/ui/image-upload-field';
 import { csrfFetch } from '@/lib/csrf-client';
@@ -11,627 +12,528 @@ import { toast } from 'sonner';
 import type { PriceRange } from '@/types/place';
 
 interface FormData {
-  // Basic Information
   name: string;
   description: string;
   address: string;
   phone: string;
   email: string;
   website: string;
-
-  // Media
   coverImageUrl: string;
   logoUrl: string;
-
-  // Business Details
   priceRange: PriceRange;
   cuisineTypes: string[];
   specialties: string[];
   tags: string[];
   amenities: string[];
   paymentMethods: string[];
-
-  // Operating Hours
-  mondayOpen: string;
-  mondayClose: string;
-  mondayClosed: boolean;
-  tuesdayOpen: string;
-  tuesdayClose: string;
-  tuesdayClosed: boolean;
-  wednesdayOpen: string;
-  wednesdayClose: string;
-  wednesdayClosed: boolean;
-  thursdayOpen: string;
-  thursdayClose: string;
-  thursdayClosed: boolean;
-  fridayOpen: string;
-  fridayClose: string;
-  fridayClosed: boolean;
-  saturdayOpen: string;
-  saturdayClose: string;
-  saturdayClosed: boolean;
-  sundayOpen: string;
-  sundayClose: string;
-  sundayClosed: boolean;
-
-  // Contributor Info (optional)
+  mondayOpen: string; mondayClose: string; mondayClosed: boolean;
+  tuesdayOpen: string; tuesdayClose: string; tuesdayClosed: boolean;
+  wednesdayOpen: string; wednesdayClose: string; wednesdayClosed: boolean;
+  thursdayOpen: string; thursdayClose: string; thursdayClosed: boolean;
+  fridayOpen: string; fridayClose: string; fridayClosed: boolean;
+  saturdayOpen: string; saturdayClose: string; saturdayClosed: boolean;
+  sundayOpen: string; sundayClose: string; sundayClosed: boolean;
   contributorName: string;
   contributorEmail: string;
   contributorGithub: string;
 }
 
 interface AddPlaceFormProps {
-  onSuccess?: (prUrl: string) => void;
+  onSuccess?: () => void;
   onCancel?: () => void;
+  defaultContributor?: { name: string; email: string } | null;
 }
 
-export function AddPlaceForm({ onSuccess, onCancel }: AddPlaceFormProps) {
-  // Common suggestions for tag inputs
-  const cuisineSuggestions = [
-    'Filipino', 'Japanese', 'Korean', 'Italian', 'American', 'Chinese',
-    'Mexican', 'Thai', 'Vietnamese', 'French', 'Indian', 'Spanish',
-    'Mediterranean', 'Fusion', 'Asian', 'International', 'Western'
-  ];
+const cuisineSuggestions = [
+  'Filipino', 'Japanese', 'Korean', 'Italian', 'American', 'Chinese',
+  'Mexican', 'Thai', 'Vietnamese', 'French', 'Indian', 'Spanish',
+  'Mediterranean', 'Fusion', 'Asian', 'International', 'Western'
+];
+const specialtiesSuggestions = [
+  'Sisig', 'Adobo', 'Sinigang', 'Kare-kare', 'Lechon', 'Tapsilog',
+  'Ramen', 'Sushi', 'Pizza', 'Pasta', 'Burger', 'Steak',
+  'Fried Chicken', 'BBQ', 'Seafood', 'Dimsum', 'Sashimi'
+];
+const tagsSuggestions = [
+  'casual', 'family-friendly', 'date-spot', 'cozy', 'trendy',
+  'instagram-worthy', 'budget-friendly', 'study-spot', 'group-friendly',
+  'quiet', 'lively', 'romantic', 'aesthetic', 'nostalgic', 'modern'
+];
+const amenitiesSuggestions = [
+  'wifi', 'air-conditioned', 'parking', 'outdoor-seating', 'pet-friendly',
+  'delivery', 'takeout', 'power-outlets', 'wheelchair-accessible',
+  'smoking-area', 'alcohol-served', 'live-music'
+];
+const paymentSuggestions = [
+  'cash', 'gcash', 'paymaya', 'credit-card', 'debit-card',
+  'bank-transfer', 'maya', 'grab-pay'
+];
 
-  const specialtiesSuggestions = [
-    'Sisig', 'Adobo', 'Sinigang', 'Kare-kare', 'Lechon', 'Tapsilog',
-    'Ramen', 'Sushi', 'Pizza', 'Pasta', 'Burger', 'Steak',
-    'Fried Chicken', 'BBQ', 'Seafood', 'Dimsum', 'Sashimi'
-  ];
+const steps = [
+  { id: 'basics', label: 'Basics', icon: Utensils },
+  { id: 'photos', label: 'Photos', icon: Camera },
+  { id: 'location', label: 'Location', icon: MapPin },
+  { id: 'hours', label: 'Hours', icon: Clock },
+  { id: 'details', label: 'Details', icon: CreditCard },
+  { id: 'you', label: 'About You', icon: User },
+];
 
-  const tagsSuggestions = [
-    'casual', 'family-friendly', 'date-spot', 'cozy', 'trendy',
-    'instagram-worthy', 'budget-friendly', 'study-spot', 'group-friendly',
-    'quiet', 'lively', 'romantic', 'aesthetic', 'nostalgic', 'modern'
-  ];
-
-  const amenitiesSuggestions = [
-    'wifi', 'air-conditioned', 'parking', 'outdoor-seating', 'pet-friendly',
-    'delivery', 'takeout', 'power-outlets', 'wheelchair-accessible',
-    'smoking-area', 'alcohol-served', 'live-music'
-  ];
-
-  const paymentSuggestions = [
-    'cash', 'gcash', 'paymaya', 'credit-card', 'debit-card',
-    'bank-transfer', 'maya', 'grab-pay'
-  ];
-
+export function AddPlaceForm({ onSuccess, onCancel, defaultContributor }: AddPlaceFormProps) {
+  const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    description: '',
-    address: '',
-    phone: '',
-    email: '',
-    website: '',
-    coverImageUrl: '',
-    logoUrl: '',
-    priceRange: '$$',
-    cuisineTypes: [],
-    specialties: [],
-    tags: [],
-    amenities: [],
-    paymentMethods: [],
-    mondayOpen: '10:00',
-    mondayClose: '22:00',
-    mondayClosed: false,
-    tuesdayOpen: '10:00',
-    tuesdayClose: '22:00',
-    tuesdayClosed: false,
-    wednesdayOpen: '10:00',
-    wednesdayClose: '22:00',
-    wednesdayClosed: false,
-    thursdayOpen: '10:00',
-    thursdayClose: '22:00',
-    thursdayClosed: false,
-    fridayOpen: '10:00',
-    fridayClose: '23:00',
-    fridayClosed: false,
-    saturdayOpen: '10:00',
-    saturdayClose: '23:00',
-    saturdayClosed: false,
-    sundayOpen: '10:00',
-    sundayClose: '22:00',
-    sundayClosed: false,
-    contributorName: '',
-    contributorEmail: '',
+    name: '', description: '', address: '', phone: '', email: '', website: '',
+    coverImageUrl: '', logoUrl: '',
+    priceRange: '$$', cuisineTypes: [], specialties: [], tags: [], amenities: [], paymentMethods: [],
+    mondayOpen: '10:00', mondayClose: '22:00', mondayClosed: false,
+    tuesdayOpen: '10:00', tuesdayClose: '22:00', tuesdayClosed: false,
+    wednesdayOpen: '10:00', wednesdayClose: '22:00', wednesdayClosed: false,
+    thursdayOpen: '10:00', thursdayClose: '22:00', thursdayClosed: false,
+    fridayOpen: '10:00', fridayClose: '23:00', fridayClosed: false,
+    saturdayOpen: '10:00', saturdayClose: '23:00', saturdayClosed: false,
+    sundayOpen: '10:00', sundayClose: '22:00', sundayClosed: false,
+    contributorName: defaultContributor?.name ?? '',
+    contributorEmail: defaultContributor?.email ?? '',
     contributorGithub: '',
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Generate slug from place name for image uploads
   const slug = useMemo(() => {
-    return formData.name
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      || 'new-place';
+    return formData.name.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-') || 'new-place';
   }, [formData.name]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-
     if (type === 'checkbox') {
-      const checked = (e.target as HTMLInputElement).checked;
-      setFormData((prev) => ({ ...prev, [name]: checked }));
+      setFormData((prev) => ({ ...prev, [name]: (e.target as HTMLInputElement).checked }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const stepValidation: Record<number, () => boolean> = {
+    0: () => formData.name.trim().length > 0 && formData.description.trim().length >= 10 && formData.cuisineTypes.length > 0,
+    1: () => true, // Photos are optional
+    2: () => formData.address.trim().length > 0,
+    3: () => true, // Hours have defaults
+    4: () => true, // Tags optional
+    5: () => formData.contributorName.trim().length > 0,
+  };
+
+  const isCurrentStepValid = stepValidation[currentStep]?.() ?? true;
+  const isLastStep = currentStep === steps.length - 1;
+
+  function goNext() {
+    if (isCurrentStepValid && !isLastStep) setCurrentStep((s) => s + 1);
+  }
+
+  function goBack() {
+    if (currentStep > 0) setCurrentStep((s) => s - 1);
+  }
+
+  const handleSubmit = async () => {
+    if (!isCurrentStepValid) return;
     setIsSubmitting(true);
-
     try {
-      // Build operating hours - ensure all open/close times have values
-      const operatingHours: Record<string, any> = {
-        monday: formData.mondayClosed
+      const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+      const operatingHours: Record<string, { open?: string; close?: string; closed?: boolean }> = {};
+      for (const day of days) {
+        const closed = formData[`${day}Closed` as keyof FormData] as boolean;
+        operatingHours[day] = closed
           ? { closed: true }
-          : { open: formData.mondayOpen || '10:00', close: formData.mondayClose || '22:00' },
-        tuesday: formData.tuesdayClosed
-          ? { closed: true }
-          : { open: formData.tuesdayOpen || '10:00', close: formData.tuesdayClose || '22:00' },
-        wednesday: formData.wednesdayClosed
-          ? { closed: true }
-          : { open: formData.wednesdayOpen || '10:00', close: formData.wednesdayClose || '22:00' },
-        thursday: formData.thursdayClosed
-          ? { closed: true }
-          : { open: formData.thursdayOpen || '10:00', close: formData.thursdayClose || '22:00' },
-        friday: formData.fridayClosed
-          ? { closed: true }
-          : { open: formData.fridayOpen || '10:00', close: formData.fridayClose || '23:00' },
-        saturday: formData.saturdayClosed
-          ? { closed: true }
-          : { open: formData.saturdayOpen || '10:00', close: formData.saturdayClose || '23:00' },
-        sunday: formData.sundayClosed
-          ? { closed: true }
-          : { open: formData.sundayOpen || '10:00', close: formData.sundayClose || '22:00' },
-      };
+          : { open: (formData[`${day}Open` as keyof FormData] as string) || '10:00', close: (formData[`${day}Close` as keyof FormData] as string) || '22:00' };
+      }
 
-      // Build request payload
-      const payload = {
-        name: formData.name,
-        description: formData.description,
-        address: formData.address,
-        phone: formData.phone || undefined,
-        email: formData.email || undefined,
-        website: formData.website || undefined,
-        coverImageUrl: formData.coverImageUrl || undefined,
-        logoUrl: formData.logoUrl || undefined,
-        photosUrls: [],
-        operatingHours,
-        priceRange: formData.priceRange,
-        paymentMethods: formData.paymentMethods,
-        cuisineTypes: formData.cuisineTypes,
-        specialties: formData.specialties,
-        tags: formData.tags,
-        amenities: formData.amenities,
-        contributorName: formData.contributorName || undefined,
-        contributorEmail: formData.contributorEmail || undefined,
-        contributorGithub: formData.contributorGithub || undefined,
-      };
-
-      const response = await csrfFetch('/api/places/create-pr', {
-        body: JSON.stringify(payload),
+      const response = await csrfFetch('/api/places/submit', {
+        body: JSON.stringify({
+          name: formData.name, description: formData.description, address: formData.address,
+          phone: formData.phone || undefined, email: formData.email || undefined, website: formData.website || undefined,
+          coverImageUrl: formData.coverImageUrl || undefined, logoUrl: formData.logoUrl || undefined,
+          photosUrls: [], operatingHours, priceRange: formData.priceRange,
+          paymentMethods: formData.paymentMethods, cuisineTypes: formData.cuisineTypes,
+          specialties: formData.specialties, tags: formData.tags, amenities: formData.amenities,
+          contributorName: formData.contributorName || undefined,
+          contributorEmail: formData.contributorEmail || undefined,
+          contributorGithub: formData.contributorGithub || undefined,
+        }),
       });
 
       const data = await response.json();
-
       if (!response.ok || !data.success) {
-        // Show detailed validation errors if available
         if (data.details) {
-          // Extract validation errors from Zod format
           const errors: string[] = [];
-          const formatZodErrors = (obj: any, prefix = '') => {
-            if (obj._errors && obj._errors.length > 0) {
-              errors.push(`${prefix}: ${obj._errors.join(', ')}`);
-            }
-            for (const [key, value] of Object.entries(obj)) {
-              if (key !== '_errors' && typeof value === 'object') {
-                formatZodErrors(value, prefix ? `${prefix}.${key}` : key);
-              }
+          const extract = (obj: Record<string, unknown>, prefix = '') => {
+            const errs = obj._errors as string[] | undefined;
+            if (errs?.length) errors.push(`${prefix}: ${errs.join(', ')}`);
+            for (const [key, val] of Object.entries(obj)) {
+              if (key !== '_errors' && typeof val === 'object' && val) extract(val as Record<string, unknown>, prefix ? `${prefix}.${key}` : key);
             }
           };
-          formatZodErrors(data.details);
-
-          toast.error('Validation Failed', {
-            description: errors.length > 0 ? errors.join('\n') : 'Please check all required fields.',
-            duration: 6000,
-          });
+          extract(data.details);
+          toast.error('Validation Failed', { description: errors.join('\n') || 'Please check all required fields.', duration: 6000 });
         } else {
-          toast.error('Submission Failed', {
-            description: data.error || 'Failed to submit your place. Please check all required fields and try again.',
-            duration: 5000,
-          });
+          toast.error('Submission Failed', { description: data.error || 'Please check all required fields.', duration: 5000 });
         }
         return;
       }
-
-      // Success! Show success toast
-      toast.success('Place Submitted!', {
-        description: 'Your submission has been received and will be reviewed soon.',
-        duration: 4000,
-      });
-
-      // Call the onSuccess callback
-      if (onSuccess && data.prUrl) {
-        onSuccess(data.prUrl);
-      }
+      toast.success('Place Submitted!', { description: data.message || 'Your submission will be reviewed soon.', duration: 4000 });
+      onSuccess?.();
     } catch (err) {
-      console.error('Form submission error:', err);
-      toast.error('Unexpected Error', {
-        description: err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.',
-        duration: 5000,
-      });
+      console.info('[add-place] Submit error:', err);
+      toast.error('Unexpected Error', { description: err instanceof Error ? err.message : 'Please try again.', duration: 5000 });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Basic Information */}
-      <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-4">Basic Information</h3>
-        <div className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-1">
-              Restaurant Name <span className="text-red-500">*</span>
-            </label>
-            <Input
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              placeholder="e.g., Rodic's Diner"
-            />
-          </div>
+    <div className="space-y-8">
+      {/* Stepper header */}
+      <nav className="relative" aria-label="Form progress">
+        {/* Connecting line */}
+        <div className="absolute top-5 left-0 right-0 h-px bg-border hidden sm:block" style={{ marginLeft: '2.5rem', marginRight: '2.5rem' }} />
+        <div
+          className="absolute top-5 left-0 h-px bg-primary transition-all duration-500 hidden sm:block"
+          style={{
+            marginLeft: '2.5rem',
+            width: `calc(${(currentStep / (steps.length - 1)) * 100}% - 5rem * ${currentStep / (steps.length - 1)})`,
+          }}
+        />
 
-          <div>
-            <label htmlFor="description" className="block text-sm font-medium mb-1">
-              Description <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              required
-              rows={3}
-              className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]"
-              placeholder="Brief description of the place"
-            />
-            <p className={`text-xs mt-1 ${formData.description.length >= 10 ? 'text-green-600' : 'text-red-500'}`}>
-              {formData.description.length}/10 characters minimum
-            </p>
-          </div>
-
-          <div>
-            <label htmlFor="address" className="block text-sm font-medium mb-1">
-              Address <span className="text-red-500">*</span>
-            </label>
-            <Input
-              id="address"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              required
-              placeholder="e.g., 60 Maginhawa St, Diliman, Quezon City"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium mb-1">
-                Phone Number
-              </label>
-              <Input
-                id="phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="+63 123 456 7890"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-1">
-                Email
-              </label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="contact@restaurant.com"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="website" className="block text-sm font-medium mb-1">
-              Website or Facebook Page
-            </label>
-            <Input
-              id="website"
-              name="website"
-              type="url"
-              value={formData.website}
-              onChange={handleChange}
-              placeholder="https://www.restaurant.com or https://facebook.com/page"
-            />
-          </div>
-        </div>
-      </Card>
-
-      {/* Business Details */}
-      <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-4">Business Details</h3>
-        <div className="space-y-4">
-          <div>
-            <label htmlFor="priceRange" className="block text-sm font-medium mb-1">
-              Price Range <span className="text-red-500">*</span>
-            </label>
-            <select
-              id="priceRange"
-              name="priceRange"
-              value={formData.priceRange}
-              onChange={handleChange}
-              required
-              className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]"
-            >
-              <option value="$">$ - Budget (₱100-200)</option>
-              <option value="$$">$$ - Moderate (₱200-500)</option>
-              <option value="$$$">$$$ - Upscale (₱500-1000)</option>
-              <option value="$$$$">$$$$ - Fine Dining (₱1000+)</option>
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="cuisineTypes" className="block text-sm font-medium mb-2">
-              Cuisine Types <span className="text-red-500">*</span>
-            </label>
-            <TagInput
-              value={formData.cuisineTypes}
-              onChange={(tags) => setFormData({ ...formData, cuisineTypes: tags })}
-              placeholder="e.g., Filipino, Japanese, Italian"
-              suggestions={cuisineSuggestions}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="specialties" className="block text-sm font-medium mb-2">
-              Specialties / Signature Dishes
-            </label>
-            <TagInput
-              value={formData.specialties}
-              onChange={(tags) => setFormData({ ...formData, specialties: tags })}
-              placeholder="e.g., Sisig, Ramen, Pizza"
-              suggestions={specialtiesSuggestions}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="tags" className="block text-sm font-medium mb-2">
-              Tags
-            </label>
-            <TagInput
-              value={formData.tags}
-              onChange={(tags) => setFormData({ ...formData, tags: tags })}
-              placeholder="e.g., casual, family-friendly, cozy"
-              suggestions={tagsSuggestions}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="amenities" className="block text-sm font-medium mb-2">
-              Amenities
-            </label>
-            <TagInput
-              value={formData.amenities}
-              onChange={(tags) => setFormData({ ...formData, amenities: tags })}
-              placeholder="e.g., wifi, parking, air-conditioned"
-              suggestions={amenitiesSuggestions}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="paymentMethods" className="block text-sm font-medium mb-2">
-              Payment Methods
-            </label>
-            <TagInput
-              value={formData.paymentMethods}
-              onChange={(tags) => setFormData({ ...formData, paymentMethods: tags })}
-              placeholder="e.g., cash, gcash, credit-card"
-              suggestions={paymentSuggestions}
-            />
-          </div>
-        </div>
-      </Card>
-
-      {/* Operating Hours */}
-      <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-4">Operating Hours</h3>
-        <div className="space-y-3">
-          {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => {
-            const dayCapitalized = day.charAt(0).toUpperCase() + day.slice(1);
-            const openField = `${day}Open` as keyof FormData;
-            const closeField = `${day}Close` as keyof FormData;
-            const closedField = `${day}Closed` as keyof FormData;
+        <ol className="relative flex justify-between">
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            const isActive = i === currentStep;
+            const isComplete = i < currentStep;
 
             return (
-              <div key={day} className="flex items-center gap-4">
-                <div className="w-24">
-                  <span className="text-sm font-medium">{dayCapitalized}</span>
-                </div>
-                <div className="flex items-center gap-2 flex-1">
-                  <Input
-                    type="time"
-                    name={openField}
-                    value={formData[openField] as string}
-                    onChange={handleChange}
-                    disabled={formData[closedField] as boolean}
-                    className="w-32"
-                  />
-                  <span className="text-sm">to</span>
-                  <Input
-                    type="time"
-                    name={closeField}
-                    value={formData[closeField] as string}
-                    onChange={handleChange}
-                    disabled={formData[closedField] as boolean}
-                    className="w-32"
-                  />
-                  <label className="flex items-center gap-2 ml-4">
-                    <input
-                      type="checkbox"
-                      name={closedField}
-                      checked={formData[closedField] as boolean}
-                      onChange={handleChange}
-                      className="rounded"
-                    />
-                    <span className="text-sm">Closed</span>
-                  </label>
-                </div>
-              </div>
+              <li key={step.id} className="flex flex-col items-center z-10">
+                <button
+                  type="button"
+                  onClick={() => {
+                    // Allow going back to completed steps or current
+                    if (i <= currentStep) setCurrentStep(i);
+                  }}
+                  disabled={i > currentStep}
+                  className={`
+                    w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300
+                    ${isComplete
+                      ? 'bg-primary text-primary-foreground'
+                      : isActive
+                        ? 'bg-primary text-primary-foreground ring-4 ring-primary/20'
+                        : 'bg-muted text-muted-foreground'
+                    }
+                    ${i <= currentStep ? 'cursor-pointer' : 'cursor-default'}
+                  `}
+                  aria-current={isActive ? 'step' : undefined}
+                >
+                  {isComplete ? <Check className="w-4 h-4" /> : <Icon className="w-4 h-4" />}
+                </button>
+                <span className={`mt-2 text-xs font-medium hidden sm:block ${isActive ? 'text-primary' : isComplete ? 'text-foreground' : 'text-muted-foreground'}`}>
+                  {step.label}
+                </span>
+              </li>
             );
           })}
-        </div>
-      </Card>
+        </ol>
+      </nav>
 
-      {/* Media */}
-      <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-4">Photos</h3>
-        <p className="text-sm text-muted-foreground mb-6">
-          Upload high-quality images to showcase your place. Images will be automatically compressed and optimized.
-        </p>
-        <div className="space-y-6">
-          <ImageUploadField
-            type="cover"
-            value={formData.coverImageUrl}
-            onChange={(url) => setFormData((prev) => ({ ...prev, coverImageUrl: url }))}
-            slug={slug}
-            label="Cover Photo"
-            description="Wide cover photo (recommended: 1920x1080px, 16:9 aspect ratio)"
-            aspect={16 / 9}
-            required={false}
-          />
-
-          <ImageUploadField
-            type="profile"
-            value={formData.logoUrl}
-            onChange={(url) => setFormData((prev) => ({ ...prev, logoUrl: url }))}
-            slug={slug}
-            label="Profile Photo / Logo"
-            description="Square profile photo or logo (recommended: 800x800px, 1:1 aspect ratio)"
-            aspect={1}
-            required={false}
-          />
-        </div>
-      </Card>
-
-      {/* Contributor Information */}
-      <Card className="p-6">
-        <h3 className="text-lg font-semibold mb-4">Your Information</h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          Help us give you credit for your contribution!
-        </p>
-        <div className="space-y-4">
-          <div>
-            <label htmlFor="contributorName" className="block text-sm font-medium mb-1">
-              Your Name <span className="text-red-500">*</span>
-            </label>
-            <Input
-              id="contributorName"
-              name="contributorName"
-              value={formData.contributorName}
-              onChange={handleChange}
-              placeholder="John Doe"
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="contributorEmail" className="block text-sm font-medium mb-1">
-              Your Email (Optional)
-            </label>
-            <Input
-              id="contributorEmail"
-              name="contributorEmail"
-              type="email"
-              value={formData.contributorEmail}
-              onChange={handleChange}
-              placeholder="john@example.com"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="contributorGithub" className="block text-sm font-medium mb-1">
-              Your Social Media Handle (Optional)
-            </label>
-            <Input
-              id="contributorGithub"
-              name="contributorGithub"
-              value={formData.contributorGithub}
-              onChange={handleChange}
-              placeholder="@johndoe"
-            />
-            <p className="text-xs text-muted-foreground mt-1">
-              Twitter, Instagram, or any social media handle
-            </p>
-          </div>
-        </div>
-      </Card>
-
-      {/* Terms Agreement */}
-      <div className="border-t border-gray-200 pt-6">
-        <div className="text-sm text-gray-600 space-y-3">
-          <p>
-            By submitting this place, you acknowledge and agree to our{' '}
-            <a
-              href="/terms"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline font-medium"
-            >
-              Terms of Use
-            </a>{' '}
-            and{' '}
-            <a
-              href="/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline font-medium"
-            >
-              Privacy Policy
-            </a>.
-          </p>
-          <p className="text-xs text-gray-500">
-            Your submission will be publicly visible. If you provide your name or contact information, it will be displayed
-            publicly and you may be contacted by other users. We will never sell your data.
-          </p>
-        </div>
+      {/* Step content */}
+      <div className="min-h-[340px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentStep}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.25 }}
+          >
+            {currentStep === 0 && (
+              <StepBasics formData={formData} handleChange={handleChange} setFormData={setFormData} />
+            )}
+            {currentStep === 1 && (
+              <StepPhotos formData={formData} setFormData={setFormData} slug={slug} />
+            )}
+            {currentStep === 2 && (
+              <StepLocation formData={formData} handleChange={handleChange} />
+            )}
+            {currentStep === 3 && (
+              <StepHours formData={formData} handleChange={handleChange} />
+            )}
+            {currentStep === 4 && (
+              <StepDetails formData={formData} setFormData={setFormData} />
+            )}
+            {currentStep === 5 && (
+              <StepContributor formData={formData} handleChange={handleChange} />
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      {/* Form Actions */}
-      <div className="flex items-center justify-end gap-4">
-        {onCancel && (
-          <Button type="button" variant="outline" onClick={onCancel}>
-            Cancel
-          </Button>
+      {/* Navigation */}
+      <div className="border-t border-border pt-6">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            {currentStep > 0 ? (
+              <Button type="button" variant="ghost" onClick={goBack} className="gap-2">
+                <ChevronLeft className="w-4 h-4" />
+                Back
+              </Button>
+            ) : onCancel ? (
+              <Button type="button" variant="ghost" onClick={onCancel} className="text-muted-foreground">
+                Cancel
+              </Button>
+            ) : <div />}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-muted-foreground">
+              {currentStep + 1} of {steps.length}
+            </span>
+            {isLastStep ? (
+              <Button
+                type="button"
+                onClick={handleSubmit}
+                disabled={!isCurrentStepValid || isSubmitting}
+                className="rounded-full px-8"
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit Place'}
+              </Button>
+            ) : (
+              <Button
+                type="button"
+                onClick={goNext}
+                disabled={!isCurrentStepValid}
+                className="gap-2 rounded-full px-6"
+              >
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            )}
+          </div>
+        </div>
+
+        {isLastStep && (
+          <p className="text-xs text-muted-foreground mt-4 text-center">
+            By submitting, you agree to our{' '}
+            <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Terms</a> and{' '}
+            <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Privacy Policy</a>.
+            Your submission will be publicly visible after review.
+          </p>
         )}
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit Place'}
-        </Button>
       </div>
-    </form>
+    </div>
+  );
+}
+
+/* ==================== Step Components ==================== */
+
+interface StepProps {
+  formData: FormData;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  setFormData?: React.Dispatch<React.SetStateAction<FormData>>;
+  slug?: string;
+}
+
+function StepHeader({ icon: Icon, label, title, description }: { icon: typeof Camera; label: string; title: string; description: string }) {
+  return (
+    <div className="mb-6">
+      <div className="flex items-center gap-2 mb-1">
+        <Icon className="w-4 h-4 text-primary" />
+        <span className="text-xs font-semibold text-primary uppercase tracking-wider">{label}</span>
+      </div>
+      <h3 className="text-xl font-bold text-foreground">{title}</h3>
+      <p className="text-sm text-muted-foreground mt-1">{description}</p>
+    </div>
+  );
+}
+
+function StepBasics({ formData, handleChange, setFormData }: StepProps) {
+  return (
+    <div>
+      <StepHeader icon={Utensils} label="Step 1" title="Tell us the basics" description="Start with the essentials about the place." />
+      <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-1">
+              Restaurant Name <span className="text-destructive">*</span>
+            </label>
+            <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="e.g., The Green Kitchen" />
+          </div>
+          <div>
+            <label htmlFor="priceRange" className="block text-sm font-medium mb-1">
+              Price Range <span className="text-destructive">*</span>
+            </label>
+            <select
+              id="priceRange" name="priceRange" value={formData.priceRange} onChange={handleChange}
+              className="w-full rounded-lg border border-input bg-transparent px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]"
+            >
+              <option value="$">$ - Budget</option>
+              <option value="$$">$$ - Moderate</option>
+              <option value="$$$">$$$ - Upscale</option>
+              <option value="$$$$">$$$$ - Fine Dining</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="description" className="block text-sm font-medium mb-1">
+            Short Description <span className="text-destructive">*</span>
+          </label>
+          <textarea
+            id="description" name="description" value={formData.description} onChange={handleChange} rows={3}
+            className="w-full rounded-lg border border-input bg-transparent px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] resize-none"
+            placeholder="What makes this place special? (min 10 characters)"
+          />
+          <p className={`text-xs mt-1 ${formData.description.length >= 10 ? 'text-emerald-600' : 'text-muted-foreground'}`}>
+            {formData.description.length}/10 min characters
+          </p>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Cuisine Types <span className="text-destructive">*</span>
+          </label>
+          <TagInput value={formData.cuisineTypes} onChange={(tags) => setFormData!((p) => ({ ...p, cuisineTypes: tags }))} placeholder="e.g., Filipino, Japanese" suggestions={cuisineSuggestions} />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2">Specialties / Signature Dishes</label>
+          <TagInput value={formData.specialties} onChange={(tags) => setFormData!((p) => ({ ...p, specialties: tags }))} placeholder="e.g., Sisig, Ramen" suggestions={specialtiesSuggestions} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StepPhotos({ formData, setFormData, slug }: StepProps) {
+  return (
+    <div>
+      <StepHeader icon={Camera} label="Step 2" title="Show off the space" description="Upload a cover photo and logo. This is optional but helps the place stand out." />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <ImageUploadField
+          type="cover"
+          value={formData.coverImageUrl}
+          onChange={(url) => setFormData!((prev) => ({ ...prev, coverImageUrl: url }))}
+          slug={slug!}
+          label="Cover Photo"
+          description="Wide photo (16:9 ratio)"
+          aspect={16 / 9}
+          required={false}
+        />
+        <ImageUploadField
+          type="profile"
+          value={formData.logoUrl}
+          onChange={(url) => setFormData!((prev) => ({ ...prev, logoUrl: url }))}
+          slug={slug!}
+          label="Logo / Profile"
+          description="Square image (1:1 ratio)"
+          aspect={1}
+          required={false}
+        />
+      </div>
+    </div>
+  );
+}
+
+function StepLocation({ formData, handleChange }: StepProps) {
+  return (
+    <div>
+      <StepHeader icon={MapPin} label="Step 3" title="Where can we find it?" description="Add the address and contact details." />
+      <div className="space-y-4">
+        <div>
+          <label htmlFor="address" className="block text-sm font-medium mb-1">
+            Street Address <span className="text-destructive">*</span>
+          </label>
+          <Input id="address" name="address" value={formData.address} onChange={handleChange} placeholder="123 Maginhawa St." />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium mb-1">Phone Number</label>
+            <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="+63 XXX XXX XXXX" />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+            <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="hello@restaurant.com" />
+          </div>
+        </div>
+        <div>
+          <label htmlFor="website" className="block text-sm font-medium mb-1">Website or Facebook Page</label>
+          <Input id="website" name="website" type="url" value={formData.website} onChange={handleChange} placeholder="https://" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StepHours({ formData, handleChange }: StepProps) {
+  return (
+    <div>
+      <StepHeader icon={Clock} label="Step 4" title="Operating hours" description="When is this place open? Check 'Closed' for rest days." />
+      <div className="space-y-2">
+        {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => {
+          const open = `${day}Open` as keyof FormData;
+          const close = `${day}Close` as keyof FormData;
+          const closed = `${day}Closed` as keyof FormData;
+          return (
+            <div key={day} className="flex items-center gap-3 py-1.5">
+              <span className="w-20 text-sm font-medium capitalize">{day.slice(0, 3)}</span>
+              <Input type="time" name={open} value={formData[open] as string} onChange={handleChange} disabled={formData[closed] as boolean} className="w-28 text-sm" />
+              <span className="text-xs text-muted-foreground">to</span>
+              <Input type="time" name={close} value={formData[close] as string} onChange={handleChange} disabled={formData[closed] as boolean} className="w-28 text-sm" />
+              <label className="flex items-center gap-1.5 ml-2 cursor-pointer">
+                <input type="checkbox" name={closed} checked={formData[closed] as boolean} onChange={handleChange} className="rounded" />
+                <span className="text-xs text-muted-foreground">Closed</span>
+              </label>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function StepDetails({ formData, setFormData }: StepProps) {
+  return (
+    <div>
+      <StepHeader icon={CreditCard} label="Step 5" title="Tags, amenities & payment" description="Help people find this place with the right filters." />
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-2">Tags</label>
+          <TagInput value={formData.tags} onChange={(tags) => setFormData!((p) => ({ ...p, tags }))} placeholder="e.g., casual, cozy" suggestions={tagsSuggestions} />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Amenities</label>
+          <TagInput value={formData.amenities} onChange={(tags) => setFormData!((p) => ({ ...p, amenities: tags }))} placeholder="e.g., wifi, parking" suggestions={amenitiesSuggestions} />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Payment Methods</label>
+          <TagInput value={formData.paymentMethods} onChange={(tags) => setFormData!((p) => ({ ...p, paymentMethods: tags }))} placeholder="e.g., cash, gcash" suggestions={paymentSuggestions} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StepContributor({ formData, handleChange }: StepProps) {
+  return (
+    <div>
+      <StepHeader icon={User} label="Step 6" title="About you" description="Help us give you credit for your contribution." />
+      <div className="space-y-4">
+        <div>
+          <label htmlFor="contributorName" className="block text-sm font-medium mb-1">Your Name <span className="text-destructive">*</span></label>
+          <Input id="contributorName" name="contributorName" value={formData.contributorName} onChange={handleChange} placeholder="Juan Dela Cruz" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="contributorEmail" className="block text-sm font-medium mb-1">Your Email</label>
+            <Input id="contributorEmail" name="contributorEmail" type="email" value={formData.contributorEmail} onChange={handleChange} placeholder="juan@example.com" />
+          </div>
+          <div>
+            <label htmlFor="contributorGithub" className="block text-sm font-medium mb-1">Social Media Handle</label>
+            <Input id="contributorGithub" name="contributorGithub" value={formData.contributorGithub} onChange={handleChange} placeholder="@juandelacruz" />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

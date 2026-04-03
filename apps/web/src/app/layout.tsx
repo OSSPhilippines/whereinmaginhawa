@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { Navbar } from "@/components/navigation/navbar";
-import { Footer } from "@/components/navigation/footer";
+import { SiteShell } from "@/components/layout/site-shell";
 import { WebsiteStructuredData } from "@/components/seo/structured-data";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
+import { AuthProvider } from "@/components/auth/auth-provider";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -127,9 +127,9 @@ export default function RootLayout({
       <body
         className={`${plusJakartaSans.variable} font-sans antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <SiteShell>{children}</SiteShell>
+        </AuthProvider>
         <Toaster position="top-center" richColors />
         <Analytics />
         <SpeedInsights />

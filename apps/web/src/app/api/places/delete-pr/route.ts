@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { deletePlacePR } from '@/lib/github';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { requireCsrfToken } from '@/lib/csrf';
 import { checkRateLimit } from '@/lib/rate-limiter';
+import { getSession } from '@/lib/auth';
+import type { Json } from '@/types/database';
 
-// Request body schema for place deletion
 const deletePlaceRequestSchema = z.object({
   slug: z.string().min(1, 'Slug is required'),
   name: z.string().min(1, 'Name is required'),
@@ -13,113 +14,108 @@ const deletePlaceRequestSchema = z.object({
   contributorEmail: z.string().email('Invalid email format').optional().or(z.literal('')),
 });
 
-// Route segment config - set body size limit
 export const runtime = 'nodejs';
-export const maxDuration = 60; // 60 seconds max execution time
+export const maxDuration = 30;
 export const dynamic = 'force-dynamic';
 
-/**
- * Get client IP address for rate limiting
- */
 function getClientIP(request: NextRequest): string {
-  // Check various headers for IP address (reverse proxy support)
   const forwarded = request.headers.get('x-forwarded-for');
-  if (forwarded) {
-    return forwarded.split(',')[0].trim();
-  }
-
+  if (forwarded) return forwarded.split(',')[0].trim();
   const realIP = request.headers.get('x-real-ip');
-  if (realIP) {
-    return realIP;
-  }
-
-  // Fallback to a default identifier
+  if (realIP) return realIP;
   return 'unknown';
 }
 
 export async function POST(request: NextRequest) {
   try {
-    // Validate CSRF token
     const csrfError = requireCsrfToken(request);
-    if (csrfError) {
-      return csrfError;
-    }
+    if (csrfError) return csrfError;
 
-    // Get client IP for rate limiting
     const clientIP = getClientIP(request);
-
-    // Check rate limit
-    if (!checkRateLimit(clientIP)) {
+    if (!(await checkRateLimit(clientIP))) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'Rate limit exceeded. Please try again later. (Maximum 5 submissions per hour)',
-        },
+        { success: false, error: 'Rate limit exceeded. Please try again later.' },
         { status: 429 }
       );
     }
 
-    // Parse and validate request body
     const body = await request.json();
     const validation = deletePlaceRequestSchema.safeParse(body);
-
     if (!validation.success) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'Validation failed',
-          details: validation.error.format(),
-        },
+        { success: false, error: 'Validation failed', details: validation.error.format() },
         { status: 400 }
       );
     }
 
     const data = validation.data;
+    const admin = createAdminClient();
 
-    // Create GitHub PR for deletion
-    const result = await deletePlacePR({
-      slug: data.slug,
-      name: data.name,
-      reason: data.reason,
-      contributorName: data.contributorName,
-      contributorEmail: data.contributorEmail,
-    });
+    // Look up the place by slug
+    const { data: place, error: fetchError } = await admin
+      .from('places')
+      .select('id')
+      .eq('slug', data.slug)
+      .single();
 
-    if (!result.success) {
-      console.error('PR creation failed:', result.error);
+    if (fetchError || !place) {
       return NextResponse.json(
-        {
-          success: false,
-          error: result.error || 'Failed to submit closure report. Please try again.',
-        },
+        { success: false, error: 'Place not found.' },
+        { status: 404 }
+      );
+    }
+
+    let userId: string | null = null;
+    try {
+      const user = await getSession();
+      if (user) userId = user.id;
+    } catch {
+      // Anonymous is fine
+    }
+
+    // Store as a suggestion with a special closure change marker
+    const changes = {
+      _type: 'closure_report',
+      reason: data.reason || 'Reported as permanently closed',
+    };
+
+    const { data: suggestion, error: insertError } = await admin
+      .from('update_suggestions')
+      .insert({
+        place_id: place.id,
+        suggested_by_user_id: userId,
+        suggested_by_name: data.contributorName || 'Anonymous',
+        suggested_by_email: data.contributorEmail || null,
+        changes: changes as unknown as Json,
+      })
+      .select('id')
+      .single();
+
+    if (insertError) {
+      console.info('[delete-report] Insert error:', insertError.message);
+      return NextResponse.json(
+        { success: false, error: 'Failed to submit closure report. Please try again.' },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
       success: true,
-      prUrl: result.prUrl,
-      prNumber: result.prNumber,
-      message: `Closure report submitted successfully! We'll review it shortly.`,
+      suggestionId: suggestion.id,
+      message: "Closure report submitted successfully! We'll review it shortly.",
     });
   } catch (error) {
-    console.error('API error:', error);
+    console.info('[delete-report] API error:', error);
 
     if (error instanceof SyntaxError) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'Invalid JSON in request body',
-        },
+        { success: false, error: 'Invalid JSON in request body' },
         { status: 400 }
       );
     }
 
     return NextResponse.json(
-      {
-        success: false,
-        error: 'An unexpected error occurred. Please try again later.',
-      },
+      { success: false, error: 'An unexpected error occurred. Please try again later.' },
       { status: 500 }
     );
   }

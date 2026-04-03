@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next';
-import { getAllPlaces } from '@/lib/places';
+import { getAllPlaces } from '@/lib/places-server';
 import { getAllCategories } from '@/lib/categories';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://whereinmaginhawa.com';
-  const places = getAllPlaces();
+  const places = await getAllPlaces();
   const categories = getAllCategories();
 
   // Static pages

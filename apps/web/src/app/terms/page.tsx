@@ -184,14 +184,12 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Contact Us</h2>
               <p className="text-gray-700 leading-relaxed">
-                If you have questions about these Terms of Use, please contact us through our{' '}
+                If you have questions about these Terms of Use, please contact us at{' '}
                 <a
-                  href="https://github.com/OSSPhilippines/whereinmaginhawa"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="mailto:drum-ice-scoundrel@duck.com"
                   className="text-primary hover:underline"
                 >
-                  GitHub repository
+                  drum-ice-scoundrel@duck.com
                 </a>.
               </p>
             </section>

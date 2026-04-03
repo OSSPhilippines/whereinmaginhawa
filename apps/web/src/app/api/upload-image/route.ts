@@ -1,91 +1,87 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { put } from '@vercel/blob';
+import { createAdminClient } from '@/lib/supabase/admin';
+import { createClient } from '@/lib/supabase/server';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
-/**
- * Upload image to Vercel Blob Storage
- * Handles both profile and cover images
- */
+const VALID_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const VALID_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
+const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+const SLUG_PATTERN = /^[a-z0-9-]+$/;
+
 export async function POST(request: NextRequest) {
   try {
+    // Auth check - require logged in user
+    const supabase = await createClient();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File;
-    const type = formData.get('type') as 'profile' | 'cover';
+    const type = formData.get('type') as string;
     const slug = formData.get('slug') as string;
 
-    // Validation
     if (!file) {
-      return NextResponse.json(
-        { error: 'No file provided' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
     if (!type || !['profile', 'cover'].includes(type)) {
-      return NextResponse.json(
-        { error: 'Invalid image type. Must be "profile" or "cover"' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Invalid image type. Must be "profile" or "cover"' }, { status: 400 });
     }
 
-    if (!slug) {
-      return NextResponse.json(
-        { error: 'Slug is required' },
-        { status: 400 }
-      );
+    if (!slug || !SLUG_PATTERN.test(slug)) {
+      return NextResponse.json({ error: 'Invalid slug format' }, { status: 400 });
     }
 
-    // Validate file type
-    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-    if (!validTypes.includes(file.type)) {
-      return NextResponse.json(
-        { error: 'Invalid file type. Only JPEG, PNG, and WebP are allowed' },
-        { status: 400 }
-      );
+    if (!VALID_MIME_TYPES.includes(file.type)) {
+      return NextResponse.json({ error: 'Invalid file type. Only JPEG, PNG, and WebP are allowed' }, { status: 400 });
     }
 
-    // Validate file size (max 10MB before compression)
-    const maxSize = 10 * 1024 * 1024; // 10MB
-    if (file.size > maxSize) {
-      return NextResponse.json(
-        { error: 'File too large. Maximum size is 10MB' },
-        { status: 400 }
-      );
+    if (file.size > MAX_SIZE) {
+      return NextResponse.json({ error: 'File too large. Maximum size is 5MB' }, { status: 400 });
     }
 
-    // Generate unique filename with timestamp
+    // Whitelist extension from filename
+    const rawExt = file.name.split('.').pop()?.toLowerCase() || '';
+    const fileExtension = VALID_EXTENSIONS.includes(rawExt) ? rawExt : 'webp';
+
     const timestamp = Date.now();
-    const fileExtension = file.name.split('.').pop() || 'webp';
-    const fileName = `places/${slug}/${type}-${timestamp}.${fileExtension}`;
+    const filePath = `places/${slug}/${type}-${timestamp}.${fileExtension}`;
 
-    // Upload to Vercel Blob
-    const blob = await put(fileName, file, {
-      access: 'public',
-      addRandomSuffix: false, // We already have timestamp for uniqueness
-    });
+    const admin = createAdminClient();
+    const buffer = Buffer.from(await file.arrayBuffer());
 
-    console.info('Image uploaded successfully:', {
-      url: blob.url,
-      size: file.size,
-      type: type,
-      slug: slug,
-    });
+    const { error: uploadError } = await admin.storage
+      .from('place-images')
+      .upload(filePath, buffer, {
+        contentType: file.type,
+        upsert: false,
+      });
+
+    if (uploadError) {
+      console.info('[upload-image] Upload error:', uploadError.message);
+      return NextResponse.json(
+        { error: 'Failed to upload image', message: uploadError.message },
+        { status: 500 }
+      );
+    }
+
+    const { data: urlData } = admin.storage
+      .from('place-images')
+      .getPublicUrl(filePath);
 
     return NextResponse.json({
       success: true,
-      url: blob.url,
+      url: urlData.publicUrl,
       size: file.size,
-      type: type,
+      type,
     });
   } catch (error) {
-    console.error('Error uploading image:', error);
-
+    console.info('[upload-image] Error:', error);
     return NextResponse.json(
-      {
-        error: 'Failed to upload image',
-        message: error instanceof Error ? error.message : 'Unknown error',
-      },
+      { error: 'Failed to upload image', message: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }

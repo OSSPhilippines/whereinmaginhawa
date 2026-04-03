@@ -29,9 +29,9 @@ export function SearchBar() {
 
   // Debounce search
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = setTimeout(async () => {
       if (query.trim()) {
-        const results = getAutocompleteSuggestions(query);
+        const results = await getAutocompleteSuggestions(query);
         setSuggestions(results);
         setIsOpen(true);
       } else {

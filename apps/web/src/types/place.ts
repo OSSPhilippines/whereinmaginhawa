@@ -64,6 +64,8 @@ export interface PlaceIndex {
   // Metadata
   updatedAt: string;
   createdBy?: string;  // Display name of original creator
+  verified?: boolean;
+  claimedBy?: string;
 }
 
 /**
@@ -115,6 +117,7 @@ export interface Place {
   rating?: number;
   reviewCount?: number;
   verified?: boolean;
+  claimedBy?: string;
 }
 
 /**

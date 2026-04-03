@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 import path from "path";
 
+const isDev = process.env.NODE_ENV === 'development';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseConnectSrc = isDev
+  ? `${supabaseUrl} http://127.0.0.1:54321`
+  : 'https://*.supabase.co';
+
 const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname, "../../"),
@@ -8,7 +15,6 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // Apply security headers to all routes
         source: '/:path*',
         headers: [
           {
@@ -43,15 +49,16 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+              `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://vitals.vercel-insights.com https://www.googletagmanager.com https://pagead2.googlesyndication.com`,
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
-              "img-src 'self' data: https: blob:",
-              "connect-src 'self' https://api.github.com https://vercel.live https://vitals.vercel-insights.com",
+              `img-src 'self' data: https: blob: ${isDev ? 'http://127.0.0.1:54321' : ''}`,
+              `connect-src 'self' ${supabaseConnectSrc} https://vercel.live https://vitals.vercel-insights.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://*.google.com`,
+              "frame-src 'self' https://googleads.g.doubleclick.net https://www.google.com https://tpc.googlesyndication.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",
-              "upgrade-insecure-requests",
+              ...(isDev ? [] : ["upgrade-insecure-requests"]),
             ].join('; '),
           },
         ],

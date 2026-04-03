@@ -62,7 +62,7 @@ interface FormData {
 
 interface EditPlaceFormProps {
   place: Place;
-  onSuccess?: (prUrl: string) => void;
+  onSuccess?: () => void;
   onCancel?: () => void;
 }
 
@@ -219,8 +219,8 @@ export function EditPlaceForm({ place, onSuccess, onCancel }: EditPlaceFormProps
         contributorGithub: formData.contributorGithub || undefined,
       };
 
-      const response = await csrfFetch('/api/places/update-pr', {
-        body: JSON.stringify(payload),
+      const response = await csrfFetch('/api/suggestions', {
+        body: JSON.stringify({ ...payload, placeId: place.id }),
       });
 
       const data = await response.json();
@@ -255,13 +255,13 @@ export function EditPlaceForm({ place, onSuccess, onCancel }: EditPlaceFormProps
 
       // Success! Show success toast
       toast.success('Changes Submitted!', {
-        description: 'Your changes have been received and will be reviewed soon.',
+        description: data.message || 'Your suggested changes have been submitted for review.',
         duration: 4000,
       });
 
       // Call the onSuccess callback
-      if (onSuccess && data.prUrl) {
-        onSuccess(data.prUrl);
+      if (onSuccess) {
+        onSuccess();
       }
     } catch (err) {
       console.error('Form submission error:', err);

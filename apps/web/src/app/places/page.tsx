@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, useRef, useCallback, Suspense } from 'react';
 import { X, SlidersHorizontal, Plus, Edit3, Search } from 'lucide-react';
 import { PlaceCard } from '@/components/place/place-card';
 import { PlaceFilters } from '@/components/filters/place-filters';
@@ -10,7 +10,8 @@ import { AdUnit } from '@/components/ads/ad-unit';
 import { searchPlaces, getAllPlaces } from '@/lib/places';
 import type { PlaceIndex, SearchFilters } from '@/types/place';
 
-const AD_INTERVAL = 12; // Show ad every 12 items
+const AD_INTERVAL = 12;
+const ITEMS_PER_PAGE = 24;
 
 function PlacesContent() {
   const searchParams = useSearchParams();
@@ -19,6 +20,30 @@ function PlacesContent() {
   const [places, setPlaces] = useState<PlaceIndex[]>([]);
   const [filters, setFilters] = useState<SearchFilters>({});
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+  const loaderRef = useRef<HTMLDivElement>(null);
+
+  const visiblePlaces = places.slice(0, visibleCount);
+  const hasMore = visibleCount < places.length;
+
+  // Intersection observer for infinite scroll
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const [entry] = entries;
+      if (entry.isIntersecting && hasMore) {
+        setVisibleCount((prev) => Math.min(prev + ITEMS_PER_PAGE, places.length));
+      }
+    },
+    [hasMore, places.length]
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      rootMargin: '200px',
+    });
+    if (loaderRef.current) observer.observe(loaderRef.current);
+    return () => observer.disconnect();
+  }, [handleObserver]);
 
   useEffect(() => {
     // Get filters from URL
@@ -40,8 +65,8 @@ function PlacesContent() {
     applyFilters(initialFilters);
   }, [searchParams]);
 
-  const applyFilters = (newFilters: SearchFilters) => {
-    const results = searchPlaces(newFilters);
+  const applyFilters = async (newFilters: SearchFilters) => {
+    const results = await searchPlaces(newFilters);
     setPlaces(results.places);
   };
 
@@ -73,23 +98,26 @@ function PlacesContent() {
     setFilters(newFilters);
     applyFilters(newFilters);
     updateURL(newFilters);
+    setVisibleCount(ITEMS_PER_PAGE);
   };
 
-  const clearFilters = () => {
+  const clearFilters = async () => {
     const clearedFilters: SearchFilters = {};
     setFilters(clearedFilters);
-    setPlaces(getAllPlaces());
+    const all = await getAllPlaces();
+    setPlaces(all);
+    setVisibleCount(ITEMS_PER_PAGE);
     router.push(pathname, { scroll: false });
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50 pt-16">
+    <div className="min-h-screen bg-background pt-16">
       {/* Main Content with Sidebar */}
-      <div className="container mx-auto px-4 py-6">
-        {/* Mobile Search Bar - Always visible on top */}
+      <div className="container mx-auto px-4 py-8">
+        {/* Mobile Search Bar */}
         <div className="mb-6 lg:hidden">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-muted-foreground" />
             <input
               type="text"
               placeholder="Search places..."
@@ -100,16 +128,16 @@ function PlacesContent() {
                   query: e.target.value || undefined,
                 })
               }
-              className="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 bg-white text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
+              className="w-full pl-11 pr-4 py-3 rounded-full bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all border border-border"
             />
           </div>
         </div>
 
-        <div className="flex gap-6">
-          {/* Desktop Sidebar - Always visible on large screens */}
-          <aside className="hidden lg:block w-72 shrink-0">
+        <div className="flex gap-8">
+          {/* Desktop Sidebar */}
+          <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-20">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 max-h-[calc(100vh-6rem)] overflow-y-auto">
+              <div className="bg-card rounded-2xl p-5 max-h-[calc(100vh-6rem)] overflow-y-auto">
                 <PlaceFilters
                   filters={filters}
                   onFiltersChange={handleFiltersChange}
@@ -152,7 +180,9 @@ function PlacesContent() {
           <div className="flex-1">
             {places.length === 0 ? (
               <div className="text-center py-20">
-                <div className="text-6xl mb-4">🔍</div>
+                <div className="mb-4">
+                  <Search className="w-16 h-16 text-muted-foreground/30 mx-auto" />
+                </div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">
                   No places found
                 </h2>
@@ -161,22 +191,36 @@ function PlacesContent() {
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {places.map((place, index) => (
-                  <>
-                    <PlaceCard key={place.id} place={place} />
-                    {/* Insert ad after every AD_INTERVAL items */}
-                    {(index + 1) % AD_INTERVAL === 0 && index < places.length - 1 && (
-                      <div key={`ad-${index}`} className="col-span-full">
+              <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                {visiblePlaces.map((place, index) => (
+                  <React.Fragment key={place.id}>
+                    <PlaceCard place={place} />
+                    {(index + 1) % AD_INTERVAL === 0 && index < visiblePlaces.length - 1 && (
+                      <div className="col-span-full">
                         <AdUnit
                           slot="4326037632"
                           format="autorelaxed"
                         />
                       </div>
                     )}
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
+
+              {/* Infinite scroll trigger */}
+              {hasMore && (
+                <div ref={loaderRef} className="flex justify-center py-8">
+                  <p className="text-sm text-muted-foreground">Loading more places...</p>
+                </div>
+              )}
+
+              {!hasMore && places.length > ITEMS_PER_PAGE && (
+                <p className="text-center text-sm text-muted-foreground py-6">
+                  Showing all {places.length} places
+                </p>
+              )}
+              </>
             )}
 
             {/* Contribute Section */}
