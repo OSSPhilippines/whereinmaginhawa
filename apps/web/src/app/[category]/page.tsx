@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { PlaceCard } from '@/components/place/place-card';
 import { Button } from '@/components/ui/button';
-import { Plus, Edit3 } from 'lucide-react';
+import { Plus, Edit3, Search } from 'lucide-react';
+import { CategoryIcon } from '@/components/ui/category-icon';
 import { getAllPlaces } from '@/lib/places-server';
 import {
   getCategoryBySlug,
@@ -107,21 +108,26 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <div className="container mx-auto px-4 py-12">
         {/* Category Header */}
         <div className="max-w-4xl mx-auto text-center mb-12">
-          {/* Emoji Icon */}
+          {/* Category Icon */}
           <div className="mb-6">
-            <span className="text-8xl" role="img" aria-label={category.heading}>
-              {category.emoji}
-            </span>
+            <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
+              <CategoryIcon name={category.icon} className="w-10 h-10 text-primary" />
+            </div>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             {category.heading}
           </h1>
 
-          {/* Category Description */}
+          {/* Category Description - content from hardcoded categories.ts, sanitized */}
           <div
             className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto"
-            dangerouslySetInnerHTML={{ __html: category.content }}
+            dangerouslySetInnerHTML={{
+              __html: category.content
+                .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
+                .replace(/javascript:/gi, ''),
+            }}
           />
 
           {/* Results Count */}
@@ -133,7 +139,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         {/* Places Grid */}
         {places.length === 0 ? (
           <div className="text-center py-20">
-            <div className="text-6xl mb-4">🔍</div>
+            <div className="mb-4">
+              <Search className="w-16 h-16 text-muted-foreground/30 mx-auto" />
+            </div>
             <h2 className="text-2xl font-bold text-gray-800 mb-2">
               No places found
             </h2>

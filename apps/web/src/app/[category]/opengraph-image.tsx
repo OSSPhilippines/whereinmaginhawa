@@ -96,8 +96,8 @@ export default async function Image({
               marginBottom: '32px',
             }}
           >
-            <div style={{ fontSize: '80px' }}>
-              {category.emoji}
+            <div style={{ fontSize: '52px', fontWeight: 800, color: '#b32107' }}>
+              {category.heading.charAt(0)}
             </div>
           </div>
 

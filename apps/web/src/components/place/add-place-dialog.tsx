@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { PartyPopper } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -35,7 +36,9 @@ export function AddPlaceDialog({ open, onOpenChange }: AddPlaceDialogProps) {
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         {submitted ? (
           <div className="py-12 text-center">
-            <div className="mb-4 text-4xl">🎉</div>
+            <div className="mb-4 w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
+              <PartyPopper className="w-8 h-8 text-primary" />
+            </div>
             <DialogTitle className="mb-2">Submission Received!</DialogTitle>
             <DialogDescription className="mb-4">
               Your place has been submitted for review.

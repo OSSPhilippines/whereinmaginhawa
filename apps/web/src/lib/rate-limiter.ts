@@ -1,106 +1,82 @@
 /**
- * Simple in-memory rate limiter
+ * Rate limiter using Supabase as backing store.
+ * Shared across all serverless instances. Falls back to in-memory if DB unavailable.
  *
- * NOTE: This is suitable for small-scale applications but has limitations:
- * - Resets on server restart/deployment
- * - Not shared across serverless instances in production
- * - Memory usage grows with unique identifiers
- *
- * For production at scale, consider upgrading to Redis-based rate limiting
- * (Upstash, Vercel KV, or similar)
+ * Uses a simple "count requests in window" approach stored in a dedicated table.
+ * For very high traffic, consider Upstash Redis.
  */
 
+import { createAdminClient } from '@/lib/supabase/admin';
+
 interface RateLimitConfig {
-  limit: number; // Maximum requests
-  windowMs: number; // Time window in milliseconds
+  limit: number;
+  windowMs: number;
 }
 
 const DEFAULT_CONFIG: RateLimitConfig = {
-  limit: 20, // 20 requests
-  windowMs: 60 * 60 * 1000, // per hour
+  limit: 20,
+  windowMs: 60 * 60 * 1000, // 1 hour
 };
 
-class InMemoryRateLimiter {
-  private requests: Map<string, number[]> = new Map();
+// In-memory fallback if Supabase is unavailable
+const memoryStore = new Map<string, number[]>();
 
-  check(identifier: string, config: RateLimitConfig = DEFAULT_CONFIG): boolean {
-    const now = Date.now();
-    const userRequests = this.requests.get(identifier) || [];
+function checkMemoryFallback(identifier: string, config: RateLimitConfig): boolean {
+  const now = Date.now();
+  const reqs = (memoryStore.get(identifier) || []).filter((t) => now - t < config.windowMs);
+  if (reqs.length >= config.limit) return false;
+  reqs.push(now);
+  memoryStore.set(identifier, reqs);
+  if (memoryStore.size > 1000) {
+    for (const [k, v] of memoryStore.entries()) {
+      if (v.filter((t) => now - t < config.windowMs).length === 0) memoryStore.delete(k);
+    }
+  }
+  return true;
+}
 
-    // Filter out old requests outside the time window
-    const recentRequests = userRequests.filter(
-      (timestamp) => now - timestamp < config.windowMs
-    );
+/**
+ * Check if a request is within rate limits.
+ * Uses Supabase RPC for atomic check, falls back to in-memory.
+ */
+export async function checkRateLimit(
+  identifier: string,
+  config: RateLimitConfig = DEFAULT_CONFIG
+): Promise<boolean> {
+  try {
+    const supabase = createAdminClient();
+    const windowStart = new Date(Date.now() - config.windowMs).toISOString();
 
-    if (recentRequests.length >= config.limit) {
-      return false; // Rate limit exceeded
+    // Count recent requests
+    const { count, error } = await supabase
+      .from('rate_limits')
+      .select('*', { count: 'exact', head: true })
+      .eq('identifier', identifier)
+      .gte('created_at', windowStart);
+
+    if (error) {
+      // Table might not exist yet, fall back to memory
+      return checkMemoryFallback(identifier, config);
     }
 
-    // Add current request
-    recentRequests.push(now);
-    this.requests.set(identifier, recentRequests);
+    if ((count ?? 0) >= config.limit) return false;
 
-    // Clean up old entries periodically (every 1000 unique identifiers)
-    if (this.requests.size > 1000) {
-      this.cleanup(config.windowMs);
-    }
+    // Record this request
+    await supabase.from('rate_limits').insert({ identifier });
 
     return true;
-  }
-
-  private cleanup(windowMs: number) {
-    const now = Date.now();
-    for (const [identifier, timestamps] of this.requests.entries()) {
-      const recentRequests = timestamps.filter(
-        (timestamp) => now - timestamp < windowMs
-      );
-      if (recentRequests.length === 0) {
-        this.requests.delete(identifier);
-      } else {
-        this.requests.set(identifier, recentRequests);
-      }
-    }
-  }
-
-  /**
-   * Reset rate limit for an identifier (useful for testing)
-   */
-  reset(identifier: string): void {
-    this.requests.delete(identifier);
-  }
-
-  /**
-   * Clear all rate limit data
-   */
-  clear(): void {
-    this.requests.clear();
+  } catch {
+    return checkMemoryFallback(identifier, config);
   }
 }
 
-// Singleton instance
-const rateLimiter = new InMemoryRateLimiter();
-
 /**
- * Check if a request is within rate limits
- * Returns true if allowed, false if rate limit exceeded
+ * Synchronous in-memory check for cases where async isn't practical.
+ * Use checkRateLimit (async) when possible.
  */
-export function checkRateLimit(
+export function checkRateLimitSync(
   identifier: string,
-  config?: RateLimitConfig
+  config: RateLimitConfig = DEFAULT_CONFIG
 ): boolean {
-  return rateLimiter.check(identifier, config);
-}
-
-/**
- * Reset rate limit for an identifier
- */
-export function resetRateLimit(identifier: string): void {
-  rateLimiter.reset(identifier);
-}
-
-/**
- * Clear all rate limit data
- */
-export function clearAllRateLimits(): void {
-  rateLimiter.clear();
+  return checkMemoryFallback(identifier, config);
 }

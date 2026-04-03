@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { VerifiedBadge } from '@/components/place/verified-badge';
 import { PlaceImage } from '@/components/place/place-image';
+import { ReleasePlaceButton } from './release-place-button';
 import { getSession } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { dbRowToPlaceIndex } from '@/lib/supabase/mappers';
@@ -85,6 +86,9 @@ export default async function DashboardPage() {
                   <Button size="sm" variant="ghost" asChild>
                     <Link href={`/places/${place.slug}`}>View</Link>
                   </Button>
+                </div>
+                <div className="mt-2 flex justify-end">
+                  <ReleasePlaceButton placeId={place.id} placeName={place.name} />
                 </div>
               </CardContent>
             </Card>

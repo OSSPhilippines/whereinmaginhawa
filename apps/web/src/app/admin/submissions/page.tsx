@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FileText, Eye } from 'lucide-react';
+import Image from 'next/image';
+import { FileText, Eye, ImageIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -19,9 +20,9 @@ interface Submission {
 }
 
 const statusConfig = {
-  pending: { label: 'Pending', variant: 'outline' as const },
-  approved: { label: 'Approved', variant: 'default' as const },
-  rejected: { label: 'Rejected', variant: 'destructive' as const },
+  pending: { label: 'Pending', variant: 'outline' as const, className: 'border-honey/30 bg-honey/8 text-honey' },
+  approved: { label: 'Approved', variant: 'outline' as const, className: 'border-emerald/30 bg-emerald/8 text-emerald' },
+  rejected: { label: 'Rejected', variant: 'outline' as const, className: 'border-destructive/30 bg-destructive/8 text-destructive' },
 };
 
 export default function AdminSubmissionsPage() {
@@ -96,23 +97,78 @@ export default function AdminSubmissionsPage() {
             });
             const pd = s.place_data;
 
+            const coverUrl = pd.cover_image_url as string | undefined;
+            const logoUrl = pd.logo_url as string | undefined;
+            const hasImages = coverUrl || logoUrl;
+
             return (
               <Card key={s.id}>
                 <CardHeader className="pb-2">
                   <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <CardTitle className="text-base">
-                        {(pd.name as string) || 'Unnamed Place'}
-                      </CardTitle>
-                      <p className="text-xs text-gray-500 mt-0.5">
-                        by {s.submitted_by_name} &middot; {date}
-                      </p>
+                    <div className="flex items-start gap-3">
+                      {/* Thumbnail */}
+                      <div className="w-14 h-14 rounded-lg overflow-hidden bg-muted shrink-0">
+                        {coverUrl || logoUrl ? (
+                          <Image
+                            src={(coverUrl || logoUrl)!}
+                            alt={(pd.name as string) || 'Place'}
+                            width={56}
+                            height={56}
+                            className="w-full h-full object-cover"
+                            unoptimized
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <ImageIcon className="w-5 h-5 text-muted-foreground/30" />
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <CardTitle className="text-base">
+                          {(pd.name as string) || 'Unnamed Place'}
+                        </CardTitle>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          by {s.submitted_by_name} &middot; {date}
+                        </p>
+                      </div>
                     </div>
-                    <Badge variant={config.variant}>{config.label}</Badge>
+                    <Badge variant={config.variant} className={config.className}>{config.label}</Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-0 space-y-3">
-                  <div className="text-xs bg-gray-50 p-3 rounded-md space-y-1 max-h-40 overflow-y-auto">
+                  {/* Image previews */}
+                  {hasImages && (
+                    <div className="flex gap-2">
+                      {coverUrl && (
+                        <div className="relative">
+                          <Image
+                            src={coverUrl}
+                            alt="Cover"
+                            width={160}
+                            height={90}
+                            className="rounded-md object-cover w-40 h-[90px]"
+                            unoptimized
+                          />
+                          <span className="absolute bottom-1 left-1 text-[9px] font-medium bg-black/60 text-white px-1.5 py-0.5 rounded">Cover</span>
+                        </div>
+                      )}
+                      {logoUrl && (
+                        <div className="relative">
+                          <Image
+                            src={logoUrl}
+                            alt="Logo"
+                            width={90}
+                            height={90}
+                            className="rounded-md object-cover w-[90px] h-[90px]"
+                            unoptimized
+                          />
+                          <span className="absolute bottom-1 left-1 text-[9px] font-medium bg-black/60 text-white px-1.5 py-0.5 rounded">Logo</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="text-xs bg-muted p-3 rounded-md space-y-1 max-h-40 overflow-y-auto">
                     {pd.address ? (
                       <div><span className="font-medium">Address:</span> {String(pd.address)}</div>
                     ) : null}

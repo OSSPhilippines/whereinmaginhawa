@@ -21,9 +21,9 @@ interface Suggestion {
 }
 
 const statusConfig = {
-  pending: { label: 'Pending', variant: 'outline' as const },
-  approved: { label: 'Approved', variant: 'default' as const },
-  rejected: { label: 'Rejected', variant: 'destructive' as const },
+  pending: { label: 'Pending', variant: 'outline' as const, className: 'border-honey/30 bg-honey/8 text-honey' },
+  approved: { label: 'Approved', variant: 'outline' as const, className: 'border-emerald/30 bg-emerald/8 text-emerald' },
+  rejected: { label: 'Rejected', variant: 'outline' as const, className: 'border-destructive/30 bg-destructive/8 text-destructive' },
 };
 
 export default function AdminSuggestionsPage() {
@@ -115,7 +115,7 @@ export default function AdminSuggestionsPage() {
                         by {s.suggested_by_name} &middot; {date}
                       </p>
                     </div>
-                    <Badge variant={config.variant}>{config.label}</Badge>
+                    <Badge variant={config.variant} className={config.className}>{config.label}</Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-0 space-y-3">
@@ -143,7 +143,7 @@ export default function AdminSuggestionsPage() {
                                 <span className="text-red-600 line-through ml-1">
                                   {typeof change?.old === 'object' ? JSON.stringify(change.old) : String(change?.old ?? '')}
                                 </span>
-                                <span className="text-green-600 ml-1">
+                                <span className="text-emerald ml-1">
                                   {typeof change?.new === 'object' ? JSON.stringify(change.new) : String(change?.new ?? '')}
                                 </span>
                               </div>

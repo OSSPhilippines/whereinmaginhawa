@@ -212,7 +212,7 @@ export default async function Image({
                 gap: '6px',
               }}
             >
-              📍 Maginhawa Street
+              Maginhawa Street
             </div>
 
             {/* Branding */}

@@ -52,7 +52,7 @@ const nextConfig: NextConfig = {
               `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://vitals.vercel-insights.com https://www.googletagmanager.com https://pagead2.googlesyndication.com`,
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
-              "img-src 'self' data: https: blob:",
+              `img-src 'self' data: https: blob: ${isDev ? 'http://127.0.0.1:54321' : ''}`,
               `connect-src 'self' ${supabaseConnectSrc} https://vercel.live https://vitals.vercel-insights.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://*.google.com`,
               "frame-src 'self' https://googleads.g.doubleclick.net https://www.google.com https://tpc.googlesyndication.com",
               "frame-ancestors 'none'",

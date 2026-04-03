@@ -24,9 +24,9 @@ interface SubmissionDetail {
 }
 
 const statusConfig = {
-  pending: { label: 'Pending', variant: 'outline' as const },
-  approved: { label: 'Approved', variant: 'default' as const },
-  rejected: { label: 'Rejected', variant: 'destructive' as const },
+  pending: { label: 'Pending', variant: 'outline' as const, className: 'border-honey/30 bg-honey/8 text-honey' },
+  approved: { label: 'Approved', variant: 'outline' as const, className: 'border-emerald/30 bg-emerald/8 text-emerald' },
+  rejected: { label: 'Rejected', variant: 'outline' as const, className: 'border-destructive/30 bg-destructive/8 text-destructive' },
 };
 
 export default function AdminSubmissionDetailPage() {
@@ -118,7 +118,7 @@ export default function AdminSubmissionDetailPage() {
             by {submission.submitted_by_name} &middot; {createdDate}
           </p>
         </div>
-        <Badge variant={config.variant} className="text-sm px-3 py-1">{config.label}</Badge>
+        <Badge variant={config.variant} className={`text-sm px-3 py-1 ${config.className}`}>{config.label}</Badge>
       </div>
 
       <div className="grid gap-4">

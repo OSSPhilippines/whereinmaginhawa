@@ -26,9 +26,9 @@ interface SuggestionDetail {
 }
 
 const statusConfig = {
-  pending: { label: 'Pending', variant: 'outline' as const },
-  approved: { label: 'Approved', variant: 'default' as const },
-  rejected: { label: 'Rejected', variant: 'destructive' as const },
+  pending: { label: 'Pending', variant: 'outline' as const, className: 'border-honey/30 bg-honey/8 text-honey' },
+  approved: { label: 'Approved', variant: 'outline' as const, className: 'border-emerald/30 bg-emerald/8 text-emerald' },
+  rejected: { label: 'Rejected', variant: 'outline' as const, className: 'border-destructive/30 bg-destructive/8 text-destructive' },
 };
 
 function formatValue(value: unknown): string {
@@ -129,7 +129,7 @@ export default function AdminSuggestionDetailPage() {
         </div>
         <div className="flex gap-2 items-center">
           {isClosureReport && <Badge variant="destructive">Closure</Badge>}
-          <Badge variant={config.variant}>{config.label}</Badge>
+          <Badge variant={config.variant} className={config.className}>{config.label}</Badge>
         </div>
       </div>
 
@@ -144,7 +144,7 @@ export default function AdminSuggestionDetailPage() {
               <span className="text-gray-500">Place: </span>
               <Link
                 href={`/places/${suggestion.place_slug}`}
-                className="text-blue-600 hover:underline inline-flex items-center gap-1"
+                className="text-primary hover:underline inline-flex items-center gap-1"
               >
                 {suggestion.place_name} <ExternalLink className="w-3 h-3" />
               </Link>
@@ -194,9 +194,9 @@ export default function AdminSuggestionDetailPage() {
                             {formatValue(change?.old)}
                           </p>
                         </div>
-                        <div className="bg-green-50 border border-green-100 rounded-md p-2.5">
-                          <p className="text-[10px] font-medium text-green-400 uppercase mb-1">Proposed</p>
-                          <p className="text-sm text-green-700 whitespace-pre-wrap break-words">
+                        <div className="bg-emerald/5 border border-emerald/15 rounded-md p-2.5">
+                          <p className="text-[10px] font-medium text-emerald/60 uppercase mb-1">Proposed</p>
+                          <p className="text-sm text-emerald whitespace-pre-wrap break-words">
                             {formatValue(change?.new)}
                           </p>
                         </div>

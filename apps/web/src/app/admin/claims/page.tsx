@@ -22,9 +22,9 @@ interface Claim {
 }
 
 const statusConfig = {
-  pending: { label: 'Pending', variant: 'outline' as const, icon: Clock },
-  approved: { label: 'Approved', variant: 'default' as const, icon: CheckCircle },
-  rejected: { label: 'Rejected', variant: 'destructive' as const, icon: XCircle },
+  pending: { label: 'Pending', variant: 'outline' as const, icon: Clock, className: 'border-honey/30 bg-honey/8 text-honey' },
+  approved: { label: 'Approved', variant: 'outline' as const, icon: CheckCircle, className: 'border-emerald/30 bg-emerald/8 text-emerald' },
+  rejected: { label: 'Rejected', variant: 'outline' as const, icon: XCircle, className: 'border-destructive/30 bg-destructive/8 text-destructive' },
 };
 
 export default function AdminClaimsPage() {
@@ -110,7 +110,7 @@ export default function AdminClaimsPage() {
                         {' '}&middot; {date}
                       </p>
                     </div>
-                    <Badge variant={config.variant}>{config.label}</Badge>
+                    <Badge variant={config.variant} className={config.className}>{config.label}</Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-0 space-y-3">

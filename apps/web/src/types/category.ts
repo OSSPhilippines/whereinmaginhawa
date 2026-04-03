@@ -8,8 +8,8 @@ export interface Category {
   /** URL slug (e.g., "bars-in-maginhawa") */
   slug: string;
 
-  /** Emoji icon for visual representation */
-  emoji: string;
+  /** Lucide icon name for visual representation */
+  icon: string;
 
   /** SEO-optimized page title */
   title: string;

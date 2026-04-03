@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     if (csrfError) return csrfError;
 
     const clientIP = getClientIP(request);
-    if (!checkRateLimit(clientIP)) {
+    if (!(await checkRateLimit(clientIP))) {
       return NextResponse.json(
         { success: false, error: 'Rate limit exceeded. Please try again later.' },
         { status: 429 }

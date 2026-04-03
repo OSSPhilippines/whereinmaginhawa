@@ -7,9 +7,9 @@ import { getSession } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 
 const statusConfig = {
-  pending: { label: 'Pending', variant: 'outline' as const, icon: Clock, color: 'text-yellow-600' },
-  approved: { label: 'Approved', variant: 'default' as const, icon: CheckCircle, color: 'text-green-600' },
-  rejected: { label: 'Rejected', variant: 'destructive' as const, icon: XCircle, color: 'text-red-600' },
+  pending: { label: 'Pending', variant: 'outline' as const, icon: Clock, color: 'text-honey', className: 'border-honey/30 bg-honey/8 text-honey' },
+  approved: { label: 'Approved', variant: 'outline' as const, icon: CheckCircle, color: 'text-emerald', className: 'border-emerald/30 bg-emerald/8 text-emerald' },
+  rejected: { label: 'Rejected', variant: 'outline' as const, icon: XCircle, color: 'text-destructive', className: 'border-destructive/30 bg-destructive/8 text-destructive' },
 };
 
 export default async function DashboardSuggestionsPage() {
@@ -61,7 +61,7 @@ export default async function DashboardSuggestionsPage() {
         <p className="text-gray-600 text-sm mt-1">
           Review change suggestions from the community for your places
           {pendingCount > 0 && (
-            <span className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700 text-xs font-medium">
+            <span className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-honey/10 text-honey text-xs font-medium">
               {pendingCount} pending
             </span>
           )}
@@ -97,7 +97,7 @@ export default async function DashboardSuggestionsPage() {
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <CardTitle className="text-base group-hover:text-blue-600 transition-colors">
+                        <CardTitle className="text-base group-hover:text-primary transition-colors">
                           {suggestion.place_name}
                         </CardTitle>
                         <p className="text-xs text-gray-500 mt-0.5">
@@ -105,7 +105,7 @@ export default async function DashboardSuggestionsPage() {
                         </p>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Badge variant={config.variant} className="shrink-0">
+                        <Badge variant={config.variant} className={`shrink-0 ${config.className}`}>
                           {config.label}
                         </Badge>
                         <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500" />

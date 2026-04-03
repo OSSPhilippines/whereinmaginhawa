@@ -1,71 +1,21 @@
-'use client';
+import { redirect } from 'next/navigation';
+import { getProfile } from '@/lib/auth';
+import { AddPlacePageClient } from './add-place-client';
 
-import { useRouter } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { AddPlaceForm } from '@/components/place/add-place-form';
+export default async function AddPlacePage() {
+  let user: { name: string; email: string } | null = null;
 
-export default function AddPlacePage() {
-  const router = useRouter();
+  try {
+    const profile = await getProfile();
+    if (profile) {
+      user = {
+        name: profile.display_name || profile.email.split('@')[0],
+        email: profile.email,
+      };
+    }
+  } catch {
+    // Not logged in — that's fine, form works for anonymous users too
+  }
 
-  const handleSuccess = () => {
-    router.push('/success?type=create');
-  };
-
-  const handleCancel = () => {
-    router.push('/');
-  };
-
-  return (
-    <main className="min-h-screen pt-24 pb-16 bg-gradient-to-b from-white to-gray-50/50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="mb-8">
-            <Button
-              variant="ghost"
-              onClick={handleCancel}
-              className="mb-4 -ml-4"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
-            </Button>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Add a New Place
-            </h1>
-            <p className="text-lg text-gray-600">
-              Know a great restaurant or café in Maginhawa? Share it with the community!
-              Your submission will be reviewed and added to the directory.
-            </p>
-          </div>
-
-          {/* Form */}
-          <AddPlaceForm onSuccess={handleSuccess} onCancel={handleCancel} />
-
-          {/* Info Footer */}
-          <div className="mt-8 p-6 bg-blue-50 border border-blue-100 rounded-lg">
-            <h3 className="font-semibold text-blue-900 mb-2">What happens next?</h3>
-            <ul className="space-y-2 text-sm text-blue-800">
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 mt-0.5">1.</span>
-                <span>We'll receive your submission and check the information</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 mt-0.5">2.</span>
-                <span>Our team will review and verify the details</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 mt-0.5">3.</span>
-                <span>Once approved, your place will appear on the site!</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 mt-0.5">4.</span>
-                <span>You can track your submission status using the link we provide</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </main>
-  );
+  return <AddPlacePageClient user={user} />;
 }

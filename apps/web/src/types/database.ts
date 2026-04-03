@@ -387,6 +387,24 @@ export interface Database {
           },
         ];
       };
+      rate_limits: {
+        Row: {
+          id: string;
+          identifier: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          identifier: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          identifier?: string;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;

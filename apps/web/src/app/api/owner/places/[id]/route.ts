@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { requireAuth, isOwnerOfPlace } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
+import { checkRateLimit } from '@/lib/rate-limiter';
 
 const operatingHoursSchema = z.record(
   z.string(),
@@ -36,6 +37,52 @@ const updatePlaceSchema = z.object({
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+/**
+ * Release ownership of a place (unclaim it).
+ */
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const auth = await requireAuth(request);
+    if (auth.response) return auth.response;
+
+    const { id } = await params;
+
+    const isOwner = await isOwnerOfPlace(auth.user.id, id);
+    if (!isOwner) {
+      return NextResponse.json(
+        { success: false, error: 'You do not own this place.' },
+        { status: 403 }
+      );
+    }
+
+    const supabase = await createClient();
+
+    const { error } = await supabase
+      .from('places')
+      .update({ claimed_by: null, verified: false })
+      .eq('id', id);
+
+    if (error) {
+      console.info('[owner/places] Release error:', error.message);
+      return NextResponse.json(
+        { success: false, error: 'Failed to release place.' },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ success: true, message: 'Place released successfully.' });
+  } catch (error) {
+    console.info('[owner/places] Release API error:', error);
+    return NextResponse.json(
+      { success: false, error: 'An unexpected error occurred.' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -43,6 +90,10 @@ export async function PUT(
   try {
     const auth = await requireAuth(request);
     if (auth.response) return auth.response;
+
+    if (!(await checkRateLimit(`owner:${auth.user.id}`, { limit: 50, windowMs: 60 * 60 * 1000 }))) {
+      return NextResponse.json({ success: false, error: 'Rate limit exceeded.' }, { status: 429 });
+    }
 
     const { id } = await params;
 

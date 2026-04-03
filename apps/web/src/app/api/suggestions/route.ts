@@ -4,6 +4,7 @@ import { createAdminClient } from '@/lib/supabase/admin';
 import { requireCsrfToken } from '@/lib/csrf';
 import { checkRateLimit } from '@/lib/rate-limiter';
 import { getSession } from '@/lib/auth';
+import { sanitizeStrings } from '@/lib/sanitize';
 import type { Json } from '@/types/database';
 
 const operatingHoursSchema = z.record(
@@ -100,7 +101,7 @@ export async function POST(request: NextRequest) {
 
     // Rate limit
     const clientIP = getClientIP(request);
-    if (!checkRateLimit(clientIP)) {
+    if (!(await checkRateLimit(clientIP))) {
       return NextResponse.json(
         { success: false, error: 'Rate limit exceeded. Please try again later. (Maximum 20 submissions per hour)' },
         { status: 429 }
@@ -117,7 +118,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const data = validation.data;
+    const data = sanitizeStrings(validation.data);
     const admin = createAdminClient();
 
     // Fetch the existing place to compute diff

@@ -32,8 +32,46 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  // Refresh the session - this updates cookies if tokens were refreshed
-  const { data: { user } } = await supabase.auth.getUser();
+  // --- Auth code exchange (magic link / OAuth) ---
+  // When a user clicks a magic link, Supabase redirects with ?code=<code>.
+  // This can land on ANY page, so we handle it here in middleware.
+  const code = request.nextUrl.searchParams.get('code');
+  if (code) {
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    if (!error) {
+      // Build clean redirect URL
+      const cleanUrl = new URL(request.nextUrl);
+      cleanUrl.searchParams.delete('code');
+      const redirect = request.nextUrl.searchParams.get('redirect');
+      if (redirect && redirect.startsWith('/') && !redirect.startsWith('//')) {
+        cleanUrl.pathname = redirect;
+        cleanUrl.searchParams.delete('redirect');
+      }
+      // Create redirect and carry over the auth cookies that were set on `response`
+      const redirectResponse = NextResponse.redirect(cleanUrl);
+      response.cookies.getAll().forEach((cookie) => {
+        redirectResponse.cookies.set(cookie.name, cookie.value);
+      });
+      return redirectResponse;
+    }
+    console.info('[middleware] Code exchange failed:', error.message);
+  }
+
+  // Refresh the session - this updates cookies if tokens were refreshed.
+  // Wrapped in try/catch to handle "Lock broken by steal" errors that occur
+  // when multiple concurrent requests (middleware + server components) race
+  // to refresh the same session.
+  let user = null;
+  try {
+    const { data } = await supabase.auth.getUser();
+    user = data.user;
+  } catch (e) {
+    // Suppress lock contention errors — the session will still work
+    // because the cookies have already been refreshed by a parallel request.
+    if (!(e instanceof Error && e.message.includes('Lock'))) {
+      throw e;
+    }
+  }
 
   // --- Protected route checks ---
   const { pathname } = request.nextUrl;

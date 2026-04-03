@@ -31,9 +31,9 @@ interface ClaimDetail {
 }
 
 const statusConfig = {
-  pending: { label: 'Pending', variant: 'outline' as const, icon: Clock, color: 'text-yellow-600 bg-yellow-50' },
-  approved: { label: 'Approved', variant: 'default' as const, icon: CheckCircle, color: 'text-green-600 bg-green-50' },
-  rejected: { label: 'Rejected', variant: 'destructive' as const, icon: XCircle, color: 'text-red-600 bg-red-50' },
+  pending: { label: 'Pending', variant: 'outline' as const, icon: Clock, color: 'text-honey bg-honey/10', className: 'border-honey/30 bg-honey/8 text-honey' },
+  approved: { label: 'Approved', variant: 'outline' as const, icon: CheckCircle, color: 'text-emerald bg-emerald/10', className: 'border-emerald/30 bg-emerald/8 text-emerald' },
+  rejected: { label: 'Rejected', variant: 'outline' as const, icon: XCircle, color: 'text-destructive bg-destructive/10', className: 'border-destructive/30 bg-destructive/8 text-destructive' },
 };
 
 export default function AdminClaimDetailPage() {
@@ -123,7 +123,7 @@ export default function AdminClaimDetailPage() {
             {claim.place_name} &middot; Submitted {createdDate}
           </p>
         </div>
-        <Badge variant={config.variant} className="text-sm px-3 py-1">
+        <Badge variant={config.variant} className={`text-sm px-3 py-1 ${config.className}`}>
           <StatusIcon className="w-4 h-4 mr-1" />
           {config.label}
         </Badge>
@@ -138,7 +138,7 @@ export default function AdminClaimDetailPage() {
           <CardContent>
             <Link
               href={`/places/${claim.place_slug}`}
-              className="text-blue-600 hover:underline font-medium inline-flex items-center gap-1"
+              className="text-primary hover:underline font-medium inline-flex items-center gap-1"
             >
               {claim.place_name} <ExternalLink className="w-3 h-3" />
             </Link>
@@ -200,7 +200,7 @@ export default function AdminClaimDetailPage() {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block border rounded-md p-3 text-xs text-blue-600 hover:bg-blue-50 transition-colors truncate"
+                      className="block border rounded-md p-3 text-xs text-primary hover:bg-primary/5 transition-colors truncate"
                     >
                       Document {i + 1}
                     </a>

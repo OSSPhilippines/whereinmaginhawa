@@ -120,6 +120,13 @@ CREATE TABLE public.place_submissions (
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- Table: rate_limits (shared across serverless instances)
+CREATE TABLE public.rate_limits (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  identifier TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
 -- =============================================
 -- Indexes
 -- =============================================
@@ -136,6 +143,7 @@ CREATE INDEX idx_claims_place_id ON public.business_claims(place_id);
 CREATE INDEX idx_suggestions_status ON public.update_suggestions(status);
 CREATE INDEX idx_suggestions_place_id ON public.update_suggestions(place_id);
 CREATE INDEX idx_submissions_status ON public.place_submissions(status);
+CREATE INDEX idx_rate_limits_lookup ON public.rate_limits(identifier, created_at);
 
 -- =============================================
 -- Full-Text Search Trigger
@@ -190,6 +198,21 @@ CREATE TRIGGER on_claim_status_change
   FOR EACH ROW EXECUTE FUNCTION handle_claim_approval();
 
 -- =============================================
+-- Rate Limits Auto-Cleanup
+-- =============================================
+
+CREATE OR REPLACE FUNCTION cleanup_rate_limits() RETURNS TRIGGER AS $$
+BEGIN
+  DELETE FROM public.rate_limits WHERE created_at < NOW() - INTERVAL '2 hours';
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER rate_limits_cleanup
+  AFTER INSERT ON public.rate_limits
+  FOR EACH STATEMENT EXECUTE FUNCTION cleanup_rate_limits();
+
+-- =============================================
 -- Row Level Security
 -- =============================================
 
@@ -199,6 +222,7 @@ ALTER TABLE public.contributors ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.business_claims ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.update_suggestions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.place_submissions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.rate_limits ENABLE ROW LEVEL SECURITY;
 
 -- profiles: public read, self update
 CREATE POLICY "profiles_select" ON public.profiles FOR SELECT USING (true);
@@ -258,23 +282,38 @@ CREATE POLICY "submissions_admin_update" ON public.place_submissions FOR UPDATE 
   EXISTS (SELECT 1 FROM public.profiles WHERE id = auth.uid() AND role = 'admin')
 );
 
+-- rate_limits: no public access (service role only via admin client)
+-- No policies = only service role can access
+
 -- =============================================
 -- Storage Buckets
 -- =============================================
 
-INSERT INTO storage.buckets (id, name, public) VALUES ('place-images', 'place-images', true);
-INSERT INTO storage.buckets (id, name, public) VALUES ('claim-documents', 'claim-documents', false);
+-- place-images: public bucket for restaurant photos
+INSERT INTO storage.buckets (id, name, public) VALUES ('place-images', 'place-images', true)
+  ON CONFLICT (id) DO NOTHING;
 
--- place-images: public read, authenticated write
+-- claim-documents: private bucket for verification docs
+INSERT INTO storage.buckets (id, name, public) VALUES ('claim-documents', 'claim-documents', false)
+  ON CONFLICT (id) DO NOTHING;
+
+-- =============================================
+-- Storage Policies
+-- =============================================
+
+-- place-images: anyone can read, authenticated users can upload/update
 CREATE POLICY "place_images_public_read" ON storage.objects FOR SELECT
   USING (bucket_id = 'place-images');
-CREATE POLICY "place_images_auth_write" ON storage.objects FOR INSERT
-  WITH CHECK (bucket_id = 'place-images');
-CREATE POLICY "place_images_auth_update" ON storage.objects FOR UPDATE
-  USING (bucket_id = 'place-images');
 
--- claim-documents: only authenticated users upload, admin read
+CREATE POLICY "place_images_auth_write" ON storage.objects FOR INSERT
+  WITH CHECK (bucket_id = 'place-images' AND auth.role() = 'authenticated');
+
+CREATE POLICY "place_images_auth_update" ON storage.objects FOR UPDATE
+  USING (bucket_id = 'place-images' AND auth.role() = 'authenticated');
+
+-- claim-documents: authenticated users can upload and read their own
 CREATE POLICY "claim_docs_auth_upload" ON storage.objects FOR INSERT
   WITH CHECK (bucket_id = 'claim-documents' AND auth.role() = 'authenticated');
-CREATE POLICY "claim_docs_owner_read" ON storage.objects FOR SELECT
+
+CREATE POLICY "claim_docs_auth_read" ON storage.objects FOR SELECT
   USING (bucket_id = 'claim-documents' AND auth.role() = 'authenticated');

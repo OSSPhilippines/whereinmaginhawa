@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { Navbar } from "@/components/navigation/navbar";
-import { Footer } from "@/components/navigation/footer";
+import { SiteShell } from "@/components/layout/site-shell";
 import { WebsiteStructuredData } from "@/components/seo/structured-data";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -129,9 +128,7 @@ export default function RootLayout({
         className={`${plusJakartaSans.variable} font-sans antialiased`}
       >
         <AuthProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <SiteShell>{children}</SiteShell>
         </AuthProvider>
         <Toaster position="top-center" richColors />
         <Analytics />

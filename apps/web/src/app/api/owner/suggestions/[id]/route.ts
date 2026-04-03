@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { requireAuth, isOwnerOfPlace } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
+import { checkRateLimit } from '@/lib/rate-limiter';
 
 const reviewSchema = z.object({
   status: z.enum(['approved', 'rejected']),
@@ -17,6 +18,10 @@ export async function PATCH(
   try {
     const auth = await requireAuth(request);
     if (auth.response) return auth.response;
+
+    if (!(await checkRateLimit(`owner:${auth.user.id}`, { limit: 50, windowMs: 60 * 60 * 1000 }))) {
+      return NextResponse.json({ success: false, error: 'Rate limit exceeded.' }, { status: 429 });
+    }
 
     const { id } = await params;
     const supabase = await createClient();

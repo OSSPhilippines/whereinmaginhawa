@@ -2,10 +2,28 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 
+/**
+ * Validate redirect path to prevent open redirect attacks.
+ * Only allows relative paths starting with /.
+ */
+function sanitizeRedirect(redirect: string | null): string {
+  if (!redirect) return '/';
+  // Must start with / and must not start with // (protocol-relative URL)
+  if (!redirect.startsWith('/') || redirect.startsWith('//')) return '/';
+  // Strip any protocol attempts
+  try {
+    const url = new URL(redirect, 'http://localhost');
+    if (url.hostname !== 'localhost') return '/';
+  } catch {
+    return '/';
+  }
+  return redirect;
+}
+
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get('code');
-  const redirect = searchParams.get('redirect') || '/';
+  const redirect = sanitizeRedirect(searchParams.get('redirect'));
 
   if (code) {
     const response = NextResponse.redirect(new URL(redirect, origin));
@@ -33,6 +51,5 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // If no code or exchange failed, redirect to confirm page
   return NextResponse.redirect(new URL('/auth/confirm', origin));
 }

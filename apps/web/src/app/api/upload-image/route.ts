@@ -1,13 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { createClient } from '@/lib/supabase/server';
 
 export const runtime = 'nodejs';
 
+const VALID_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const VALID_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
+const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+const SLUG_PATTERN = /^[a-z0-9-]+$/;
+
 export async function POST(request: NextRequest) {
   try {
+    // Auth check - require logged in user
+    const supabase = await createClient();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File;
-    const type = formData.get('type') as 'profile' | 'cover';
+    const type = formData.get('type') as string;
     const slug = formData.get('slug') as string;
 
     if (!file) {
@@ -15,40 +28,32 @@ export async function POST(request: NextRequest) {
     }
 
     if (!type || !['profile', 'cover'].includes(type)) {
-      return NextResponse.json(
-        { error: 'Invalid image type. Must be "profile" or "cover"' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Invalid image type. Must be "profile" or "cover"' }, { status: 400 });
     }
 
-    if (!slug) {
-      return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
+    if (!slug || !SLUG_PATTERN.test(slug)) {
+      return NextResponse.json({ error: 'Invalid slug format' }, { status: 400 });
     }
 
-    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-    if (!validTypes.includes(file.type)) {
-      return NextResponse.json(
-        { error: 'Invalid file type. Only JPEG, PNG, and WebP are allowed' },
-        { status: 400 }
-      );
+    if (!VALID_MIME_TYPES.includes(file.type)) {
+      return NextResponse.json({ error: 'Invalid file type. Only JPEG, PNG, and WebP are allowed' }, { status: 400 });
     }
 
-    const maxSize = 10 * 1024 * 1024; // 10MB
-    if (file.size > maxSize) {
-      return NextResponse.json(
-        { error: 'File too large. Maximum size is 10MB' },
-        { status: 400 }
-      );
+    if (file.size > MAX_SIZE) {
+      return NextResponse.json({ error: 'File too large. Maximum size is 5MB' }, { status: 400 });
     }
+
+    // Whitelist extension from filename
+    const rawExt = file.name.split('.').pop()?.toLowerCase() || '';
+    const fileExtension = VALID_EXTENSIONS.includes(rawExt) ? rawExt : 'webp';
 
     const timestamp = Date.now();
-    const fileExtension = file.name.split('.').pop() || 'webp';
     const filePath = `places/${slug}/${type}-${timestamp}.${fileExtension}`;
 
-    const supabase = createAdminClient();
+    const admin = createAdminClient();
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    const { error: uploadError } = await supabase.storage
+    const { error: uploadError } = await admin.storage
       .from('place-images')
       .upload(filePath, buffer, {
         contentType: file.type,
@@ -63,16 +68,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { data: urlData } = supabase.storage
+    const { data: urlData } = admin.storage
       .from('place-images')
       .getPublicUrl(filePath);
-
-    console.info('Image uploaded successfully:', {
-      url: urlData.publicUrl,
-      size: file.size,
-      type,
-      slug,
-    });
 
     return NextResponse.json({
       success: true,
@@ -83,10 +81,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.info('[upload-image] Error:', error);
     return NextResponse.json(
-      {
-        error: 'Failed to upload image',
-        message: error instanceof Error ? error.message : 'Unknown error',
-      },
+      { error: 'Failed to upload image', message: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
