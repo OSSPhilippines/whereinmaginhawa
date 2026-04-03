@@ -152,11 +152,11 @@ export default function RootLayout({
           </>
         )}
 
-        {/* Google AdSense */}
+        {/* Google AdSense - uses beforeInteractive to avoid data-nscript attribute */}
         {process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID && (
           <Script
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID}`}
-            strategy="afterInteractive"
+            strategy="beforeInteractive"
             crossOrigin="anonymous"
           />
         )}
